@@ -1,0 +1,90 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="using:Core.ViewModels"
+			 xmlns:par="using:View.UserControls.Parameters"
+			 xmlns:stat="using:View.UserControls.Plc.Statuses"
+			 xmlns:plc="using:View.UserControls.Plc"
+			 x:DataType="vm:PlcViewModel"	
+             x:Class="View.UserControls.Plc.Statuses.DryUnitStatusControl">
+	<HeaderedContentControl Background="Black"
+							Header="Блок предварительной сушки">
+		<Grid ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="*,*,*">
+			<!--Статус-->
+			<plc:StatusTextIndicator Grid.Column="0" Grid.Row="0" Statuses="{StaticResource DryUnitStatus}"
+									 Margin="10" Grid.RowSpan="2"
+									 Index="{Binding PlcMainService.PlcModel.Indication.DryUnitStatus.Value}"/>
+			<!--Верхний шибер закрыт-->
+			<par:BoolIndicator Grid.Column="1" Grid.Row="0" DataContext="{Binding PlcMainService.PlcModel.Di.SqDryHighShiberClosed}"/>
+			<!--Верхний шибер открыт-->
+			<par:BoolIndicator Grid.Column="2" Grid.Row="0" DataContext="{Binding PlcMainService.PlcModel.Di.SqDryHighShiberOpened}"/>
+			<!--Открыть верхний шибер-->
+			<Button Grid.Column="3" Grid.Row="0" Margin="5" Command="{Binding WriteParameterCommand}"
+					CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.OpenHighShiberCmd}"
+					HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap"
+						   VerticalAlignment="Center" Text="{Binding PlcMainService.PlcModel.ButtonCommandsModel.OpenHighShiberCmd.Description}"/>
+			</Button>
+			<!--Закрыть верхний шибер-->
+			<Button Grid.Column="4" Grid.Row="0" Margin="5" Command="{Binding WriteParameterCommand}"
+					CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.CloseHighShiberCmd}"
+					HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap"
+						   VerticalAlignment="Center" Text="{Binding PlcMainService.PlcModel.ButtonCommandsModel.CloseHighShiberCmd.Description}"/>
+			</Button>
+			<!--Верхний шибер открывается-->
+			<par:BoolIndicator Grid.Column="5" Grid.Row="0" DataContext="{Binding PlcMainService.PlcModel.Do.DryUnitHighMotorOpen}"/>
+			<!--Верхний шибер закрывается-->
+			<par:BoolIndicator Grid.Column="6" Grid.Row="0" DataContext="{Binding PlcMainService.PlcModel.Do.DryUnitHighMotorClose}"/>
+
+			<!--Нижний шибер закрыт-->
+			<par:BoolIndicator Grid.Column="1" Grid.Row="1" DataContext="{Binding PlcMainService.PlcModel.Di.SqDryLowShiberClosed}"/>
+			<!--Нижний шибер открыт-->
+			<par:BoolIndicator Grid.Column="2" Grid.Row="1" DataContext="{Binding PlcMainService.PlcModel.Di.SqDryLowShiberOpened}"/>
+			<!--Открыть Нижний шибер-->
+			<Button Grid.Column="3" Grid.Row="1" Margin="5" Command="{Binding WriteParameterCommand}"
+					CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.OpenLowShiberCmd}"
+					HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap"
+						   VerticalAlignment="Center" Text="{Binding PlcMainService.PlcModel.ButtonCommandsModel.OpenLowShiberCmd.Description}"/>
+			</Button>
+			<!--Закрыть Нижний шибер-->
+			<Button Grid.Column="4" Grid.Row="1" Margin="5" Command="{Binding WriteParameterCommand}"
+					CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.CloseLowShiberCmd}"
+					HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap"
+						   VerticalAlignment="Center" Text="{Binding PlcMainService.PlcModel.ButtonCommandsModel.CloseLowShiberCmd.Description}"/>
+			</Button>
+			<!--Нижний шибер открывается-->
+			<par:BoolIndicator Grid.Column="5" Grid.Row="1" DataContext="{Binding PlcMainService.PlcModel.Do.DryUnitLowMotorOpen}"/>
+			<!--Нижний шибер закрывается-->
+			<par:BoolIndicator Grid.Column="6" Grid.Row="1" DataContext="{Binding PlcMainService.PlcModel.Do.DryUnitLowMotorClose}"/>
+
+			<!--Барабан внизу-->
+			<par:BoolIndicator Grid.Column="1" Grid.Row="2" DataContext="{Binding PlcMainService.PlcModel.Di.SqBarabanLowPosition}"/>
+			<!--Барабан вверху-->
+			<par:BoolIndicator Grid.Column="2" Grid.Row="2" DataContext="{Binding PlcMainService.PlcModel.Di.SqBarabanHighPosition}"/>
+			<!--Полнять барабан-->
+			<Button Grid.Column="3" Grid.Row="2" Margin="5" Command="{Binding WriteParameterCommand}"
+					CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.UpBarabanCmd}"
+					HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap"
+						   VerticalAlignment="Center" Text="{Binding PlcMainService.PlcModel.ButtonCommandsModel.UpBarabanCmd.Description}"/>
+			</Button>
+			<!--Опустить барабан-->
+			<Button Grid.Column="4" Grid.Row="2" Margin="5" Command="{Binding WriteParameterCommand}"
+					CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.DownBarabanCmd}"
+					HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap"
+						   VerticalAlignment="Center" Text="{Binding PlcMainService.PlcModel.ButtonCommandsModel.DownBarabanCmd.Description}"/>
+			</Button>
+			<!--Барабан поднимается-->
+			<par:BoolIndicator Grid.Column="5" Grid.Row="2" DataContext="{Binding PlcMainService.PlcModel.Do.DryUnitHighBarabanMotor}"/>
+			<!--Барабан опускается-->
+			<par:BoolIndicator Grid.Column="6" Grid.Row="2" DataContext="{Binding PlcMainService.PlcModel.Do.DryUnitLowBarabanMotor}"/>
+		</Grid>
+			
+	</HeaderedContentControl>
+</UserControl>

@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:this="using:View.UserControls.Plc"
+             x:Class="View.UserControls.Plc.StatusTextIndicator">
+	<HeaderedContentControl Header="{Binding RelativeSource={RelativeSource AncestorType=this:StatusTextIndicator} Path=StatusName}" Background="Black">
+		<TextBlock Margin="5"
+				   VerticalAlignment="Center"
+				   HorizontalAlignment="Center">
+			<TextBlock.Text>
+				<MultiBinding Converter="{StaticResource GetFromCollectionMultiValueConverter}">
+					<Binding RelativeSource="{RelativeSource AncestorType=this:StatusTextIndicator}" Path="Index"/>
+					<Binding RelativeSource="{RelativeSource AncestorType=this:StatusTextIndicator}" Path="Statuses"/>
+				</MultiBinding>
+			</TextBlock.Text>
+		</TextBlock>
+	</HeaderedContentControl>
+</UserControl>

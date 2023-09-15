@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Resourses\Styles\Validation\ValidationErrors.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AvaloniaXaml Include="Resourses\Styles\Validation\ValidationErrors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AvaloniaXaml>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TrimmerRootAssembly Include="Avalonia.Themes.Fluent" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.18" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="0.10.18" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.18" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.18" />
+    <PackageReference Include="Avalonia.Xaml.Behaviors" Version="0.10.18" />
+    <PackageReference Include="Material.Icons" Version="1.0.2" />
+    <PackageReference Include="Material.Icons.Avalonia" Version="1.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
+    <PackageReference Include="NP.Avalonia.Visuals" Version="1.0.38" />
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="UserControls\HighBar\ConnectIndicatorControl.axaml" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="UserControls\Plc\PlcIndicationControl.axaml" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <Compile Update="UserControls\Plc\Statuses\ProbotborStatus.axaml.cs">
+      <DependentUpon>ProbotborStatus.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <None Update="vissma.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="UserControls\HighBar\NakopitelDoorControl.axaml" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <Folder Include="Resourses\Templates\" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,26 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"			
+			 xmlns:conv="using:View.Converters"
+             x:Class="View.App">
+	
+    <Application.Styles>
+		<StyleInclude Source="avares://Material.Icons.Avalonia/App.xaml"></StyleInclude>
+		<StyleInclude Source="avares://NP.Avalonia.Visuals/Themes/ThemeStyles.axaml"/>
+		<FluentTheme Mode="Light"/>
+		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+		<StyleInclude Source="/Resourses/Styles/Validation/ValidationErrors.xaml"/>
+		<StyleInclude Source="/Resourses/Styles/GroupboxStyle.axaml"/>
+		<StyleInclude Source="/Resourses/Styles/Windows.axaml"/>
+		
+	</Application.Styles>
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceInclude Source="/Resourses/GlobalConverters.axaml"/>
+				<ResourceInclude Source="/Resourses/CommonEnums.axaml"/>				
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+	
+</Application>

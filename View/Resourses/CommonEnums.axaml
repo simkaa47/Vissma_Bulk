@@ -1,0 +1,86 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+					xmlns:sys="clr-namespace:System;assembly=netstandard">
+	<scg:List x:TypeArguments="sys:Object" x:Key="ManualBtnColors">
+		<SolidColorBrush Color="#33000000"/>
+		<SolidColorBrush Color="LightGreen"/>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="Modes">
+		<sys:String>Ручной</sys:String>
+		<sys:String>Автоматический</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="CommWays">
+		<sys:String>USB</sys:String>
+		<sys:String>ETHERNET</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="ProbaStatuses">
+		<sys:String>Заполнение</sys:String>
+		<sys:String>В накопителе</sys:String>
+		<sys:String>Готов для взвешивания</sys:String>
+		<sys:String>Готов для испытаний</sys:String>
+		<sys:String>Испытания проведены</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:Int32" x:Key="Baudrates">
+		<sys:Int32>4800</sys:Int32>
+		<sys:Int32>9600</sys:Int32>
+		<sys:Int32>19200</sys:Int32>
+		<sys:Int32>38400</sys:Int32>
+		<sys:Int32>57600</sys:Int32>
+		<sys:Int32>115200</sys:Int32>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="Parities">
+		<sys:String>None</sys:String>
+		<sys:String>Even</sys:String>
+		<sys:String>Odd</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="Activities">
+		<sys:String>НЕАКТИВЕН</sys:String>
+		<sys:String>АКТИВЕН</sys:String>		
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="NoYesEnums">
+		<sys:String>Нет</sys:String>
+		<sys:String>Да</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="ProbotborStatus">
+		<sys:String>Готов</sys:String>
+		<sys:String>Готов (датчик домашнего положения)</sys:String>
+		<sys:String>Готов (датчик рабочего положения)</sys:String>
+		<sys:String>Необходим возврат ковша</sys:String>
+		<sys:String>Выполняется возврат ковша</sys:String>
+		<sys:String>Выполняется отбор</sys:String>
+		<sys:String>Ошибка</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="UniversalStatus">
+		<sys:String>Готов</sys:String>
+		<sys:String>>>>></sys:String>
+		<sys:String>>>></sys:String>
+		<sys:String>>>></sys:String>
+		<sys:String>>>></sys:String>
+		<sys:String>Включен</sys:String>
+		<sys:String>Ошибка</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="NakopStatus">
+		<sys:String>Готов</sys:String>
+		<sys:String>Необходима калибровка</sys:String>
+		<sys:String>Калибровка</sys:String>
+		<sys:String>Смена канистры</sys:String>
+		<sys:String>Открыта дверь</sys:String>
+		<sys:String>Ошибка</sys:String>
+		<sys:String>Накопитель заполнен</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="DryUnitStatus">
+		<sys:String>Готов</sys:String>
+		<sys:String>Открытие верхнего шибера</sys:String>
+		<sys:String>Пауза перед закрытием верхнего шибера</sys:String>
+		<sys:String>Закрытие верхнего шибера</sys:String>
+		<sys:String>Сушка</sys:String>
+		<sys:String>Опускание барабана</sys:String>
+		<sys:String>Открытие нижниего шибера</sys:String>
+		<sys:String>Пауза перед закрытием нижнего шибера</sys:String>
+		<sys:String>Закрытие нижнего шибера</sys:String>
+		<sys:String>Ожидание работы истирателя</sys:String>
+		<sys:String>Поднятие барабана</sys:String>
+		<sys:String>Ошибка</sys:String>
+	</scg:List>
+</ResourceDictionary>

@@ -1,0 +1,50 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+		Width="1920" Height="1080"
+		xmlns:a="using:Core.Models.AccesControl"
+		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+		xmlns:sys="clr-namespace:System;assembly=netstandard"
+		xmlns:vm="using:Core.ViewModels"
+        x:Class="View.AuthorizationWindow"
+		x:DataType="vm:MainViewModel"
+		WindowState="Maximized"
+		WindowStartupLocation="CenterScreen"
+        Title="Vissma Bulk - Авторизация">
+	<Window.Resources>
+		<a:Login x:Key="LoginModel"/>
+		<scg:List x:TypeArguments="sys:Object" x:Key="TextBoxErrorColors">
+			<SolidColorBrush Color="Black"/>
+			<SolidColorBrush Color="Red"/>
+		</scg:List>
+	</Window.Resources>	
+	<Viewbox>
+		<Canvas Width="1920" Height="1080">
+			<Canvas.Background>
+				<ImageBrush Source="/Assets/00.png" Stretch="Fill"/>
+			</Canvas.Background>
+			<Button Height="92" Width="208"
+					Click="LoginClick"
+					Canvas.Left="1630" Canvas.Top="792"/>
+
+			<TextBox Width="446" Height="104"
+					 DataContext="{StaticResource LoginModel}"
+					 Canvas.Left="1390" Canvas.Top="562"
+					 Name="Login" FontSize="36" Padding="10"
+					 VerticalContentAlignment="Center"
+					 Text="{Binding LoginName}"
+					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"/>
+			<TextBox Width="446" Height="104"
+					 Canvas.Left="1390" Canvas.Top="687"
+					 Name="Password" FontSize="36" Padding="10"
+					 VerticalContentAlignment="Center"
+				     DataContext="{StaticResource LoginModel}"
+					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"
+					 Text="{Binding Password}"					 
+					 PasswordChar="•"/>
+		</Canvas>
+	</Viewbox>
+	
+</Window>

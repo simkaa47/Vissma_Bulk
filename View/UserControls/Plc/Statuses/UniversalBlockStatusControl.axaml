@@ -1,0 +1,26 @@
+<par:ParameterCommon xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:par="using:View.UserControls.Parameters"
+			 xmlns:plc="using:View.UserControls.Plc"
+			 xmlns:stat="using:View.UserControls.Plc.Statuses"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.UserControls.Plc.Statuses.UniversalBlockStatusControl">
+	<HeaderedContentControl Header="{Binding RelativeSource={RelativeSource AncestorType=stat:UniversalBlockStatusControl} Path=StatusName}"
+							Background="Black">
+		<Grid ColumnDefinitions="*,0.5*">
+			<plc:StatusTextIndicator Index="{Binding RelativeSource={RelativeSource AncestorType=stat:UniversalBlockStatusControl} Path=Index}"
+									 Statuses="{Binding RelativeSource={RelativeSource AncestorType=stat:UniversalBlockStatusControl} Path=Statuses}"
+									 Margin="10"/>
+			<Button Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10"
+					Background="{Binding RelativeSource={RelativeSource AncestorType=stat:UniversalBlockStatusControl} Path=CommandParameter.Value, Converter={StaticResource  IfTrueConverter}, ConverterParameter={StaticResource ManualBtnColors}}"
+					Command="{Binding RelativeSource={RelativeSource AncestorType=stat:UniversalBlockStatusControl} Path=Command}"
+					CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=stat:UniversalBlockStatusControl} Path=CommandParameter}">
+				<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+						   Text="{Binding RelativeSource={RelativeSource AncestorType=stat:UniversalBlockStatusControl} Path=CommandParameter.Description}"
+						   TextWrapping="Wrap"/>
+			</Button>
+		</Grid>
+	</HeaderedContentControl>
+</par:ParameterCommon>

@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:Core.ViewModels"
+			 xmlns:material="using:Material.Icons.Avalonia"
+			 x:DataType="vm:MainViewModel"
+			 xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+			 xmlns:sys="clr-namespace:System;assembly=netstandard"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.UserControls.HighBar.NakopitelDoorControl">
+	<UserControl.Resources>
+		<scg:List x:TypeArguments="sys:Object" x:Key="ErrorColors">
+			<SolidColorBrush Color="Red"/>
+			<SolidColorBrush Color="LightGreen"/>
+		</scg:List>
+	</UserControl.Resources>
+	<DockPanel>
+		<material:MaterialIcon Kind="LockOpenAlert"
+						   Foreground="Red"
+							Height="40" Width="40" Margin="5"
+						   IsVisible="{Binding !PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel.Value}"/>
+		<material:MaterialIcon Kind="Lock"
+							   Foreground="LightGreen"
+							   Height="40" Width="40" Margin="5"
+							   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel.Value}"/>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
+			<TextBlock IsVisible="{Binding !PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel.Value}" Width="150"
+				   Text="{Binding MainProcessViewModel.MainProcessService.LockService.OpenDoorSecondsCurrent, StringFormat={}НАКОПИТЕЛЬ ОТКРЫТ ({0} СЕК.) , Mode=OneWay}"
+					   TextWrapping="Wrap"/>
+			<TextBlock IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel.Value}" Width="150"
+					   Text="НАКОПИТЕЛЬ ЗАКРЫТ"
+					   TextWrapping="Wrap"/>
+		</StackPanel>
+		
+	</DockPanel>
+	
+</UserControl>

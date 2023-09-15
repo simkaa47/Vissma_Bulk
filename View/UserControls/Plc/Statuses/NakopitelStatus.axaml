@@ -1,0 +1,95 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:Core.ViewModels"
+			 xmlns:par="using:View.UserControls.Parameters"
+			 xmlns:plc="using:View.UserControls.Plc"
+			 x:DataType="vm:PlcViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.UserControls.Plc.Statuses.NakopitelStatus">
+	<HeaderedContentControl Background="Black"
+							Header="Накопитель">
+		<Grid ColumnDefinitions="Auto,*">
+			<!--Таблица канистр-->
+			<DataGrid Items="{Binding PlcMainService.PlcModel.Indication.Kanistras}"
+					  Margin="10"
+					  Height="280"
+					  VerticalScrollBarVisibility="Disabled"
+					  HorizontalAlignment="Left"					  
+					  IsReadOnly="True">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding Index, Converter={StaticResource AddConverter}, ConverterParameter=1}"
+										Width="90"
+										IsReadOnly="True">
+						<DataGridTextColumn.Header>
+							<TextBlock Text="Номер ячейки" TextWrapping="Wrap"/>
+						</DataGridTextColumn.Header>
+					</DataGridTextColumn>
+					<DataGridTextColumn Binding="{Binding IsExist.Value, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource NoYesEnums} Mode=OneWay}"
+										Width="110"
+										IsReadOnly="True">
+						<DataGridTextColumn.Header>
+							<TextBlock Text="Наличие канистры" TextWrapping="Wrap" />
+						</DataGridTextColumn.Header>
+					</DataGridTextColumn>
+					<DataGridTextColumn Binding="{Binding Id.Value}" Header="Id пробы"/>
+					<DataGridTextColumn Binding="{Binding ProbeCnt.Value}"
+										Width="110"
+										IsReadOnly="True">
+						<DataGridTextColumn.Header>
+							<TextBlock Text="№ проб в канистре" TextWrapping="Wrap" />
+						</DataGridTextColumn.Header>
+					</DataGridTextColumn>					
+				</DataGrid.Columns>
+			</DataGrid>
+			<!--Индикация-->
+			<Grid Grid.Column="1" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
+				<!--Статус накопителя-->
+				<plc:StatusTextIndicator Statuses="{StaticResource NakopStatus}"
+										 Index="{Binding PlcMainService.PlcModel.Indication.NakopitelStatus.Value}"/>
+				<Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" Grid.Column="1" Margin="10,10,0,0">
+					<Grid>
+						<TextBlock Text="Номер ячейки под загрузкой" TextWrapping="Wrap" HorizontalAlignment="Center"/>
+						<TextBlock Text="{Binding PlcMainService.PlcModel.Indication.NakopitelCurrentCell.Value}" 
+								   TextWrapping="Wrap" 
+								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center"/>
+					</Grid>
+					
+				</Border>
+				<!--Датчик двери-->
+				<par:BoolIndicator Grid.Column="2" Grid.Row="0"
+								   DataContext="{Binding PlcMainService.PlcModel.Di.SqDoorNakopitel}"/>
+				<!--Датчик полного оборота-->
+				<par:BoolIndicator Grid.Column="0" Grid.Row="1"
+								   DataContext="{Binding PlcMainService.PlcModel.Di.SqNakopFullRev}"/>
+				<!--Датчик ячейки-->
+				<par:BoolIndicator Grid.Column="1" Grid.Row="1"
+								   DataContext="{Binding PlcMainService.PlcModel.Di.SqNakopCell}"/>
+				<!--Датчик канистры-->
+				<par:BoolIndicator Grid.Column="2" Grid.Row="1"
+								   DataContext="{Binding PlcMainService.PlcModel.Di.SqNakopKanistra}"/>
+				<!--Калибровка накопителя-->
+				<Button Grid.Column="0" Grid.Row="2" Command="{Binding WriteParameterCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+						Margin="10"
+						CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.CalibrationNakopCmd}" >
+					<TextBlock Text="Калибровка" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+				</Button>
+				<!--Смена канистры-->
+				<Button Grid.Column="1" Grid.Row="2" Command="{Binding WriteParameterCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+						Margin="10"
+						IsEnabled="{Binding PlcMainService.PlcModel.Indication.NakopitelReady.Value}"
+						CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.ChangeKanistraNakopCmd}" >
+					<TextBlock Text="Смена канистры" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+				</Button>
+				<!--Открыть замок-->
+				<Button Grid.Column="2" Grid.Row="2" Command="{Binding WriteParameterCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+						Margin="10"
+						CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.OpenLockNakopCmd}" >
+					<TextBlock Text="Открыть замок" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+				</Button>
+			</Grid>
+		</Grid>
+	</HeaderedContentControl>
+</UserControl>

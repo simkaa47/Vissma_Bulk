@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="400"
+		xmlns:vm="using:Core.ViewModels"
+		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+		xmlns:sys="clr-namespace:System;assembly=netstandard"
+		Width="400"
+		Height="400"
+		xmlns:a="using:Core.Models.AccesControl"
+        x:Class="View.Dialogs.Access.LoginWindow"
+		x:DataType="vm:AccessViewModel"
+        Title="LoginWindow">	
+	<Window.Resources>
+		<a:Login x:Key="LoginModel"/>
+		<scg:List x:TypeArguments="sys:Object" x:Key="TextBoxErrorColors">
+			<SolidColorBrush Color="Black"/>
+			<SolidColorBrush Color="Red"/>
+		</scg:List>
+	</Window.Resources>
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+		<StackPanel DataContext="{StaticResource LoginModel}">
+			<TextBox Width="200"
+					 Name="Login" 
+					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"
+					 Margin="10" 
+					 Text="{Binding LoginName}" 
+					 Watermark="Логин" 
+					 UseFloatingWatermark="True"/>
+			<TextBox Width="200" 
+					 Name="Password" 
+					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"
+					 Margin="10"  
+					 Text="{Binding Password}" 
+					 UseFloatingWatermark="True"
+				     PasswordChar="•"
+					 Watermark="Пароль"/>
+		</StackPanel>
+		
+		<Button Width="200"
+				Content="Логин" 
+				Margin="10"
+			    Click="LoginClick"
+				CommandParameter="{StaticResource LoginModel}"
+				HorizontalContentAlignment="Center"/>
+	</StackPanel>
+</Window>

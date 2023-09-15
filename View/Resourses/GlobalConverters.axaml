@@ -1,0 +1,16 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+					xmlns:conv="using:View.Converters"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Add Resources Here -->
+	<conv:GetIfTrueConverter x:Key="IfTrueConverter"/>
+	<conv:UserVisibilityConverter x:Key="UserVisibilityConverter"/>
+	<conv:IfEqualConverter  x:Key="IfEqualConverter"/>
+	<conv:DateTimeConverter x:Key="DateTimeConverter"/>
+	<conv:IfNotEqualConverter  x:Key="IfNotEqualConverter"/>		
+	<conv:GetFromCollectionMultiValueConverter x:Key="GetFromCollectionMultiValueConverter"/>
+	<conv:GetByIndexFromParameterConverter x:Key="GetByIndexFromParameterConverter"/>
+	<conv:AddConverter x:Key="AddConverter"/>	
+	<conv:GetVisibleForHistoryEventConverter x:Key="GetVisibleForHistoryEventConverter"/>
+	<conv:GetColorForHistoryEventConverter x:Key="GetColorForHistoryEventConverter"/>
+	
+</ResourceDictionary>

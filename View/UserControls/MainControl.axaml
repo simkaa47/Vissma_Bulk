@@ -1,0 +1,33 @@
+
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"	
+			 xmlns:vm="using:Core.ViewModels"
+			 xmlns:a="using:Core.Models.AccesControl"
+			 xmlns:plc="using:View.UserControls.Plc"			 
+			 xmlns:sett="using:View.UserControls.Settings"	
+			 xmlns:hb="using:View.UserControls.HighBar"	
+			 xmlns:e="using:View.UserControls.Events"			 
+			 x:DataType="vm:MainViewModel"
+             x:Class="View.UserControls.MainControl">
+	<Grid RowDefinitions="80,*">
+		<hb:HighBar Grid.Row="0"/>
+		<TabControl TabStripPlacement="Bottom" Grid.Row="1">
+			<TabItem Header="Индикация">
+				<plc:PlcIndicationControl DataContext="{Binding PlcViewModel}"/>
+			</TabItem>
+			<TabItem Header="Настройки">
+				<plc:PclSettingsControl DataContext="{Binding PlcViewModel}"/>
+			</TabItem>
+			<TabItem Header="Сервисные настройки" IsVisible="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter} ConverterParameter={x:Static a:UserAccessLevel.Service}}">
+				<sett:SettingsCommonControl/>
+			</TabItem>			
+			<TabItem Header="События">
+				<e:MainEventControl/>
+			</TabItem>
+		</TabControl>
+		
+	</Grid>
+</UserControl>

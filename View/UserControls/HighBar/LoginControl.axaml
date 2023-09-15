@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="80"
+			 xmlns:vm="using:Core.ViewModels"
+			 Width="350"
+			 Height="80"
+			 xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+		     xmlns:sys="clr-namespace:System;assembly=netstandard"
+			 xmlns:material="using:Material.Icons.Avalonia"
+			 x:DataType="vm:AccessViewModel"
+             x:Class="View.UserControls.HighBar.LoginControl">
+	<Grid MaxWidth="350">
+		<Grid.Resources>
+			<scg:List x:TypeArguments="sys:Object" x:Key="BlackRedCollection">
+				<SolidColorBrush Color="Black"/>
+				<SolidColorBrush Color="Red"/>
+			</scg:List>
+		</Grid.Resources>
+		
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+			<Button Click="ShowLoginWindow" 
+					Margin="5"
+					VerticalAlignment="Center">
+				<material:MaterialIcon Kind="AccountCircle"
+									   Height="40"
+									   Width="40"/>
+			</Button>
+			<Viewbox VerticalAlignment="Center" Width="180">
+				<TextBlock Text="{Binding CurrentUser.FullName, FallbackValue=Пользователь не авторизован}"/>
+			</Viewbox>			
+		</StackPanel>
+		<Button Margin="5" 
+				VerticalAlignment="Center"
+				IsVisible="{Binding CurrentUser, Converter={x:Static ObjectConverters.IsNotNull}}"
+				HorizontalAlignment="Right"
+				Command="{Binding LogoutCommand}">
+			<material:MaterialIcon Kind="Logout"
+								   Height="40"
+								   Width="40"/>
+		</Button>
+	</Grid>
+</UserControl>

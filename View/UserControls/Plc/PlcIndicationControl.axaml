@@ -1,0 +1,126 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:par="using:View.UserControls.Parameters"
+			 xmlns:vm="using:Core.ViewModels"
+			 xmlns:stat="using:View.UserControls.Plc.Statuses"
+			 x:DataType="vm:PlcViewModel"			
+			 xmlns:plc="using:View.UserControls.Plc"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.UserControls.Plc.PlcIndicationControl">
+	<ListBox VirtualizationMode="None" SelectionMode="Toggle">
+		<Grid ColumnDefinitions="*,*">
+			<ListBox VirtualizationMode="None">
+				<!--Id пробы-->
+				<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.ProbeId}"/>
+				<!--Время до следующего отбора-->
+				<DockPanel>
+					<TextBlock Text="Время до следующего отбора"/>
+					<Border BorderBrush="Black" BorderThickness="1" CornerRadius="2" Height="40"  HorizontalAlignment="Right">
+						<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Width="240">
+							<TextBlock Text="{Binding PlcMainService.PlcModel.Indication.TimeBeforeNextOtborHours.Value, StringFormat={}{0:00} часов, Mode=OneWay}"
+									 Margin="5"/>
+							<TextBlock Text="{Binding PlcMainService.PlcModel.Indication.TimeBeforeNextOtborMinutes.Value, StringFormat={}{0:00} минут, Mode=OneWay}"
+									 Margin="5" />
+							<TextBlock Text="{Binding PlcMainService.PlcModel.Indication.TimeBeforeNextOtborSeconds.Value, StringFormat={}{0:00} секунд, Mode=OneWay}"
+									 Margin="5"/>
+						</StackPanel>
+					</Border>
+				</DockPanel>				
+			</ListBox>
+			<ListBox VirtualizationMode="None" Grid.Column="1">
+				<!--Влажность-->
+				<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Indication.CurrentHumm}"/>
+				<!--Температура-->
+				<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Indication.DryUnitCurrentTemperature}"/>				
+			</ListBox>
+		</Grid>		
+		<!--Статус проботборника 1-->
+		<stat:ProbotborStatus Height="100" StatusName="Проботборник 1"
+							  Index="{Binding PlcMainService.PlcModel.Indication.ProbotborStatus1.Value}"
+							  Statuses="{StaticResource ProbotborStatus}"
+							  SqHomeAbortParameter="{Binding PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
+							  SqHomeParameter="{Binding PlcMainService.PlcModel.Di.SqProbHome1}"
+							  ReadyParameter="{Binding PlcMainService.PlcModel.Indication.ProbotborReady1}"
+							  SqWorkAbortParameter="{Binding PlcMainService.PlcModel.Di.SqProbWorkAbort1}"
+							  SqWorkParameter="{Binding PlcMainService.PlcModel.Di.SqProbWork1}"
+							  BusyParameter="{Binding PlcMainService.PlcModel.Indication.ProbotborBusy1}"
+							  Command="{Binding WriteParameterCommand}"
+							  OtborCmdParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.OtborCmd1}"
+							  ReturnCmdParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}"/>
+		<!--Статусы дробилки, питателя-->
+		<Grid ColumnDefinitions="*,*,Auto" Height="100">
+			<!--Статус питателя-->
+			<stat:UniversalBlockStatusControl Command="{Binding WriteParameterCommand}"
+											  CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.PitatelCmd}"
+											  Index="{Binding PlcMainService.PlcModel.Indication.PitatelStatus.Value}"
+											  StatusName="Ленточный питатель"
+											  Statuses="{StaticResource UniversalStatus}"/>
+			<!--Статус дробилки-->
+			<stat:UniversalBlockStatusControl Command="{Binding WriteParameterCommand}" Grid.Column="1" Margin="10,0,0,0"
+											  CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.DrobilkaOn}"
+											  Index="{Binding PlcMainService.PlcModel.Indication.DrobilkaStatus.Value}"
+											  StatusName="Первичная дробилка"
+											  Statuses="{StaticResource UniversalStatus}"/>
+			<Grid ColumnDefinitions="*,*" RowDefinitions="*,*" Grid.Column="2">
+				
+				<!--Вибратор 1 - двигатель-->
+				<par:BoolIndicator Grid.Column="1" Grid.Row="0" DataContext="{Binding PlcMainService.PlcModel.Do.VibratorM1}"/>
+				<!--Вибратор 3 - Вкл-выкл-->
+				<par:BoolParameter Grid.Column="0" Grid.Row="1" Margin="10,0,0,0"
+								   Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand}"
+								   DataContext="{Binding PlcMainService.PlcModel.ButtonCommandsModel.VibratorOnOff3}"/>
+				<!--Вибратор 1 - Вкл-выкл-->
+				<par:BoolParameter Grid.Column="0" Grid.Row="0" Margin="10,0,0,0"
+								   Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand}"
+								   DataContext="{Binding PlcMainService.PlcModel.ButtonCommandsModel.VibratorOnOff1}"/>
+				<!--Вибратор 3 - двигатель-->
+				<par:BoolIndicator Grid.Column="1" Grid.Row="1" DataContext="{Binding PlcMainService.PlcModel.Do.VibratorM3}"/>
+			</Grid>
+			
+		</Grid>
+		<!--Статус проботборника 2-->
+		<stat:ProbotborStatus Height="100" StatusName="Проботборник 2"
+							  Index="{Binding PlcMainService.PlcModel.Indication.ProbotborStatus2.Value}"
+							  Statuses="{StaticResource ProbotborStatus}"
+							  SqHomeAbortParameter="{Binding PlcMainService.PlcModel.Di.SqProbHomeAbort2}"
+							  SqHomeParameter="{Binding PlcMainService.PlcModel.Di.SqProbHome2}"
+							  ReadyParameter="{Binding PlcMainService.PlcModel.Indication.ProbotborReady2}"
+							  SqWorkAbortParameter="{Binding PlcMainService.PlcModel.Di.SqProbWorkAbort2}"
+							  SqWorkParameter="{Binding PlcMainService.PlcModel.Di.SqProbWork2}"
+							  BusyParameter="{Binding PlcMainService.PlcModel.Indication.ProbotborBusy2}"
+							  Command="{Binding WriteParameterCommand}"
+							  OtborCmdParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.OtborCmd2}"
+							  ReturnCmdParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd2}"/>
+		<!--Блок предварительной сушки-->
+		<stat:DryUnitStatusControl/>
+		<!--Истиратель, вибратор 1, возврат проб-->
+		<Grid ColumnDefinitions="*,*,*">
+			<!--Статус возврата проб-->
+			<stat:UniversalBlockStatusControl Command="{Binding WriteParameterCommand}"
+											  CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.SysReturnCmd}"
+											  Index="{Binding PlcMainService.PlcModel.Indication.SysReturnStatus.Value}"
+											  StatusName="Возврат пробы"
+											  Statuses="{StaticResource UniversalStatus}"/>
+			<!--Статус исттрателя-->
+			<stat:UniversalBlockStatusControl Command="{Binding WriteParameterCommand}" Grid.Column="1"
+											  CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.IstiratelCmd}"
+											  Index="{Binding PlcMainService.PlcModel.Indication.IstiratelStatus.Value}"
+											  StatusName="Истиратель"
+											  Statuses="{StaticResource UniversalStatus}"/>
+			<!--Вибратор 2 - Вкл-выкл-->
+			<Grid Grid.Column="2" ColumnDefinitions="*,*">
+				<par:BoolParameter Grid.Column="0" Margin="10,0,0,0"
+							   Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand}"
+							   DataContext="{Binding PlcMainService.PlcModel.ButtonCommandsModel.VibratorOnOff2}"/>
+				<!--Вибратор 1 - двигатель-->
+				<par:BoolIndicator Grid.Column="1" DataContext="{Binding PlcMainService.PlcModel.Do.VibratorM2}"/>
+			</Grid>
+			
+		</Grid>
+		<!--Статус накопителя-->
+		<stat:NakopitelStatus/>
+		
+	</ListBox>
+</UserControl>

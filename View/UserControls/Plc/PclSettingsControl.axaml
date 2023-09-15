@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:Core.ViewModels"
+			 xmlns:par="using:View.UserControls.Parameters"
+			 xmlns:plc="using:View.UserControls.Plc"
+			 x:DataType="vm:PlcViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.UserControls.Plc.PclSettingsControl">
+	<Grid>
+		<ListBox  VirtualizationMode="None">
+			<par:BoolParameter DataContext="{Binding PlcMainService.PlcModel.Settings.AutoMode}"
+							   Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.TimeForKanistra}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.KanistraSv}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.FcFrequencesSvs[0]}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.FcFrequencesSvs[1]}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.FcFrequencesSvs[3]}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.DryUnitDelayClose}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.DryUnitDryTime}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.DryUnitTemperatureSv}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.DelitelWorkTime}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.SysReturnWorkTime}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.IstiratelWorkTime}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.PitatelWorkTime}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.ProbotbornikTimeout1}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			<par:NumericParameter DataContext="{Binding PlcMainService.PlcModel.Settings.ProbotbornikTimeout2}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.WriteParameterCommand, Mode=TwoWay}"/>
+			
+		</ListBox>
+	</Grid>
+</UserControl>

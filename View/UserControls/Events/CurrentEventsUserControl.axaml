@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:vm="using:View.ViewModels"
+			 xmlns:np="using:NP.Avalonia.Visuals"
+			 x:DataType="vm:EventViewModel"
+             x:Class="View.UserControls.Events.CurrentEventsUserControl">
+	<Grid>
+		<Grid.Styles>
+			<Style Selector="DataGridRow">
+				<Setter Property="IsVisible" Value="{Binding IsActive}"/>
+				<Setter Property="Background" Value="Red"/>
+			</Style>
+		</Grid.Styles>
+		<DataGrid Items="{Binding ActivePoints}" 				  			        
+				  IsReadOnly="True">		
+			
+			<DataGrid.Columns>
+				<DataGridTextColumn Width="120" Binding="{Binding EventCode}">
+					<DataGridTextColumn.Header>
+						<TextBlock Text="Код события" HorizontalAlignment="Center"/>
+					</DataGridTextColumn.Header>
+				</DataGridTextColumn>
+				<DataGridTextColumn  Binding="{Binding Message}">
+					<DataGridTextColumn.Header>
+						<TextBlock Text="Название" HorizontalAlignment="Center"/>
+					</DataGridTextColumn.Header>
+				</DataGridTextColumn>				
+				<DataGridTextColumn  Binding="{Binding LastDateTime}">
+					<DataGridTextColumn.Header>
+						<TextBlock Text="Дата детектирования" HorizontalAlignment="Center"/>
+					</DataGridTextColumn.Header>
+				</DataGridTextColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

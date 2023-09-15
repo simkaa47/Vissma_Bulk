@@ -1,0 +1,48 @@
+<par:ParameterCommon xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:par="using:View.UserControls.Parameters"
+			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+			 xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+			 xmlns:material="using:Material.Icons.Avalonia"
+             x:Class="View.UserControls.Parameters.BoolParameter">
+	<DockPanel VerticalAlignment="Center">
+		<TextBlock Text="{Binding Description}"
+				   VerticalAlignment="Center"/>
+		<StackPanel Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+			<material:MaterialIcon Kind="ToggleSwitchOff" 
+								   IsVisible="{Binding !WriteValue}"
+									VerticalAlignment="Center"
+									Height="50" Width="70" 
+									HorizontalAlignment="Center">
+				<i:Interaction.Behaviors>
+					<ia:EventTriggerBehavior EventName="PointerPressed">
+						<ia:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon} Path=Command}"
+												CommandParameter="{Binding}">
+							
+						</ia:InvokeCommandAction>
+					</ia:EventTriggerBehavior>					
+				</i:Interaction.Behaviors>				
+			</material:MaterialIcon>
+			<material:MaterialIcon Kind="ToggleSwitch"
+								   IsVisible="{Binding WriteValue}"
+								   Foreground="Green"
+											   VerticalAlignment="Center"
+											   Height="50" Width="70"
+											   HorizontalAlignment="Center">
+				<i:Interaction.Behaviors>
+					<ia:EventTriggerBehavior EventName="PointerPressed">
+						<ia:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon} Path=Command}"
+												CommandParameter="{Binding}">
+
+						</ia:InvokeCommandAction>
+					</ia:EventTriggerBehavior>
+				</i:Interaction.Behaviors>
+			</material:MaterialIcon>
+		</StackPanel>
+
+
+	</DockPanel>
+</par:ParameterCommon>

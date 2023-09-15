@@ -1,0 +1,64 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="clr-namespace:Core.ViewModels;assembly=Core"
+			 x:DataType="vm:AccessViewModel"
+			 xmlns:material="using:Material.Icons.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.UserControls.Access.AccessControl">
+	<Grid>
+		<Grid.Styles>
+			<Style Selector="Button:pressed">
+				<Setter  Property="Background" Value="Red"/>
+			</Style>
+		</Grid.Styles>
+		<StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<Button Height="40" Width="40"
+						Margin="5"
+						Command="{Binding CreateUserAsyncCommand}">
+					<material:MaterialIcon Kind="Add"/>					
+				</Button>				
+			</StackPanel>
+			
+
+
+			<DataGrid VerticalAlignment="Stretch"
+					  HorizontalAlignment="Left"					  
+					  IsReadOnly="True"
+					  Height="400"
+					  SelectedItem="{Binding SelectedUser}"					  
+			          Items="{Binding Users}">
+				
+				<DataGrid.Columns>
+					
+					<DataGridTextColumn Binding="{Binding Login}" Header="Логин"/>
+					<DataGridTextColumn Binding="{Binding FirstName}" Header="Имя"/>
+					<DataGridTextColumn Binding="{Binding LastName}" Header="Фамилия"/>
+					<DataGridTextColumn Binding="{Binding AccessLevel}" Header="Уровень доступа"/>
+					<DataGridTemplateColumn>
+						<DataGridTemplateColumn.CellTemplate>
+							<DataTemplate>
+								<StackPanel Orientation="Horizontal">
+									<Button Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.DeleteUserAsyncCommand}"
+											CommandParameter="{Binding}"
+											Margin="5">
+										<material:MaterialIcon Kind="Remove"/>
+									</Button>
+									<Button Command="{Binding RelativeSource={RelativeSource AncestorType=UserControl} Path=DataContext.UpdateUserAsyncCommand}"
+											CommandParameter="{Binding}"
+											Margin="5">
+										<material:MaterialIcon Kind="Edit"/>
+									</Button>
+								</StackPanel>
+								
+							</DataTemplate>
+						</DataGridTemplateColumn.CellTemplate>
+					</DataGridTemplateColumn>
+				</DataGrid.Columns>
+			</DataGrid>
+		</StackPanel>
+
+	</Grid>
+</UserControl>
