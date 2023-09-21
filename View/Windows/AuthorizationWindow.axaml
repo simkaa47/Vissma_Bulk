@@ -8,7 +8,7 @@
 		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
 		xmlns:sys="clr-namespace:System;assembly=netstandard"
 		xmlns:vm="using:Core.ViewModels"
-        x:Class="View.AuthorizationWindow"
+        x:Class="View.Windows.AuthorizationWindow"
 		x:DataType="vm:MainViewModel"
 		WindowState="Maximized"
 		WindowStartupLocation="CenterScreen"
@@ -23,7 +23,7 @@
 	<Viewbox>
 		<Canvas Width="1920" Height="1080">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/00.png" Stretch="Fill"/>
+				<ImageBrush Source="/Assets/00.png" Stretch="Fill" BitmapInterpolationMode="HighQuality"/>
 			</Canvas.Background>
 			<Button Height="92" Width="208"
 					Click="LoginClick"

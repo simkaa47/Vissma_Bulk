@@ -4,6 +4,7 @@ using Avalonia.Markup.Xaml;
 using Core.ViewModels;
 using System;
 using View.Utilites;
+using View.Windows;
 
 namespace View
 {

@@ -18,7 +18,7 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceInclude Source="/Resourses/GlobalConverters.axaml"/>
-				<ResourceInclude Source="/Resourses/CommonEnums.axaml"/>				
+				<ResourceInclude Source="/Resourses/CommonEnums.axaml"/>					
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

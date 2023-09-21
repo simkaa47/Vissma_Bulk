@@ -7,6 +7,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\01.png" />
+    <None Remove="Assets\02.png" />
     <None Remove="Resourses\Styles\Validation\ValidationErrors.xaml" />
   </ItemGroup>
   <ItemGroup>

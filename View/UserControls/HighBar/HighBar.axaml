@@ -5,43 +5,19 @@
 			 xmlns:vm="using:Core.ViewModels"
 			 xmlns:material="using:Material.Icons.Avalonia"
 			 xmlns:local="using:View.UserControls.HighBar"
-             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="80"
+             mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="83"
 			 x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.HighBar.HighBar">
-	<Viewbox HorizontalAlignment="Left">
-		<StackPanel Orientation="Horizontal">
-			<local:LoginControl DataContext="{Binding AccessViewModel}"/>
-			<local:ConnectIndicatorControl State="{Binding PlcViewModel.PlcMainService.PlcStateInfo.Connected}"
-										   Description="СВЯЗЬ С ПЛК"/>
-			<local:ConnectIndicatorControl State="{Binding ScalesViewModel.ServiceInfo.Connected}"
-										   Description="СВЯЗЬ С ВЕСАМИ"/>
-			<local:ConnectIndicatorControl State="{Binding RfidViewModel.RfidReaderInfos[0].RfidReaderSettings.Connecting}"
-										   Description="СВЯЗЬ С СЧИТЫВАТЕЛЕМ МЕТОК НАКОПИТЕЛЯ"
-										   Width="300"/>
-			<local:ConnectIndicatorControl State="{Binding RfidViewModel.RfidReaderInfos[1].RfidReaderSettings.Connecting}"
-										   Description="СВЯЗЬ С СЧИТЫВАТЕЛЕМ МЕТОК В ПРОБОРАЗДЕЛОЧНОЙ"
-										   Width="300"/>
-			<StackPanel Orientation="Horizontal" Width="160">
-				<material:MaterialIcon Kind="CheckBold" Height="30" Width="30" Foreground="LightGreen"
-									   IsVisible="{Binding !PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}"/>
-				<material:MaterialIcon Kind="Error" Height="30" Width="30" Foreground="Red"
-									   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}"/>
-				<TextBlock Text="ОШИБКИ ПЛК" Width="80" HorizontalAlignment="Left" TextWrapping="Wrap"
-						   VerticalAlignment="Center"/>
-			</StackPanel>
-			<local:NakopitelDoorControl/>
-			<Button Command="{Binding PlcViewModel.WriteParameterCommand}"
-					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RstCmd}">
-				<StackPanel Orientation="Horizontal">
-					<material:MaterialIcon Kind="Update" Width="30" Height="30"/>
-					<TextBlock Text="СБРОС ОШИБОК"	
-							   TextWrapping="Wrap"
-							   MaxWidth="80"
-							   Margin="5"
-							   VerticalAlignment="Center"/>
-				</StackPanel>
-			</Button>
-		</StackPanel>
-	</Viewbox>
+	<Canvas Width="1024" Height="83">
+		<!--Кнопка Logout-->
+		<Button Canvas.Top="0" Canvas.Left="932" Width="92" Height="83"
+				Click="LogoutClick" Background="Transparent"/>
+		<!--Кнопка Reset-->
+		<Button Canvas.Top="8" Canvas.Left="625" Width="121" Height="69"
+				CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RstCmd}"
+				Command="{Binding PlcViewModel.WriteParameterCommand}"
+				Background="Transparent"/>
+		
+	</Canvas>
 	
 </UserControl>
