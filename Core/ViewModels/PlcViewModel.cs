@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Core.Models.Plc;
 using Core.Services.Plc;
 using Microsoft.Extensions.Logging;
@@ -14,7 +15,11 @@ namespace Core.ViewModels
             PlcMainService = plcMainService;
             _logger = logger;
             PlcMainService.LogEvent += Log;
-        }        
+            DescribeForChangeControlPages();
+        }
+
+        [ObservableProperty]
+        private bool _controlPageSecond;
 
         public PlcMainService PlcMainService { get; }
 
@@ -38,5 +43,27 @@ namespace Core.ViewModels
             PlcMainService.WriteParameter(parameter);
 
         }
+
+        [RelayCommand]
+        private void ChangeControlPage()
+        {
+            ControlPageSecond = !ControlPageSecond;
+        }
+
+
+        private void DescribeForChangeControlPages()
+        {
+            PlcMainService.PlcModel.Indication.ProbotborStatus1.PropertyChanged += (s, args) => ControlPageSecond = false;
+            PlcMainService.PlcModel.Indication.PitatelStatus.PropertyChanged += (s, args) => ControlPageSecond = false;
+            PlcMainService.PlcModel.Indication.DrobilkaStatus.PropertyChanged += (s, args) => ControlPageSecond = false;
+            PlcMainService.PlcModel.Indication.ProbotborStatus2.PropertyChanged += (s, args) => ControlPageSecond = false;
+
+            PlcMainService.PlcModel.Indication.DryUnitStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
+            PlcMainService.PlcModel.Indication.IstiratelStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
+            PlcMainService.PlcModel.Indication.NakopitelStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
+            PlcMainService.PlcModel.Indication.SysReturnStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
+        }
+
+        
     }
 }

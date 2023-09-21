@@ -9,7 +9,58 @@
   <ItemGroup>
     <None Remove="Assets\01.png" />
     <None Remove="Assets\02.png" />
+    <None Remove="Assets\07.png" />
+    <None Remove="Assets\104.jpg" />
+    <None Remove="Assets\105.jpg" />
     <None Remove="Assets\109.jpg" />
+    <None Remove="Assets\114.png" />
+    <None Remove="Assets\116.jpg" />
+    <None Remove="Assets\117.jpg" />
+    <None Remove="Assets\118.jpg" />
+    <None Remove="Assets\119.jpg" />
+    <None Remove="Assets\120.jpg" />
+    <None Remove="Assets\121.jpg" />
+    <None Remove="Assets\122.jpg" />
+    <None Remove="Assets\123.jpg" />
+    <None Remove="Assets\470.jpg" />
+    <None Remove="Assets\471.jpg" />
+    <None Remove="Assets\472.jpg" />
+    <None Remove="Assets\473.jpg" />
+    <None Remove="Assets\474.jpg" />
+    <None Remove="Assets\475.jpg" />
+    <None Remove="Assets\476.jpg" />
+    <None Remove="Assets\480.jpg" />
+    <None Remove="Assets\481.jpg" />
+    <None Remove="Assets\482.jpg" />
+    <None Remove="Assets\483.jpg" />
+    <None Remove="Assets\484.jpg" />
+    <None Remove="Assets\485.jpg" />
+    <None Remove="Assets\486.jpg" />
+    <None Remove="Assets\490.jpg" />
+    <None Remove="Assets\491.jpg" />
+    <None Remove="Assets\492.jpg" />
+    <None Remove="Assets\493.jpg" />
+    <None Remove="Assets\494.jpg" />
+    <None Remove="Assets\495.jpg" />
+    <None Remove="Assets\496.jpg" />
+    <None Remove="Assets\530.jpg" />
+    <None Remove="Assets\531.jpg" />
+    <None Remove="Assets\532.jpg" />
+    <None Remove="Assets\533.jpg" />
+    <None Remove="Assets\534.jpg" />
+    <None Remove="Assets\535.jpg" />
+    <None Remove="Assets\536.jpg" />
+    <None Remove="Assets\540.jpg" />
+    <None Remove="Assets\546.jpg" />
+    <None Remove="Assets\Dry_0.jpg" />
+    <None Remove="Assets\Dry_10.jpg" />
+    <None Remove="Assets\Dry_11.jpg" />
+    <None Remove="Assets\Istiratel_Err.jpg" />
+    <None Remove="Assets\Istiratel_Stop.jpg" />
+    <None Remove="Assets\Istiratel_Work.jpg" />
+    <None Remove="Assets\SysRet_Err.jpg" />
+    <None Remove="Assets\SysRet_Stop.jpg" />
+    <None Remove="Assets\SysRet_Work.jpg" />
     <None Remove="Resourses\Styles\Validation\ValidationErrors.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -76,7 +127,7 @@
   
 
   <ItemGroup>
-    <Folder Include="Resourses\Templates\" />
+    <Folder Include="UserControls\ControlPage\" />
   </ItemGroup>
   
 

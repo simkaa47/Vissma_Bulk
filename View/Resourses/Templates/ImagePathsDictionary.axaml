@@ -1,0 +1,89 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+					xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+					xmlns:sys="clr-namespace:System;assembly=netstandard"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Add Resources Here -->
+	<scg:List x:TypeArguments="sys:String" x:Key="ProbotbornikImageStatuses">
+		<sys:String>Assets/480.jpg</sys:String>
+		<sys:String>Assets/481.jpg</sys:String>
+		<sys:String>Assets/482.jpg</sys:String>
+		<sys:String>Assets/483.jpg</sys:String>
+		<sys:String>Assets/484.jpg</sys:String>
+		<sys:String>Assets/485.jpg</sys:String>
+		<sys:String>Assets/486.jpg</sys:String>
+	</scg:List>
+
+	<scg:List x:TypeArguments="sys:String" x:Key="PitatelImageStatuses">
+		<sys:String>Assets/490.jpg</sys:String>
+		<sys:String>Assets/491.jpg</sys:String>
+		<sys:String>Assets/492.jpg</sys:String>
+		<sys:String>Assets/493.jpg</sys:String>
+		<sys:String>Assets/494.jpg</sys:String>
+		<sys:String>Assets/495.jpg</sys:String>
+		<sys:String>Assets/496.jpg</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="DrobilkaImageStatuses">
+		<sys:String>Assets/540.jpg</sys:String>
+		<sys:String>Assets/540.jpg</sys:String>
+		<sys:String>Assets/540.jpg</sys:String>
+		<sys:String>Assets/540.jpg</sys:String>
+		<sys:String>Assets/540.jpg</sys:String>
+		<sys:String>Assets/540.jpg</sys:String>
+		<sys:String>Assets/546.jpg</sys:String>
+	</scg:List>
+
+	<scg:List x:TypeArguments="sys:String" x:Key="DelitelImageStatuses">
+		<sys:String>Assets/470.jpg</sys:String>
+		<sys:String>Assets/471.jpg</sys:String>
+		<sys:String>Assets/472.jpg</sys:String>
+		<sys:String>Assets/473.jpg</sys:String>
+		<sys:String>Assets/474.jpg</sys:String>
+		<sys:String>Assets/475.jpg</sys:String>
+		<sys:String>Assets/476.jpg</sys:String>
+	</scg:List>
+
+	<scg:List x:TypeArguments="sys:String" x:Key="DryImageStatuses">
+		<sys:String>Assets/Dry_0.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_10.jpg</sys:String>
+		<sys:String>Assets/Dry_11.jpg</sys:String>
+	</scg:List>
+
+	<scg:List x:TypeArguments="sys:String" x:Key="IstiratelImageStatuses">
+		<sys:String>Assets/Istiratel_Stop.jpg</sys:String>
+		<sys:String>Assets/Istiratel_Stop.jpg</sys:String>
+		<sys:String>Assets/Istiratel_Stop.jpg</sys:String>
+		<sys:String>Assets/Istiratel_Stop.jpg</sys:String>
+		<sys:String>Assets/Istiratel_Stop.jpg</sys:String>
+		<sys:String>Assets/Istiratel_Work.jpg</sys:String>
+		<sys:String>Assets/Istiratel_Err.jpg</sys:String>		
+	</scg:List>
+
+	<scg:List x:TypeArguments="sys:String" x:Key="NakopitelImageStatuses">
+		<sys:String>Assets/530.jpg</sys:String>
+		<sys:String>Assets/531.jpg</sys:String>
+		<sys:String>Assets/532.jpg</sys:String>
+		<sys:String>Assets/533.jpg</sys:String>
+		<sys:String>Assets/534.jpg</sys:String>
+		<sys:String>Assets/535.jpg</sys:String>
+		<sys:String>Assets/536.jpg</sys:String>
+	</scg:List>
+
+	<scg:List x:TypeArguments="sys:String" x:Key="SysRetImageStatuses">
+		<sys:String>Assets/SysRet_Err.jpg</sys:String>
+		<sys:String>Assets/SysRet_Err.jpg</sys:String>
+		<sys:String>Assets/SysRet_Err.jpg</sys:String>
+		<sys:String>Assets/SysRet_Err.jpg</sys:String>
+		<sys:String>Assets/SysRet_Err.jpg</sys:String>
+		<sys:String>Assets/SysRet_Work.jpg</sys:String>
+		<sys:String>Assets/SysRet_Err.jpg</sys:String>
+	</scg:List>
+</ResourceDictionary>

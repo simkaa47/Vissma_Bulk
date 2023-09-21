@@ -11,7 +11,7 @@ namespace View.Converters
         {
             int index = 0;
             if(value is null)return null;
-            if (int.TryParse(value.ToString(), out index) && value is not Enum) return null;
+            if (!(int.TryParse(value.ToString(), out index)) && value is not Enum) return null;
             if (value is Enum @enum)
                 index = System.Convert.ToInt32(@enum);
             if (!(parameter is IEnumerable<object> list)) return null;
