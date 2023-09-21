@@ -99,6 +99,30 @@
         public Parameter<ushort> MainProcessStatus { get; } = new Parameter<ushort>(nameof(MainProcessStatus), "Статус автоматиченского отбора", 0, 10, 180, 0);
         #endregion
 
+        #region Текущее время ПЛК, год
+        public Parameter<short> CurrentPlcTimeYear { get; } = new Parameter<short>(nameof(CurrentPlcTimeYear), "Текущее время ПЛК, год", 0, 99, 49543, 0) { IsOnlyRead = true };
+        #endregion
+
+        #region Текущее время ПЛК, месяц
+        public Parameter<short> CurrentPlcTimeMonth { get; } = new Parameter<short>(nameof(CurrentPlcTimeMonth), "Текущее время ПЛК, месяц", 1, 12, 49544, 0) { IsOnlyRead = true };
+        #endregion
+
+        #region Текущее время ПЛК, день
+        public Parameter<short> CurrentPlcTimeDay { get; } = new Parameter<short>(nameof(CurrentPlcTimeDay), "Текущее время ПЛК, день", 1, 31, 49545, 0) { IsOnlyRead = true };
+        #endregion
+        #region Текущее время ПЛК, час
+        public Parameter<short> CurrentPlcTimeHour { get; } = new Parameter<short>(nameof(CurrentPlcTimeHour), "Текущее время ПЛК, час", 0, 24, 49546, 0) { IsOnlyRead = true };
+        #endregion
+
+        #region Текущее время ПЛК, минута
+        public Parameter<short> CurrentPlcTimeMinute { get; } = new Parameter<short>(nameof(CurrentPlcTimeMinute), "Текущее время ПЛК, минута", 0, 59, 49547, 0) { IsOnlyRead = true };
+        #endregion
+
+        #region Текущее время ПЛК, секунда
+        public Parameter<short> CurrentPlcTimeSecond { get; } = new Parameter<short>(nameof(CurrentPlcTimeSecond), "Текущее время ПЛК, секунда", 0, 59, 49548, 0) { IsOnlyRead = true };
+        #endregion
+
+
 
 
     }

@@ -31,14 +31,7 @@ namespace Core.Services.Plc
             if (PlcConnectSettings != null && PlcConnectSettings.EthernetSettings != null)
             {
                 _communicationService = new ModbusCommunicationService(PlcConnectSettings.EthernetSettings);
-                _communicationService.LogEvent += LogEvent;
-                PlcStateInfo.PropertyChanged += (o, e) =>
-                {
-                    if (e.PropertyName == nameof(PlcStateInfo.Connected) && PlcStateInfo.Connected)
-                    {
-                        SynchroTime();
-                    }
-                };
+                _communicationService.LogEvent += LogEvent;                
                 await ReadProcess();
             }
             else

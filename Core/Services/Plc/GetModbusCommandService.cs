@@ -1,5 +1,6 @@
 ﻿using Core.Models.Plc;
 using Core.Services.Communication;
+using Core.ViewModels;
 using System.Text;
 
 namespace Core.Services.Plc
@@ -164,10 +165,7 @@ namespace Core.Services.Plc
                     parstring.Value = Encoding.ASCII.GetString(bytes).Replace("\0","");
                 }
             }
-        }
-
-
-
+        }    
 
     }
 }
