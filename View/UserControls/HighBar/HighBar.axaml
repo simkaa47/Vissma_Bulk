@@ -7,6 +7,7 @@
 			 xmlns:local="using:View.UserControls.HighBar"
              mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="83"
 			 x:DataType="vm:MainViewModel"
+			 xmlns:acc="using:Core.Models.AccesControl"
              x:Class="View.UserControls.HighBar.HighBar">
 	<Canvas Width="1024" Height="83">
 		<!--Кнопка Logout-->
@@ -17,7 +18,44 @@
 				CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RstCmd}"
 				Command="{Binding PlcViewModel.WriteParameterCommand}"
 				Background="Transparent"/>
-		
+		<!--Время-->
+		<Border Canvas.Left="762" Canvas.Top="15" Width="78" Height="27">
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+				<TextBlock.Text>
+					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:t}">
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeYear.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeMonth.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeDay.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeHour.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeMinute.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeSecond.Value"/>
+					</MultiBinding>
+				</TextBlock.Text>
+			</TextBlock>
+		</Border>
+		<!--Дата-->
+		<Border Canvas.Left="847" Canvas.Top="15" Width="78" Height="27">
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+				<TextBlock.Text>
+					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:d}">
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeYear.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeMonth.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeDay.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeHour.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeMinute.Value"/>
+						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeSecond.Value"/>
+					</MultiBinding>
+				</TextBlock.Text>
+			</TextBlock>
+		</Border>
+		<!--Общая ошибка-->
+		<Image Source="..\..\Assets\109.jpg" Canvas.Top="9" Canvas.Left="305"
+			   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}"/>
+		<!--Кнопка Параметры-->
+		<Button Canvas.Top="9" Canvas.Left="148" Width="146" Height="69"
+				IsEnabled="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter} ConverterParameter={x:Static acc:UserAccessLevel.Service}}"
+				Background="Transparent" Click="OpenParametersWindowClick"/>
+
 	</Canvas>
 	
 </UserControl>

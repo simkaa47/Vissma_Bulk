@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="270" d:DesignHeight="270"
+        x:Class="View.Windows.ParametersWindow"
+		xmlns:vm="using:Core.ViewModels"
+		Width="270" Height="270"
+		x:DataType="vm:MainViewModel"
+        Title="Связь с ПЛК">
+	<ListBox DataContext="{Binding PlcViewModel}">
+		<StackPanel>
+			<TextBlock Text="IP адрес ПЛК"/>
+			<TextBox Text="{Binding PlcMainService.PlcConnectSettings.EthernetSettings.Ip}" Width="200"
+					 HorizontalContentAlignment="Center" HorizontalAlignment="Left"/>
+		</StackPanel>
+		<StackPanel>
+			<TextBlock Text="Порт"/>
+			<TextBox Text="{Binding PlcMainService.PlcConnectSettings.EthernetSettings.Port}" Width="200"
+					 HorizontalContentAlignment="Center" HorizontalAlignment="Left"/>
+		</StackPanel>
+		<StackPanel>
+			<TextBlock Text="Частота сканирования, мс"/>
+			<TextBox Text="{Binding PlcMainService.PlcConnectSettings.ScanFrequence}" Width="200"
+					 HorizontalContentAlignment="Center" HorizontalAlignment="Left"/>
+		</StackPanel>
+		<Button Content="Сохранить настройки" Command="{Binding SavePlcConnectSettingsCommand} ">
+			<Button.IsEnabled>
+				<MultiBinding Converter="{x:Static BoolConverters.And}">
+					<Binding Path="!PlcMainService.PlcConnectSettings.EthernetSettings.HasErrors"/>
+					<Binding Path="!PlcMainService.PlcConnectSettings.HasErrors"/>
+				</MultiBinding>
+			</Button.IsEnabled>
+		</Button>
+
+	</ListBox>
+</Window>

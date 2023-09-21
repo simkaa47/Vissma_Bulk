@@ -14,6 +14,23 @@ public partial class HighBar : UserControl
     }
 
 
+    private async void OpenParametersWindowClick(object? sender, RoutedEventArgs args)
+    {
+        if (this.DataContext is null) return;
+        if (!(this.DataContext is MainViewModel vm)) return;
+        if (vm is null || vm.AccessViewModel is null) return;
+
+        vm.AccessViewModel.Logout();
+        if (!(App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop))
+        {
+            return;
+        }
+        ParametersWindow parWindow = new ParametersWindow();
+        parWindow.DataContext = this.DataContext; ;   
+        await parWindow.ShowDialog(desktop.MainWindow);
+
+    }
+
     private void LogoutClick(object? sender, RoutedEventArgs args)
     {
         if (this.DataContext is null) return;
