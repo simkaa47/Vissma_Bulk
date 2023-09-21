@@ -6,7 +6,7 @@
     <Application.Styles>
 		<StyleInclude Source="avares://Material.Icons.Avalonia/App.xaml"></StyleInclude>
 		<StyleInclude Source="avares://NP.Avalonia.Visuals/Themes/ThemeStyles.axaml"/>
-		<FluentTheme Mode="Light"/>
+		<FluentTheme Mode="Dark"/>
 		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
 		<StyleInclude Source="/Resourses/Styles/Validation/ValidationErrors.xaml"/>
 		<StyleInclude Source="/Resourses/Styles/GroupboxStyle.axaml"/>
@@ -18,7 +18,8 @@
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceInclude Source="/Resourses/GlobalConverters.axaml"/>
-				<ResourceInclude Source="/Resourses/CommonEnums.axaml"/>					
+				<ResourceInclude Source="/Resourses/CommonEnums.axaml"/>
+				<ResourceInclude Source="/Resourses/Templates/ImagePathsDictionary.axaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

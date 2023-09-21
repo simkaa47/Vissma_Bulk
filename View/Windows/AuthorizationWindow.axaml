@@ -16,7 +16,7 @@
 	<Window.Resources>
 		<a:Login x:Key="LoginModel"/>
 		<scg:List x:TypeArguments="sys:Object" x:Key="TextBoxErrorColors">
-			<SolidColorBrush Color="Black"/>
+			<SolidColorBrush Color="White"/>
 			<SolidColorBrush Color="Red"/>
 		</scg:List>
 	</Window.Resources>	
@@ -30,6 +30,7 @@
 					Canvas.Left="1630" Canvas.Top="792"/>
 
 			<TextBox Width="446" Height="104"
+					 
 					 DataContext="{StaticResource LoginModel}"
 					 Canvas.Left="1390" Canvas.Top="562"
 					 Name="Login" FontSize="36" Padding="10"

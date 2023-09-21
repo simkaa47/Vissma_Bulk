@@ -43,12 +43,12 @@
 		<sys:String>Да</sys:String>
 	</scg:List>
 	<scg:List x:TypeArguments="sys:String" x:Key="ProbotborStatus">
-		<sys:String>Готов</sys:String>
-		<sys:String>Готов (датчик домашнего положения)</sys:String>
-		<sys:String>Готов (датчик рабочего положения)</sys:String>
+		<sys:String>Готов к работе</sys:String>
+		<sys:String>Готов к работе</sys:String>
+		<sys:String>Готов к работе</sys:String>
 		<sys:String>Необходим возврат ковша</sys:String>
-		<sys:String>Выполняется возврат ковша</sys:String>
-		<sys:String>Выполняется отбор</sys:String>
+		<sys:String>Возврат ковша</sys:String>
+		<sys:String>В работе</sys:String>
 		<sys:String>Ошибка</sys:String>
 	</scg:List>
 	<scg:List x:TypeArguments="sys:String" x:Key="UniversalStatus">
@@ -57,12 +57,12 @@
 		<sys:String>>>></sys:String>
 		<sys:String>>>></sys:String>
 		<sys:String>>>></sys:String>
-		<sys:String>Включен</sys:String>
+		<sys:String>В работе</sys:String>
 		<sys:String>Ошибка</sys:String>
 	</scg:List>
 	<scg:List x:TypeArguments="sys:String" x:Key="NakopStatus">
 		<sys:String>Готов</sys:String>
-		<sys:String>Необходима калибровка</sys:String>
+		<sys:String>Требуется калибровка</sys:String>
 		<sys:String>Калибровка</sys:String>
 		<sys:String>Смена канистры</sys:String>
 		<sys:String>Открыта дверь</sys:String>
@@ -71,16 +71,16 @@
 	</scg:List>
 	<scg:List x:TypeArguments="sys:String" x:Key="DryUnitStatus">
 		<sys:String>Готов</sys:String>
-		<sys:String>Открытие верхнего шибера</sys:String>
-		<sys:String>Пауза перед закрытием верхнего шибера</sys:String>
-		<sys:String>Закрытие верхнего шибера</sys:String>
+		<sys:String>Открывание шибера ВЕРХ</sys:String>
+		<sys:String>Ожидание шибера ВЕРХ</sys:String>
+		<sys:String>Закрывание шибера ВЕРХ</sys:String>
 		<sys:String>Сушка</sys:String>
-		<sys:String>Опускание барабана</sys:String>
-		<sys:String>Открытие нижниего шибера</sys:String>
-		<sys:String>Пауза перед закрытием нижнего шибера</sys:String>
-		<sys:String>Закрытие нижнего шибера</sys:String>
-		<sys:String>Ожидание работы истирателя</sys:String>
-		<sys:String>Поднятие барабана</sys:String>
+		<sys:String>Спуск барабана</sys:String>
+		<sys:String>Открывание шибера ВНИЗ</sys:String>
+		<sys:String>Ожидание шибера ВНИЗ</sys:String>
+		<sys:String>Закрывание шибера ВНИЗ</sys:String>
+		<sys:String>Истирание</sys:String>
+		<sys:String>Подьем барабана</sys:String>
 		<sys:String>Ошибка</sys:String>
 	</scg:List>
 </ResourceDictionary>
