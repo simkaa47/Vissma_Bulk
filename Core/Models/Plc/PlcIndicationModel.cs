@@ -122,7 +122,17 @@
         public Parameter<short> CurrentPlcTimeSecond { get; } = new Parameter<short>(nameof(CurrentPlcTimeSecond), "Текущее время ПЛК, секунда", 0, 59, 49548, 0) { IsOnlyRead = true };
         #endregion
 
+        #region Текущее время питателя, с
+        public Parameter<short> PitatelTimeCurrent { get; } = new Parameter<short>(nameof(PitatelTimeCurrent), "Текущее время питателя, с, с", 0, short.MaxValue, 179, 0) { IsOnlyRead = true };
+        #endregion
 
+        #region Текущее время истирателя, с
+        public Parameter<short> IstiratelTimeCurrent { get; } = new Parameter<short>(nameof(IstiratelTimeCurrent), "Текущее время истирателя, с, с", 0, short.MaxValue, 178, 0) { IsOnlyRead = true };
+        #endregion
+
+        #region Текущее время системы возврата проб, с
+        public Parameter<short> SysReturnTimeCurrent { get; } = new Parameter<short>(nameof(SysReturnTimeCurrent), "Текущее время системы возврата проб, с", 0, short.MaxValue, 181, 0) { IsOnlyRead = true };
+        #endregion
 
 
     }

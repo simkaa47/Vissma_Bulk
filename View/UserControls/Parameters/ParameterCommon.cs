@@ -11,6 +11,7 @@ namespace View.UserControls.Parameters
             AffectsMeasure<ParameterCommon>(CommandProperty);
             AffectsMeasure<ParameterCommon>(CommandParameterProperty);
             AffectsMeasure<ParameterCommon>(DescriptionInvisibleProperty);
+            AffectsMeasure<ParameterCommon>(ParamWidthProperty);
         }
 
         #region Command
@@ -47,6 +48,18 @@ namespace View.UserControls.Parameters
         // Using a DependencyProperty as the backing store for State.  This enables animation, styling, binding, etc...
         public static readonly StyledProperty<object> CommandParameterProperty =
             AvaloniaProperty.Register<ParameterCommon, object>(nameof(CommandParameter));
+        #endregion
+
+        #region ParamWidth
+        public int ParamWidth
+        {
+            get { return (int)GetValue(ParamWidthProperty); }
+            set { SetValue(ParamWidthProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for State.  This enables animation, styling, binding, etc...
+        public static readonly StyledProperty<int> ParamWidthProperty =
+            AvaloniaProperty.Register<ParameterCommon, int>(nameof(ParamWidth), defaultValue:40);
         #endregion
 
     }

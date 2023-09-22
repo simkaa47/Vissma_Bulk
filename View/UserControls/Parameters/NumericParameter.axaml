@@ -11,10 +11,10 @@
 				   VerticalAlignment="Center"
 				   IsVisible="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon} Path=!DescriptionInvisible}"/>
 		<StackPanel Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-			<TextBox Name="Input" Width="100"
-					 Background="Transparent"					 
+			<TextBox Name="Input" Width="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon} Path=ParamWidth, TargetNullValue=40}"
+					 Background="Transparent"
+					 MinWidth="20"
 					 BorderThickness="0"
-					 
 					 IsReadOnly="{Binding IsOnlyRead}"					 
 					Text="{Binding WriteValue}">
 				<TextBox.KeyBindings>

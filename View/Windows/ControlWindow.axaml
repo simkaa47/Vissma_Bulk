@@ -54,10 +54,10 @@
 					<TextBlock Classes="textStatus" Text="{Binding ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}}" 
 							   Canvas.Top="18" Canvas.Left="200"/>
 					<!--Питатель-->
-					<TextBlock Classes="textStatus" Text="{Binding PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"
 							   Canvas.Top="18" Canvas.Left="200" Grid.Row="1"/>
 					<!--Дробилка-->
-					<TextBlock Classes="textStatus" Text="{Binding DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"
 							   Canvas.Top="18" Canvas.Left="200" Grid.Row="2"/>
 					<!--Делитель-->
 					<TextBlock Classes="textStatus" Text="{Binding ProbotborStatus2.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}}"
