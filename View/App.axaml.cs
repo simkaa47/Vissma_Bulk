@@ -55,7 +55,7 @@ namespace View
                 //{
                 //    DataContext = this.CreateInstance<MainViewModel>(),
                 //};
-                desktop.MainWindow = new DrobilkaSettingsWindow()
+                desktop.MainWindow = new DelitelSettingsWindow()
                 {
                     DataContext = this.CreateInstance<MainViewModel>(),
                 };

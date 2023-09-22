@@ -2,8 +2,85 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
+		Width="1024" Height="600"
+		xmlns:vm="using:Core.ViewModels"
+		xmlns:plc="using:Core.Models.Plc"
+		xmlns:par="using:View.UserControls.Parameters"
+		xmlns:hb="using:View.UserControls.HighBar"
+		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.DelitelSettingsWindow"
         Title="DelitelSettingsWindow">
-  Welcome to Avalonia!
+	<Viewbox>
+		<Canvas Width="1024" Height="600">
+			<Canvas.Background>
+				<ImageBrush Source="/Assets/11.png" BitmapInterpolationMode="HighQuality"/>
+			</Canvas.Background>
+			<hb:HighBar/>
+			<!--Кнопка Отбор-->
+			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="10"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OtborCmd2}"/>
+			<!--Кнопка Возврат-->
+			<Grid  Height="70" Width="238" Canvas.Top="100" Canvas.Left="270"
+				   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus2.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}">
+				<Image Source="/Assets/115.jpg"/>
+				<Button Background="Transparent"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd2}">
+
+				</Button>
+			</Grid>
+			<!--Индикатор делителя-->
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DelitelImageStatuses}}"
+					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
+			<!--Статус делителя-->
+			<TextBlock Canvas.Left="550" Canvas.Top="200"
+				Foreground="White" FontSize="18"
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus2.Value, 
+					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   ConverterParameter={StaticResource ProbotborStatus}}"/>
+			<!--Скорость ПЧ делителя-->
+			<par:NumericParameter Canvas.Top="239" Canvas.Left="700"
+								  ParamWidth="50"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[1]}"
+							  DescriptionInvisible="True"/>
+			<!--Время работы делителя -->
+			<par:NumericParameter Canvas.Top="272" Canvas.Left="700"
+								  ParamWidth="50"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DelitelWorkTime}"
+							  DescriptionInvisible="True"/>
+			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DelitelTimeCurrent.Value}" Foreground="White"
+					   Canvas.Top="312" Canvas.Left="730"/>
+			<!--Индикаторы-->
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort2}"
+							   DescriptionInvisible="True"
+							   Canvas.Top="376" Canvas.Left="555"/>
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHome2}"
+							   DescriptionInvisible="True"
+							   Canvas.Top="418" Canvas.Left="555"/>
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWork2}"
+							   DescriptionInvisible="True"
+							   Canvas.Top="458" Canvas.Left="555"/>
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWorkAbort2}"
+							   DescriptionInvisible="True"
+							   Canvas.Top="498" Canvas.Left="555"/>
+			<!--Панель навигации-->
+			<Button Canvas.Bottom="0" Canvas.Left="0"
+					Height="42"
+					Background="Transparent"
+					Click="OpenControlWindow"
+					Width="342"/>
+			<Button Canvas.Bottom="0" Canvas.Left="684"
+					Height="42"
+					Background="Transparent"
+					Click="OpenErrorsWindow"
+					Width="342"/>
+		</Canvas>
+	</Viewbox>
 </Window>
