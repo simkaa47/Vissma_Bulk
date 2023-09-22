@@ -17,6 +17,7 @@ namespace View.Converters
                 .Select(v=>temp)
                 .ToList();
             if(nums.Count!=6)return DateTime.MinValue;
+            if (nums[1]==0 || nums[2]==0) return DateTime.MinValue;
             return new DateTime(nums[0] + 2000, nums[1], nums[2], nums[3], nums[4], nums[5]);
         }
     }
