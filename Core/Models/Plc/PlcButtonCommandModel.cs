@@ -10,7 +10,7 @@
         #endregion
 
         #region Произвести отбор 2
-        public Parameter<bool> OtborCmd2 { get; } = new Parameter<bool>(nameof(OtborCmd2), "Произвести отбор 2", false, true, 200, 6);
+        public Parameter<bool> OtborCmd2 { get; } = new Parameter<bool>(nameof(OtborCmd2), "Произвести отбор 2", false, true, 146, 12);
         #endregion
         #region Произвести возврат 2
         public Parameter<bool> ReturnCmd2 { get; } = new Parameter<bool>(nameof(ReturnCmd2), "Произвести возврат 2", false, true, 200, 8);
