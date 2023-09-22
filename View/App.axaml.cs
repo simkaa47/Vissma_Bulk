@@ -55,7 +55,7 @@ namespace View
                 //{
                 //    DataContext = this.CreateInstance<MainViewModel>(),
                 //};
-                desktop.MainWindow = new PitatelSettingsWindow()
+                desktop.MainWindow = new DrobilkaSettingsWindow()
                 {
                     DataContext = this.CreateInstance<MainViewModel>(),
                 };

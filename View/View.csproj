@@ -28,6 +28,7 @@
     <None Remove="Assets\121.jpg" />
     <None Remove="Assets\122.jpg" />
     <None Remove="Assets\123.jpg" />
+    <None Remove="Assets\13.png" />
     <None Remove="Assets\470.jpg" />
     <None Remove="Assets\471.jpg" />
     <None Remove="Assets\472.jpg" />
@@ -57,6 +58,7 @@
     <None Remove="Assets\535.jpg" />
     <None Remove="Assets\536.jpg" />
     <None Remove="Assets\540.jpg" />
+    <None Remove="Assets\545.png" />
     <None Remove="Assets\546.jpg" />
     <None Remove="Assets\Dry_0.jpg" />
     <None Remove="Assets\Dry_10.jpg" />

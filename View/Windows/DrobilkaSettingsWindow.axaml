@@ -2,8 +2,46 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
+		Width="1024" Height="600"
+		xmlns:vm="using:Core.ViewModels"
+		xmlns:plc="using:Core.Models.Plc"
+		xmlns:par="using:View.UserControls.Parameters"
+		xmlns:hb="using:View.UserControls.HighBar"
+		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.DrobilkaSettingsWindow"
         Title="DrobilkaSettingsWindow">
-  Welcome to Avalonia!
+	<Viewbox>
+		<Canvas Width="1024" Height="600">
+			<Canvas.Background>
+				<ImageBrush Source="/Assets/13.png" BitmapInterpolationMode="HighQuality"/>
+			</Canvas.Background>
+			<hb:HighBar/>
+			<!--Кнопка Пуск-->
+			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="10"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DrobilkaOn}"/>
+			<!--Индикатор дробилки-->
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DrobilkaImageStatuses}}"
+					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
+			<!--Статус дробилки-->
+			<TextBlock Canvas.Left="550" Canvas.Top="200"
+				Foreground="White" FontSize="18"
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DrobilkaStatus.Value, 
+					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   ConverterParameter={StaticResource UniversalStatus}}"/>
+			<!--Панель навигации-->
+			<Button Canvas.Bottom="0" Canvas.Left="0"
+					Height="42"
+					Background="Transparent"
+					Click="OpenControlWindow"
+					Width="342"/>
+			<Button Canvas.Bottom="0" Canvas.Left="684"
+					Height="42"
+					Background="Transparent"
+					Click="OpenErrorsWindow"
+					Width="342"/>
+		</Canvas>
+	</Viewbox>
 </Window>
