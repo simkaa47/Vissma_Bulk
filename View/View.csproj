@@ -11,10 +11,14 @@
     <None Remove="Assets\02.png" />
     <None Remove="Assets\03.png" />
     <None Remove="Assets\07.png" />
+    <None Remove="Assets\08.png" />
     <None Remove="Assets\104.jpg" />
     <None Remove="Assets\105.jpg" />
+    <None Remove="Assets\106.jpg" />
+    <None Remove="Assets\108.jpg" />
     <None Remove="Assets\109.jpg" />
     <None Remove="Assets\114.png" />
+    <None Remove="Assets\115.jpg" />
     <None Remove="Assets\116.jpg" />
     <None Remove="Assets\117.jpg" />
     <None Remove="Assets\118.jpg" />
@@ -134,5 +138,10 @@
 
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Assets\08.png" />
   </ItemGroup>
 </Project>

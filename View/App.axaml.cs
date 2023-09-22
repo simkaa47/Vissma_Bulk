@@ -55,7 +55,7 @@ namespace View
                 //{
                 //    DataContext = this.CreateInstance<MainViewModel>(),
                 //};
-                desktop.MainWindow = new EquipmentWindow()
+                desktop.MainWindow = new ProbotbornikSettingsWindow()
                 {
                     DataContext = this.CreateInstance<MainViewModel>(),
                 };

@@ -2,8 +2,108 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
+		Width="1024" Height="600"
+		xmlns:vm="using:Core.ViewModels"
+		xmlns:plc="using:Core.Models.Plc"
+		xmlns:par="using:View.UserControls.Parameters"
+		xmlns:hb="using:View.UserControls.HighBar"
+		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.ProbotbornikSettingsWindow"
         Title="ProbotbornikSettingsWindow">
-  Welcome to Avalonia!
+	<Viewbox>
+		<Canvas Width="1024" Height="600">
+			<Canvas.Background>
+				<ImageBrush Source="/Assets/08.png" BitmapInterpolationMode="HighQuality"/>
+			</Canvas.Background>
+			<hb:HighBar/>
+			<!--Кнопка Отбор-->
+			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="10"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OtborCmd1}"/>
+			<!--Кнопка Возврат-->
+			<Grid  Height="70" Width="238" Canvas.Top="100" Canvas.Left="270"
+				   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}">
+				<Image Source="/Assets/115.jpg"/>
+				<Button Background="Transparent"
+						HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch"
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}">
+
+				</Button>				
+			</Grid>
+			<!--Индикатор пробоотборника-->
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
+					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
+			
+			<!--Статус пррботборника-->
+			<TextBlock Canvas.Left="550" Canvas.Top="200"
+				Foreground="White" FontSize="18" 
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, 
+					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   ConverterParameter={StaticResource ProbotborStatus}}"/>
+			<!--Когда начентся новый цикл-->
+			<Canvas Canvas.Top="236" Canvas.Left="806" Height="30" Width="240"
+					DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+					x:DataType="plc:PlcIndicationModel">
+				<Canvas.Styles>
+					<Style Selector="TextBlock">
+						<Setter Property="Foreground" Value="White"/>
+						<Setter Property="FontSize" Value="12"/>
+						<Setter Property="Margin" Value="5"/>
+						<Setter Property="VerticalAlignment" Value="Center"/>
+						<Setter Property="HorizontalAlignment" Value="Left"/>
+					</Style>
+				</Canvas.Styles>
+				<Border Height="28" Width="40" >
+					<TextBlock Text="{Binding TimeBeforeNextOtborHours.Value, StringFormat={}{0:00}}"/>
+				</Border>
+				<Border Canvas.Left="76" Height="28" Width="40" >
+					<TextBlock Text="{Binding TimeBeforeNextOtborMinutes.Value, StringFormat={}{0:00}}"/>
+				</Border>
+				<Border Canvas.Left="154" Height="28" Width="40">
+					<TextBlock Text="{Binding TimeBeforeNextOtborSeconds.Value, StringFormat={}{0:00}}"/>
+				</Border>
+			</Canvas>
+			<!--Скорость ПЧ проботборника-->
+			<par:NumericParameter Canvas.Top="269" Canvas.Left="782"
+								  ParamWidth="50"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}}"
+							  DescriptionInvisible="True"/>
+			<!--Время сбора в одну канистру-->
+			<par:NumericParameter Canvas.Top="302" Canvas.Left="782"
+								  ParamWidth="50"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}}"
+								  DescriptionInvisible="True"/>
+			<!--Индикаторы-->
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
+							   DescriptionInvisible="True"
+							   Canvas.Top="376" Canvas.Left="555"/>			
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHome1}"
+							   DescriptionInvisible="True"
+							   Canvas.Top="418" Canvas.Left="555"/>
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWork1}"
+							   DescriptionInvisible="True"
+							   Canvas.Top="458" Canvas.Left="555"/>
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWorkAbort1}"
+							   DescriptionInvisible="True"
+							   Canvas.Top="498" Canvas.Left="555"/>
+			
+			<!--Панель навигации-->
+			<Button Canvas.Bottom="0" Canvas.Left="0"
+					Height="42"
+					Background="Transparent"
+					Click="OpenControlWindow"
+					Width="342"/>
+			<Button Canvas.Bottom="0" Canvas.Left="684"
+					Height="42"
+					Background="Transparent"
+					Click="OpenErrorsWindow"
+					Width="342"/>
+		</Canvas>
+	</Viewbox>
 </Window>

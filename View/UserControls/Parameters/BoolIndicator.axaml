@@ -9,26 +9,19 @@
 	<DockPanel VerticalAlignment="Center">
 		
 		<StackPanel Margin="10,0,10,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-			<material:MaterialIcon Kind="Circle"
-								   IsVisible="{Binding !WriteValue}"
-									VerticalAlignment="Center"
-								    Foreground="Red"
-								    Opacity="0.16"
-									Height="30"
-								   Width="30"
-									HorizontalAlignment="Center">				
-			</material:MaterialIcon>
-			<material:MaterialIcon Kind="Circle"
-								   IsVisible="{Binding WriteValue}"								   
-								   Foreground="LimeGreen"								    
-								   VerticalAlignment="Center"
-											   Height="30" 
-								   Width="30"
-											   HorizontalAlignment="Center">				
-			</material:MaterialIcon>
+			<Image Source="/Assets/106.jpg"
+				   Height="30"
+				   IsVisible="{Binding WriteValue}"
+				   Width="30"/>
+			<Image Source="/Assets/108.jpg"
+				   Height="30"
+				   IsVisible="{Binding !WriteValue}"
+				   Width="30"/>
+
 			<TextBlock Text="{Binding Description}"
 				   VerticalAlignment="Center"
 					   TextWrapping="Wrap"
+				       IsVisible="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon} Path=!DescriptionInvisible}"
 					   HorizontalAlignment="Left"
 				   TextTrimming="CharacterEllipsis"/>
 		</StackPanel>
