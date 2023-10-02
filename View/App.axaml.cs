@@ -55,7 +55,7 @@ namespace View
                 //{
                 //    DataContext = this.CreateInstance<MainViewModel>(),
                 //};
-                desktop.MainWindow = new DelitelSettingsWindow()
+                desktop.MainWindow = new AuthorizationWindow()
                 {
                     DataContext = this.CreateInstance<MainViewModel>(),
                 };

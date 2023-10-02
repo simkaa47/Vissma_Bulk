@@ -135,5 +135,10 @@
         #endregion
 
 
+        #region Текущее время сушки , с
+        public Parameter<short> DryCurrentTime { get; } = new Parameter<short>(nameof(DryCurrentTime), "Текущее время сушки , с", 0, short.MaxValue, 182, 0) { IsOnlyRead = true };
+        #endregion
+
+
     }
 }

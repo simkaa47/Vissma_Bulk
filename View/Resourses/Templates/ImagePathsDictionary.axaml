@@ -78,11 +78,11 @@
 	</scg:List>
 
 	<scg:List x:TypeArguments="sys:String" x:Key="SysRetImageStatuses">
-		<sys:String>Assets/SysRet_Err.jpg</sys:String>
-		<sys:String>Assets/SysRet_Err.jpg</sys:String>
-		<sys:String>Assets/SysRet_Err.jpg</sys:String>
-		<sys:String>Assets/SysRet_Err.jpg</sys:String>
-		<sys:String>Assets/SysRet_Err.jpg</sys:String>
+		<sys:String>Assets/SysRet_Stop.jpg</sys:String>
+		<sys:String>Assets/SysRet_Stop.jpg</sys:String>
+		<sys:String>Assets/SysRet_Stop.jpg</sys:String>
+		<sys:String>Assets/SysRet_Stop.jpg</sys:String>
+		<sys:String>Assets/SysRet_Stop.jpg</sys:String>
 		<sys:String>Assets/SysRet_Work.jpg</sys:String>
 		<sys:String>Assets/SysRet_Err.jpg</sys:String>
 	</scg:List>
