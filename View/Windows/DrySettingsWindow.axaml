@@ -2,8 +2,100 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
+		Width="1024" Height="600"
+		xmlns:vm="using:Core.ViewModels"
+		xmlns:plc="using:Core.Models.Plc"
+		xmlns:par="using:View.UserControls.Parameters"
+		xmlns:hb="using:View.UserControls.HighBar"
+		x:DataType="vm:MainViewModel"        
         x:Class="View.Windows.DrySettingsWindow"
         Title="DrySettingsWindow">
-  Welcome to Avalonia!
+	<Viewbox>
+		<Canvas Width="1024" Height="600">
+			<Canvas.Background>
+				<ImageBrush Source="/Assets/15.png" BitmapInterpolationMode="HighQuality"/>
+			</Canvas.Background>
+			<hb:HighBar/>
+			<!--Панель навигации-->
+			<Button Canvas.Bottom="0" Canvas.Left="0"
+					Height="42"
+					Background="Transparent"
+					Click="OpenControlWindow"
+					Width="342"/>
+			<Button Canvas.Bottom="0" Canvas.Left="684"
+					Height="42"
+					Background="Transparent"
+					Click="OpenErrorsWindow"
+					Width="342"/>
+			<!--Кнопка Запуск сушки-->
+			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="10"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DryCycleCmd}"/>
+			<!--Индикатор сушки-->
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DryImageStatuses}}"
+					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
+			<!--Статус сушки-->
+			<TextBlock Canvas.Left="550" Canvas.Top="200"
+				Foreground="White" FontSize="18"
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
+					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   ConverterParameter={StaticResource DryUnitStatus}}"/>
+			<!--Время сушки-->
+			<par:NumericParameter Canvas.Top="239" Canvas.Left="700"
+								  ParamWidth="50"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitDryTime}"
+							  DescriptionInvisible="True"/>
+			<!--ТЕмпература сушки -->
+			<par:NumericParameter Canvas.Top="272" Canvas.Left="700"
+								  ParamWidth="50"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							      DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitTemperatureSv}"
+							      DescriptionInvisible="True"/>
+			<!--Текущая температура-->
+			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitCurrentTemperature.Value}" Foreground="White"
+					   Canvas.Top="312" Canvas.Left="730"/>
+			<!--Текущая время сушки-->
+			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryCurrentTime.Value}" Foreground="White"
+					   Canvas.Top="344" Canvas.Left="730"/>
+			<!--Задержка закрытия -->
+			<par:NumericParameter Canvas.Top="374" Canvas.Left="700"
+								  ParamWidth="50"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							      DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitDelayClose}"
+							      DescriptionInvisible="True"/>
+			<Button Canvas.Top="158" Canvas.Left="851"
+					Height="53" Width="55"		
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OpenHighShiberCmd}"/>
+			<Button Canvas.Top="158" Canvas.Left="916"
+					Height="53" Width="55"	
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CloseHighShiberCmd}"/>
+			<Button Canvas.Top="292" Canvas.Left="851"
+					Height="53" Width="55"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OpenLowShiberCmd}"/>
+			<Button Canvas.Top="292" Canvas.Left="916"
+					Height="53" Width="55"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CloseLowShiberCmd}"/>
+			<Button Canvas.Top="428" Canvas.Left="851"
+					Height="53" Width="55"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.UpBarabanCmd}"/>
+			<Button Canvas.Top="428" Canvas.Left="916"
+					Height="53" Width="55"	
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DownBarabanCmd}"/>
+		</Canvas>
+	</Viewbox>
 </Window>

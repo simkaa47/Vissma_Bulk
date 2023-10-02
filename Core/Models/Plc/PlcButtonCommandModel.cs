@@ -76,5 +76,9 @@
         #region Синхронизироватб время
         public Parameter<bool> TimeSynchroCmd { get; } = new Parameter<bool>(nameof(TimeSynchroCmd), "Синхронизироватб время", false, true, 200, 3);
         #endregion
+
+        #region Цикл блока сушки
+        public Parameter<bool> DryCycleCmd { get; } = new Parameter<bool>(nameof(DryCycleCmd), "Цикл блока сушки", false, true, 200, 15);
+        #endregion
     }
 }
