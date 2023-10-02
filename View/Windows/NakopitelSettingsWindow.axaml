@@ -2,8 +2,104 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
+		Width="1024" Height="600"
+		xmlns:vm="using:Core.ViewModels"
+		xmlns:plc="using:Core.Models.Plc"
+		xmlns:par="using:View.UserControls.Parameters"
+		xmlns:hb="using:View.UserControls.HighBar"
+		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.NakopitelSettingsWindow"
         Title="NakopitelSettingsWindow">
-  Welcome to Avalonia!
+	<Viewbox>
+		<Canvas Width="1024" Height="600">
+			<Canvas.Styles>
+				<Style Selector="ListBoxItem">
+					<Setter Property="Margin" Value="0"/>
+					<Setter Property="Padding" Value="0"/>
+				</Style>
+			</Canvas.Styles>
+			<Canvas.Background>
+				<ImageBrush Source="/Assets/12.png" BitmapInterpolationMode="HighQuality"/>
+			</Canvas.Background>
+			<hb:HighBar/>
+			<!--Кнопка Калибровка накопителя-->
+			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="20"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CalibrationNakopCmd}"/>
+			<!--Кнопка Смена канистры-->
+			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="265"
+					Background="Transparent"
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ChangeKanistraNakopCmd}"/>
+			<!--Панель навигации-->
+			<Button Canvas.Bottom="0" Canvas.Left="0"
+					Height="42"
+					Background="Transparent"
+					Click="OpenControlWindow"
+					Width="342"/>
+			<Button Canvas.Bottom="0" Canvas.Left="684"
+					Height="42"
+					Background="Transparent"
+					Click="OpenErrorsWindow"
+					Width="342"/>
+			<!--Статус накопителя-->
+			<TextBlock Canvas.Left="136" Canvas.Top="192"
+				Foreground="White" FontSize="18"
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, 
+					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   ConverterParameter={StaticResource NakopStatus}}"/>
+			<!--Скорость ПЧ-->
+			<par:NumericParameter Canvas.Top="248" Canvas.Left="184"
+								  ParamWidth="50"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[3]}"
+							  DescriptionInvisible="True"/>
+			<!--Предельное кол-во проб в канистре-->
+			<par:NumericParameter Canvas.Top="282" Canvas.Left="184"
+								  ParamWidth="50"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.KanistraSv}"
+							  DescriptionInvisible="True"/>
+			<!--Номер канистры-->
+			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelCurrentCell.Value, StringFormat={}{0:d2}}" 
+					   Foreground="White" Canvas.Top="276" Canvas.Left="356"/>
+			<!--кол-во канистр-->
+			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.NakopitelVolume.Value, StringFormat={}{0:d2}}" 
+					   Foreground="White" Canvas.Top="276" Canvas.Left="394"/>
+			<!--Дверь закрта-->
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel}"
+							   DescriptionInvisible="True"
+								Canvas.Top="322" Canvas.Left="194"/>
+			<!--Дверь закрта-->
+			<Button Canvas.Top="322" Canvas.Left="203" Height="30" Width="30"
+					Background="Transparent"
+					Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OpenLockNakopCmd}"/>
+			<!--Индикатор-->
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource NakopitelImageStatuses}}"
+					    Height="183" Width="275" Canvas.Top="370" Canvas.Left="120"/>
+			<!--Канистры-->
+			<ListBox Items="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras}" Canvas.Top="146" Canvas.Left="511" Background="Transparent">
+				<ListBox.ItemTemplate>
+					<DataTemplate x:DataType="plc:Kanistra">
+						<Canvas Width="504" Height="51" Background="Transparent" Opacity="1" 
+								x:DataType="plc:Kanistra">
+							<par:BoolIndicator DataContext="{Binding IsExist}"
+										   DescriptionInvisible="True"
+										   Canvas.Top="10" Canvas.Left="85"/>
+							<TextBlock Text="{Binding Id.Value}" Foreground="White"
+									   Canvas.Top="14" Canvas.Left="185"
+									   FontSize="18"/>
+							<TextBlock Text="{Binding ProbeCnt.Value}" Foreground="White"
+									   Canvas.Top="14" Canvas.Left="444"
+									   FontSize="18"/>
+						</Canvas>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>		
+			
+		</Canvas>
+	</Viewbox>
 </Window>
