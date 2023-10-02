@@ -16,6 +16,7 @@
     <None Remove="Assets\104.jpg" />
     <None Remove="Assets\105.jpg" />
     <None Remove="Assets\106.jpg" />
+    <None Remove="Assets\107.jpg" />
     <None Remove="Assets\108.jpg" />
     <None Remove="Assets\109.jpg" />
     <None Remove="Assets\11.png" />
@@ -25,6 +26,7 @@
     <None Remove="Assets\117.jpg" />
     <None Remove="Assets\118.jpg" />
     <None Remove="Assets\119.jpg" />
+    <None Remove="Assets\12.png" />
     <None Remove="Assets\120.jpg" />
     <None Remove="Assets\121.jpg" />
     <None Remove="Assets\122.jpg" />
@@ -148,5 +150,10 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Assets\08.png" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Assets\12.png" />
   </ItemGroup>
 </Project>
