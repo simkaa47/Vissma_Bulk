@@ -55,7 +55,7 @@ namespace View
                 //{
                 //    DataContext = this.CreateInstance<MainViewModel>(),
                 //};
-                desktop.MainWindow = new IstiratelSettingsWindow()
+                desktop.MainWindow = new SysReturnSettingsWindow()
                 {
                     DataContext = this.CreateInstance<MainViewModel>(),
                 };
