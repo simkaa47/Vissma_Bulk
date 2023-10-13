@@ -34,6 +34,7 @@
     <None Remove="Assets\13.png" />
     <None Remove="Assets\14.png" />
     <None Remove="Assets\15.png" />
+    <None Remove="Assets\16.png" />
     <None Remove="Assets\470.jpg" />
     <None Remove="Assets\471.jpg" />
     <None Remove="Assets\472.jpg" />
@@ -156,5 +157,10 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Assets\12.png" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Assets\16.png" />
   </ItemGroup>
 </Project>
