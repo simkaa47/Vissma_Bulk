@@ -10,6 +10,7 @@
     <None Remove="Assets\01.png" />
     <None Remove="Assets\02.png" />
     <None Remove="Assets\03.png" />
+    <None Remove="Assets\04.png" />
     <None Remove="Assets\07.png" />
     <None Remove="Assets\08.png" />
     <None Remove="Assets\10.png" />

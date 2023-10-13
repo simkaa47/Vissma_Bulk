@@ -2,8 +2,68 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"		
+		xmlns:plc="using:Core.Models.Plc"
+		Width="1024" Height="600"
+		xmlns:par="using:View.UserControls.Parameters"
+		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+		xmlns:sys="clr-namespace:System;assembly=netstandard"
+		xmlns:hb="using:View.UserControls.HighBar"		
+		xmlns:vm="using:View.ViewModels"
+		x:DataType="vm:EventViewModel"
         x:Class="View.Windows.ErrorsWindow"
         Title="ErrorsWindow">
-  Welcome to Avalonia!
+	<Viewbox>
+		<Canvas Width="1024" Height="600">
+			<Canvas.Background>
+				<ImageBrush Source="/Assets/04.png" BitmapInterpolationMode="HighQuality"/>
+			</Canvas.Background>
+			<hb:HighBar/>
+			<!--Панель навигации-->
+			<Button Canvas.Bottom="0" Canvas.Left="0"
+					Height="42"
+					Background="Transparent"
+					Click="OpenControlWindow"
+					Width="342"/>
+			<Button Canvas.Bottom="0" Canvas.Left="342"
+					Height="42"
+					Background="Transparent"
+					Click="OpenEquipWindow"
+					Width="342"/>
+			<Grid Canvas.Left="16" Canvas.Top="124" Width="996" Height="410">
+				<Grid.Styles>
+					<Style Selector="DataGridRow">
+						<Setter Property="IsVisible" Value="{Binding IsActive}"/>
+						<Setter Property="Background" Value="Red"/>
+					</Style>
+					<Style Selector="TextBlock">
+						<Setter Property="Foreground" Value="White"/>
+					</Style>
+				</Grid.Styles>
+				<DataGrid Items="{Binding ActivePoints}"
+						  
+						  IsReadOnly="True" Foreground="White">
+
+					<DataGrid.Columns>
+						<DataGridTextColumn Width="120" Binding="{Binding EventCode}">
+							<DataGridTextColumn.Header>
+								<TextBlock Text="Код события" HorizontalAlignment="Center"/>
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
+						<DataGridTextColumn  Binding="{Binding Message}">
+							<DataGridTextColumn.Header>
+								<TextBlock Text="Название" HorizontalAlignment="Center"/>
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
+						<DataGridTextColumn  Binding="{Binding LastDateTime}">
+							<DataGridTextColumn.Header>
+								<TextBlock Text="Дата детектирования" HorizontalAlignment="Center"/>
+							</DataGridTextColumn.Header>
+						</DataGridTextColumn>
+					</DataGrid.Columns>
+				</DataGrid>
+				<TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding Cnt}" Margin="5"/>
+			</Grid>
+		</Canvas>
+	</Viewbox>
 </Window>

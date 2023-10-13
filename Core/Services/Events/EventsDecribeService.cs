@@ -8,22 +8,17 @@ namespace Core.Services.Events;
 
 public partial class EventsDecribeService : ObservableObject
 {
-    public EventsDecribeService(PlcMainService plcMainService,
-        EventMainService eventMainService, AccessViewModel accessViewModel)
+    public EventsDecribeService(PlcMainService plcMainService)
     {
 
-        PlcMainService = plcMainService;
-        _eventMainService = eventMainService;
-        AccessViewModel = accessViewModel;
+        PlcMainService = plcMainService;        
         Init();
     }
 
     [ObservableProperty]
-    private List<EventPoint>? _events = new List<EventPoint>();
-    private readonly EventMainService _eventMainService;
-
+    private List<EventPoint>? _events = new List<EventPoint>();   
     public PlcMainService PlcMainService { get; }
-    public AccessViewModel AccessViewModel { get; }
+    
 
     public event Action UpdateErrorsEvent =  delegate { };
     public event Action<EventHistoryItem> AddHistoryEvent = delegate { };
@@ -35,14 +30,14 @@ public partial class EventsDecribeService : ObservableObject
             .Select((e, i) => new EventPoint(e, "Value", true)
             {
                 Message = e.Description,
-                EventCode = i.ToString("d4")
+                EventCode = i.ToString("d4"),
+                IsActive = e.Value
             }).ToList();        
         AddPlcConnectionErr();
         foreach (var e in Events)
         {
             e.PropertyChanged += OnEventChanged;
-        }
-        EventMainService.UpdateHistoryEvent += (h) => AddHistoryEvent?.Invoke(h);
+        }       
 
     }
     
@@ -55,17 +50,9 @@ public partial class EventsDecribeService : ObservableObject
             Message = "Нет связи с ПЛК",
             EventCode = "0300"
         });
-    }
-   
+    }  
 
-    public async Task<IEnumerable<EventHistoryItem>> GetHistory(DateTime start, DateTime end)
-    {
-        return  await _eventMainService.GetHistory(start, end);
-       
-    }
-
-
-
+    
     #endregion
 
     #region Действие по изменению активности в списке событий
@@ -84,8 +71,7 @@ public partial class EventsDecribeService : ObservableObject
                 Message = eventPoint.Message,
                 AccessLevel = Models.AccesControl.UserAccessLevel.None
 
-            };            
-            await _eventMainService.AddHistoryItem(newItem);
+            };  
 
         }
 

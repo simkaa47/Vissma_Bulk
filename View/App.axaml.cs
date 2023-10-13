@@ -50,12 +50,8 @@ namespace View
         private void CreateMainWindow()
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
-            {
-                //desktop.MainWindow = new MainWindow
-                //{
-                //    DataContext = this.CreateInstance<MainViewModel>(),
-                //};
-                desktop.MainWindow = new SysReturnSettingsWindow()
+            {                
+                desktop.MainWindow = new AuthorizationWindow()
                 {
                     DataContext = this.CreateInstance<MainViewModel>(),
                 };
