@@ -19,8 +19,7 @@ public partial class HighBar : UserControl
         if (this.DataContext is null) return;
         if (!(this.DataContext is MainViewModel vm)) return;
         if (vm is null || vm.AccessViewModel is null) return;
-
-        vm.AccessViewModel.Logout();
+        
         if (!(App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop))
         {
             return;

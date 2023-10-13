@@ -11,8 +11,7 @@
 	<conv:IfNotEqualConverter  x:Key="IfNotEqualConverter"/>		
 	<conv:GetFromCollectionMultiValueConverter x:Key="GetFromCollectionMultiValueConverter"/>
 	<conv:GetByIndexFromParameterConverter x:Key="GetByIndexFromParameterConverter"/>
-	<conv:AddConverter x:Key="AddConverter"/>	
-	<conv:GetVisibleForHistoryEventConverter x:Key="GetVisibleForHistoryEventConverter"/>
-	<conv:GetColorForHistoryEventConverter x:Key="GetColorForHistoryEventConverter"/>
+	<conv:AddConverter x:Key="AddConverter"/>
+	
 	
 </ResourceDictionary>
