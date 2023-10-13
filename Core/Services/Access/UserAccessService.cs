@@ -27,12 +27,12 @@ namespace Core.Services.Access
 
         public async Task<IEnumerable<User>> GetAllUsersAsync()
         {
-            return await _userRepository.InitAsync(UserDataFactory.GetUsers(), 1);
+            return UserDataFactory.GetUsers();
         }
 
         public async Task<User?> Login(Login login)
         {
-            var user = await _userRepository.GetFirstWhere(u => u.Login == login.LoginName && u.Password == login.Password);
+            var user = UserDataFactory.GetUsers().Where(u => u.Login == login.LoginName && u.Password == login.Password).FirstOrDefault();
             return user;
         }
 

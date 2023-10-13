@@ -9,6 +9,11 @@
 		x:DataType="vm:MainViewModel"
         Title="Связь с ПЛК">
 	<ListBox DataContext="{Binding PlcViewModel}">
+		<ListBox.Styles>
+			<Style Selector="TextBlock">
+				<Setter Property="Foreground" Value="White"/> 
+			</Style>
+		</ListBox.Styles>
 		<StackPanel>
 			<TextBlock Text="IP адрес ПЛК"/>
 			<TextBox Text="{Binding PlcMainService.PlcConnectSettings.EthernetSettings.Ip}" Width="200"
