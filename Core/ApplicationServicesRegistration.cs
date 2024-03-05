@@ -21,8 +21,7 @@ namespace Core
             services.AddSingleton<AccessViewModel>();
             services.AddSingleton<IUserAccessService, UserAccessService>();
             services.AddSingleton<PlcMainService>();
-            services.AddSingleton<PlcViewModel>();            
-            services.AddSingleton<EventMainService>();
+            services.AddSingleton<PlcViewModel>(); 
             services.AddSingleton<EventsDecribeService>();            
             services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
 

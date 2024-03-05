@@ -20,8 +20,7 @@ public partial class EventsDecribeService : ObservableObject
     public PlcMainService PlcMainService { get; }
     
 
-    public event Action UpdateErrorsEvent =  delegate { };
-    public event Action<EventHistoryItem> AddHistoryEvent = delegate { };
+    public event Action UpdateErrorsEvent =  delegate { };    
 
     #region  Инициализация
     private  void Init()
@@ -31,7 +30,9 @@ public partial class EventsDecribeService : ObservableObject
             {
                 Message = e.Description,
                 EventCode = i.ToString("d4"),
-                IsActive = e.Value
+                IsActive = e.Value,
+                LastDateTime = DateTime.Now
+
             }).ToList();        
         AddPlcConnectionErr();
         foreach (var e in Events)
@@ -56,24 +57,16 @@ public partial class EventsDecribeService : ObservableObject
     #endregion
 
     #region Действие по изменению активности в списке событий
-    private async void OnEventChanged(object? sender, PropertyChangedEventArgs e)
+    private  void OnEventChanged(object? sender, PropertyChangedEventArgs e)
     {
         if (sender is null) return;
         if (!(sender is EventPoint eventPoint)) return;
-        UpdateErrorsEvent?.Invoke();
-        if (e.PropertyName == nameof(eventPoint.IsActive))
+        if(e.PropertyName == nameof(eventPoint.IsActive))
         {
-            var newItem = new EventHistoryItem
-            {
-                IsActive = eventPoint.IsActive,
-                Date = DateTime.Now,
-                EventCode = eventPoint.EventCode,
-                Message = eventPoint.Message,
-                AccessLevel = Models.AccesControl.UserAccessLevel.None
-
-            };  
-
+            eventPoint.LastDateTime = DateTime.Now;
+            UpdateErrorsEvent?.Invoke();
         }
+             
 
     }
     #endregion

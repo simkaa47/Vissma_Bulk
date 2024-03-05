@@ -10,9 +10,7 @@ namespace Core.Infrastructure.DataAccess
     public class ApplicationContext : DbContext
     {       
         public DbSet<User> Users => Set<User>();        
-        public DbSet<PlcConnectSettings> PlcConnectSettings => Set<PlcConnectSettings>();
-        
-        public DbSet<EventHistoryItem> EventHistoryItems => Set<EventHistoryItem>();         
+        public DbSet<PlcConnectSettings> PlcConnectSettings => Set<PlcConnectSettings>(); 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

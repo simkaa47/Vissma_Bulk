@@ -11,13 +11,12 @@ namespace Core.ViewModels
 
         private readonly IUserAccessService _accessService;
         private readonly ILogger<AccessViewModel> _logger;
-        private readonly IAccessDialogService _accessDialogService;
+        
 
-        public AccessViewModel(IUserAccessService accessService, ILogger<AccessViewModel> logger, IAccessDialogService accessDialogService)
+        public AccessViewModel(IUserAccessService accessService, ILogger<AccessViewModel> logger)
         {
             _accessService = accessService;
-            _logger = logger;
-            _accessDialogService = accessDialogService;
+            _logger = logger;            
             InitAsync();
         }
 
@@ -48,24 +47,7 @@ namespace Core.ViewModels
             Users = await _accessService.GetAllUsersAsync();
         }
 
-        #region Commands
-        [RelayCommand]
-        public async void CreateUserAsync()
-        {
-            var newUser = new User();
-            if (!await _accessDialogService.ShowDialog(newUser)) return;
-            await Task.Run(() =>
-           {
-               SafetyAction(async () =>
-               {
-                   if (newUser.HasErrors)
-                   {
-                       throw new Exception("New user adding: validation error");
-                   }
-                   Users = await _accessService.AddUserAsync(newUser);
-               });
-           });
-        }
+        #region Commands        
 
         [RelayCommand]
         public async void DeleteUserAsync(object parameter)
@@ -79,24 +61,7 @@ namespace Core.ViewModels
                     Users = await _accessService.DeleteUserAsync(user);
                 });
             });
-        }
-        [RelayCommand]
-        public async void UpdateUserAsync(object parameter)
-        {
-            if (!(parameter is User user)) return;
-            if (!await _accessDialogService.ShowDialog(user)) return;
-            await Task.Run(() =>
-            {
-                SafetyAction(async () =>
-                {
-                    if (user.HasErrors)
-                    {
-                        throw new Exception("User update: validation error");
-                    }
-                    Users = await _accessService.UpdateUserAsync(user);
-                });
-            });
-        }
+        }        
 
         #endregion
         [RelayCommand]

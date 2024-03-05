@@ -18,19 +18,20 @@ public partial class ErrorsWindow : Window
         InitializeComponent();
         this.Opened += OnOpened;
        
-    }
-
-    MainViewModel mainVm;
-    EventViewModel eventVm;
+    }    
 
     private void OnOpened(object? sender, EventArgs e)
     {
-        eventVm = App.Current.CreateInstance<EventViewModel>();
-        if(this.DataContext is MainViewModel main)
+        
+        if (this.DataContext is not null && this.DataContext is MainViewModel main)
         {
-            mainVm = main;
+            if(main.EventsVm is null)
+            {
+                var eventVm = App.Current.CreateInstance<EventViewModel>();
+                main.EventsVm = eventVm;
+            }
+            
         }        
-        this.DataContext = eventVm;
         this.WindowState = WindowState.Maximized;
     }
 
@@ -40,9 +41,9 @@ public partial class ErrorsWindow : Window
         {
             var current = desktop.MainWindow;
             desktop.MainWindow = new ControlWindow
-            { 
-                
-                DataContext = mainVm
+            {
+
+                DataContext = this.DataContext
             };
             desktop.MainWindow.Show();
             current.Close();
@@ -56,7 +57,7 @@ public partial class ErrorsWindow : Window
             var current = desktop.MainWindow;
             desktop.MainWindow = new EquipmentWindow
             {
-                DataContext = mainVm
+                DataContext = this.DataContext
             };
             desktop.MainWindow.Show();
             current.Close();

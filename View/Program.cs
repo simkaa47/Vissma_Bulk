@@ -1,12 +1,8 @@
 ﻿using Avalonia;
 using Core;
-using Core.Contracts.Access;
-using Core.Services.Events;
-using Core.Services.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using View.Dialogs.Access;
 using View.ViewModels;
 
 namespace View
@@ -28,19 +24,14 @@ namespace View
         {
             IServiceCollection services = new ServiceCollection();
             services.AddApplicationServices();
-            services.AddScoped<IAccessDialogService, UserDialogService>();
             services.AddSingleton<EventViewModel>();
-            services.AddLogging((logging) =>
+            services.AddLogging(logging =>
             {
-                var provider = services.BuildServiceProvider();
-                var eventService = provider.GetService<EventMainService>();
-                logging.AddDatabaseLogging(eventService);
+#if DEBUG
+                logging.AddDebug();
+#endif
             });
-
             var prov = services.BuildServiceProvider();
-
-
-            var logger = prov.GetRequiredService<ILogger<Program>>();
             return prov;
         }
 

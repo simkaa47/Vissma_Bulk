@@ -1,12 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Core.Infrastructure.DataAccess.Repositories;
 using Core.Models.AccesControl;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Models.Events
 {
-    public partial class EventPoint : EntityCommon
+    public partial class EventPoint : ObservableObject
     {
         public EventPoint(INotifyPropertyChanged describeObject, string? describePropertyName, object? describeValue)
         {
@@ -27,12 +26,12 @@ namespace Core.Models.Events
             var value = sender.GetType().GetProperty(_describePropertyName).GetValue(sender);
             if (value is null) return;
             IsActive = value.Equals(_describeValue);
-            if(IsActive)
+            if (IsActive)
                 LastDateTime = DateTime.Now;
 
         }
         #region Код события
-        public string EventCode { get;  set; }
+        public string EventCode { get; set; } = string.Empty;
         #endregion
 
         #region Тип события
@@ -61,13 +60,9 @@ namespace Core.Models.Events
         #endregion
 
         #region Время срабатывания последнее
-        [NotMapped]
+        [ObservableProperty]
         private DateTime _lastDateTime;
-        public DateTime LastDateTime
-        {
-            get=> _lastDateTime;
-            set => SetProperty(ref _lastDateTime, value);
-        }
+       
         #endregion
 
         private INotifyPropertyChanged? _describeObject;

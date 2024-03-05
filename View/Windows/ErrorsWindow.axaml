@@ -9,8 +9,9 @@
 		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
 		xmlns:sys="clr-namespace:System;assembly=netstandard"
 		xmlns:hb="using:View.UserControls.HighBar"		
-		xmlns:vm="using:View.ViewModels"
-		x:DataType="vm:EventViewModel"
+		xmlns:e="using:View.ViewModels"
+		xmlns:vm="using:Core.ViewModels"
+		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.ErrorsWindow"
         Title="ErrorsWindow">
 	<Viewbox>
@@ -30,7 +31,9 @@
 					Background="Transparent"
 					Click="OpenEquipWindow"
 					Width="342"/>
-			<Grid Canvas.Left="16" Canvas.Top="124" Width="996" Height="410">
+			<Grid Canvas.Left="16" Canvas.Top="124" Width="996" Height="410" 
+				  x:DataType="e:EventViewModel"
+				  DataContext="{Binding EventsVm}">
 				<Grid.Styles>
 					<Style Selector="DataGridRow">
 						<Setter Property="IsVisible" Value="{Binding IsActive}"/>

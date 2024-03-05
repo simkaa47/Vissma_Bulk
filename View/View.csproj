@@ -113,16 +113,6 @@
   
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="UserControls\HighBar\ConnectIndicatorControl.axaml" />
-  </ItemGroup>
-  
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="UserControls\Plc\PlcIndicationControl.axaml" />
-  </ItemGroup>
-  
-
-  <ItemGroup>
     <Compile Update="UserControls\Plc\Statuses\ProbotborStatus.axaml.cs">
       <DependentUpon>ProbotborStatus.axaml</DependentUpon>
     </Compile>
@@ -137,17 +127,15 @@
   
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="UserControls\HighBar\NakopitelDoorControl.axaml" />
-  </ItemGroup>
-  
-
-  <ItemGroup>
-    <Folder Include="UserControls\ControlPage\" />
-  </ItemGroup>
-  
-
-  <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+  
+
+  <ItemGroup>
+    <AvaloniaXaml Remove="UserControls\ControlPage\**" />
+    <Compile Remove="UserControls\ControlPage\**" />
+    <EmbeddedResource Remove="UserControls\ControlPage\**" />
+    <None Remove="UserControls\ControlPage\**" />
   </ItemGroup>
   
 
