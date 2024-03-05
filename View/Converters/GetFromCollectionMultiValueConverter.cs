@@ -1,5 +1,4 @@
 ﻿using Avalonia.Data.Converters;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,7 +11,7 @@ namespace View.Converters
         public object? Convert(IList<object?> values, Type targetType, object? parameter, CultureInfo culture)
         {
             int index = 0;
-            if (values.Count<2)return null;
+            if (values.Count < 2) return null;
             if (values[0] is null) return null;
             if (!(values[1] is IEnumerable<object> list)) return null;
             if (!int.TryParse(values[0].ToString(), out index)) return null;
