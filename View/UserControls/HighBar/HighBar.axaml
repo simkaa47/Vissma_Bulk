@@ -18,6 +18,18 @@
 				CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RstCmd}"
 				Command="{Binding PlcViewModel.WriteParameterCommand}"
 				Background="Transparent"/>
+		<!--Показания влагомера-->
+		<TextBlock Text="Показания влагомера, %"
+				   Foreground="White"
+				   Width="100"
+				   TextWrapping="Wrap"
+				   Canvas.Left="762" Canvas.Top="45"/>
+		<Border Background="White" Canvas.Left="860" Canvas.Top="45"
+				Height="30" Width="60">
+			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.CurrentHumm.Value, StringFormat={}{0:0.0}}"
+					   VerticalAlignment="Center"
+					   HorizontalAlignment="Center"/>
+		</Border>
 		<!--Время-->
 		<Border Canvas.Left="762" Canvas.Top="15" Width="78" Height="27">
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">

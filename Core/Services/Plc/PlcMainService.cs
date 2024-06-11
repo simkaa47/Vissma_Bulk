@@ -94,7 +94,7 @@ namespace Core.Services.Plc
         {
             await Task.Run(() =>
             {
-
+                Thread.Sleep(5000);
                 while (_communicationService != null)
                 {
 

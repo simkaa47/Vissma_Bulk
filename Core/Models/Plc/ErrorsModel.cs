@@ -73,7 +73,10 @@
                 new Parameter<bool>("ErrDrobilkaDrive",             "Дробилка: сработало тепловое реле",                    false, true, 205, 10),
                 new Parameter<bool>("ErrIstiratelDrive",            "Истиратель: сработало тепловое реле",                  false, true, 205, 11),
                 new Parameter<bool>("ErrDryUnitDrive",              "Блок сушки: сработало тепловое реле",                  false, true, 205, 12),
-                new Parameter<bool>("ErrKonveyor39",                "Нет готовности от конвеера 39",                        false, true, 205, 13)
+                new Parameter<bool>("ErrKonveyor39",                "Нет готовности от конвеера 39",                        false, true, 205, 13),
+                new Parameter<bool>("ErrFcFun",                     "Нет связи с ПЧ воздуходувки",                          false, true, 205, 14),
+                new Parameter<bool>("ErrRotateBaraban",             "Ошибка вращения барабана",                             false, true, 205, 15)
+
 
             };
         }

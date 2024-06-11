@@ -25,7 +25,7 @@ namespace View.ViewModels
             ActivePoints = DecribeService.Events?.Where(e => e.IsActive).OrderByDescending(e => e.LastDateTime);
             DecribeService.UpdateErrorsEvent += () =>
             {
-                ActivePoints = DecribeService.Events?.Where(e => e.IsActive).OrderByDescending(e => e.LastDateTime);
+                ActivePoints = DecribeService.Events?.Where(e => e.IsActive).OrderByDescending(e => e.LastDateTime).ToList();
             };
 
         }
