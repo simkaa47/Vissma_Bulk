@@ -23,13 +23,13 @@
 					Command="{Binding PlcViewModel.WriteParameterCommand}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DrobilkaOn}"/>
 			<!--Индикатор дробилки-->
-			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DrobilkaImageStatuses}}"
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DrobilkaImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
 			<!--Статус дробилки-->
 			<TextBlock Canvas.Left="550" Canvas.Top="200"
 				Foreground="White" FontSize="18"
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DrobilkaStatus.Value, 
-					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   Converter={StaticResource GetByIndexFromParameterConverter} ,
 					   ConverterParameter={StaticResource UniversalStatus}}"/>
 			<!--Панель навигации-->
 			<Button Canvas.Bottom="0" Canvas.Left="0"

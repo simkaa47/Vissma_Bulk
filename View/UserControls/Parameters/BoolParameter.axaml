@@ -19,7 +19,7 @@
 									HorizontalAlignment="Center">
 				<i:Interaction.Behaviors>
 					<ia:EventTriggerBehavior EventName="PointerPressed">
-						<ia:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon} Path=Command}"
+						<ia:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon}, Path=Command}"
 												CommandParameter="{Binding}">
 							
 						</ia:InvokeCommandAction>
@@ -34,7 +34,7 @@
 											   HorizontalAlignment="Center">
 				<i:Interaction.Behaviors>
 					<ia:EventTriggerBehavior EventName="PointerPressed">
-						<ia:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon} Path=Command}"
+						<ia:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon}, Path=Command}"
 												CommandParameter="{Binding}">
 
 						</ia:InvokeCommandAction>

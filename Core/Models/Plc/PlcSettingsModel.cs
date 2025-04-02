@@ -27,7 +27,7 @@
         public Parameter<short> DryUnitDryTime { get; } = new Parameter<short>(nameof(DryUnitDryTime), "Блок осушителя - время сушки, с", 0, 1000, 20016, 0);
         #endregion
         #region Время работы питателя в автоматическом режиме, с
-        public Parameter<short> PitatelWorkTime { get; } = new Parameter<short>(nameof(PitatelWorkTime), "Время работы питателя в автоматическом режиме, с", 0, 1000, 20017, 0);
+        public Parameter<short> PitatelWorkTime { get; } = new Parameter<short>(nameof(PitatelWorkTime), "Питатель, время первого шага, c", 0, 1000, 20017, 0);
         #endregion
         #region Время работы системы возврата проб в автоматическом режиме, с
         public Parameter<short> SysReturnWorkTime { get; } = new Parameter<short>(nameof(SysReturnWorkTime), "Время работы системы возврата проб в автоматическом режиме, с", 0, 1000, 20018, 0);
@@ -68,5 +68,16 @@
         #region Тайм-аут движения ковша проботборника 2
         public Parameter<short> ProbotbornikTimeout2 { get; } = new Parameter<short>(nameof(ProbotbornikTimeout2), "Тайм-аут движения ковша проботборника 2, c", 1, 100, 20051, 0);
         #endregion
+
+        #region Время второго шага питателя
+        public Parameter<short> PitatelSecondStepTime { get; } = new Parameter<short>(nameof(PitatelSecondStepTime), "Питатель, время второго шага, c", 1, 100, 20053, 0);
+        #endregion
+
+        #region Скорость второго шага питателя
+        public Parameter<short> PitatelSecondStepSpeed { get; } = new Parameter<short>(nameof(PitatelSecondStepSpeed), "Питатель, скорость второго шага, Гц", 1, 100, 20054, 0);
+        #endregion
+
+        
+
     }
 }

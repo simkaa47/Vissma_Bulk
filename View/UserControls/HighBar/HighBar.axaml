@@ -3,13 +3,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:Core.ViewModels"
-			 xmlns:material="using:Material.Icons.Avalonia"
-			 xmlns:local="using:View.UserControls.HighBar"
              mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="83"
-			 x:DataType="vm:MainViewModel"
 			 xmlns:acc="using:Core.Models.AccesControl"
-             x:Class="View.UserControls.HighBar.HighBar">
+             x:Class="View.UserControls.HighBar.HighBar"
+             x:DataType="vm:MainViewModel">
 	<Canvas Width="1024" Height="83">
+		<TextBlock Canvas.Top="40"
+		           Margin="12,5"
+		           Foreground="White"
+		           MaxWidth="120"
+		           Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitMode.Value, 
+		           Converter={StaticResource IfTrueConverter}, 
+		           ConverterParameter={StaticResource AutoModes}}"
+		           TextWrapping="Wrap"/>
+		<!--Индикатор режима с сушкой или без-->
+		
 		<!--Кнопка Logout-->
 		<Button Canvas.Top="0" Canvas.Left="932" Width="92" Height="83"
 				Click="LogoutClick" Background="Transparent"/>
@@ -65,7 +73,7 @@
 			   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}"/>
 		<!--Кнопка Параметры-->
 		<Button Canvas.Top="9" Canvas.Left="148" Width="146" Height="69"
-				IsEnabled="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter} ConverterParameter={x:Static acc:UserAccessLevel.Service}}"
+				IsEnabled="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter}, ConverterParameter={x:Static acc:UserAccessLevel.Service}}"
 				Background="Transparent" Click="OpenParametersWindowClick"/>
 
 	</Canvas>

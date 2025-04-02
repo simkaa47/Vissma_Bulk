@@ -21,7 +21,8 @@
 			<TextBlock Text="{Binding Description}"
 				   VerticalAlignment="Center"
 					   TextWrapping="Wrap"
-				       IsVisible="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon} Path=!DescriptionInvisible}"
+				       IsVisible="{Binding RelativeSource={RelativeSource AncestorType=par:ParameterCommon} ,
+				       Path=!DescriptionInvisible}"
 					   HorizontalAlignment="Left"
 				   TextTrimming="CharacterEllipsis"/>
 		</StackPanel>

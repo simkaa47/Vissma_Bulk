@@ -48,18 +48,18 @@
 			<TextBlock Canvas.Left="136" Canvas.Top="192"
 				Foreground="White" FontSize="18"
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, 
-					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource NakopStatus}}"/>
 			<!--Скорость ПЧ-->
 			<par:NumericParameter Canvas.Top="248" Canvas.Left="184"
 								  ParamWidth="50"
-							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[3]}"
 							  DescriptionInvisible="True"/>
 			<!--Предельное кол-во проб в канистре-->
 			<par:NumericParameter Canvas.Top="282" Canvas.Left="184"
 								  ParamWidth="50"
-							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.KanistraSv}"
 							  DescriptionInvisible="True"/>
 			<!--Номер канистры-->
@@ -75,10 +75,10 @@
 			<!--Дверь закрта-->
 			<Button Canvas.Top="322" Canvas.Left="203" Height="30" Width="30"
 					Background="Transparent"
-					Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+					Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OpenLockNakopCmd}"/>
 			<!--Индикатор-->
-			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource NakopitelImageStatuses}}"
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="370" Canvas.Left="120"/>
 			<!--Канистры-->
 			<ListBox Items="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras}" Canvas.Top="146" Canvas.Left="511" Background="Transparent">

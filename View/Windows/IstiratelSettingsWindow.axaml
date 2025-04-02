@@ -7,8 +7,6 @@
 		xmlns:plc="using:Core.Models.Plc"
 		Width="1024" Height="600"
 		xmlns:par="using:View.UserControls.Parameters"
-		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
-		xmlns:sys="clr-namespace:System;assembly=netstandard"
 		xmlns:hb="using:View.UserControls.HighBar"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.IstiratelSettingsWindow"
@@ -25,19 +23,19 @@
 					Command="{Binding PlcViewModel.WriteParameterCommand}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.IstiratelCmd}"/>
 			<!--Индикатор истирателя-->
-			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.IstiratelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource IstiratelImageStatuses}}"
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.IstiratelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource IstiratelImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
 			<!--Статус дробилки-->
 			<TextBlock Canvas.Left="550" Canvas.Top="200"
 				Foreground="White" FontSize="18"
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.IstiratelStatus.Value, 
-					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource UniversalStatus}}"/>
 			<!--Время работы истирателя-->
 			<par:NumericParameter Canvas.Left="700" Canvas.Top="240"
 								  ParamWidth="50"
-							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.IstiratelWorkTime}}"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.IstiratelWorkTime}"
 							  DescriptionInvisible="True"/>
 			<!--Текущее время работы истрирателя-->
 			<TextBlock Canvas.Left="730" Canvas.Top="280" Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.IstiratelTimeCurrent.Value}"

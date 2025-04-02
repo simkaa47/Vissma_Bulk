@@ -138,7 +138,10 @@
         #region Текущее время сушки , с
         public Parameter<short> DryCurrentTime { get; } = new Parameter<short>(nameof(DryCurrentTime), "Текущее время сушки , с", 0, short.MaxValue, 182, 0) { IsOnlyRead = true };
         #endregion
+        #region Режим работы с сушкой и без
+        public Parameter<bool> DryUnitMode { get; } = new Parameter<bool>(nameof(DryUnitMode), "Режим работы с сушкой и без", false, true, 181, 1);
 
+        #endregion
 
     }
 }

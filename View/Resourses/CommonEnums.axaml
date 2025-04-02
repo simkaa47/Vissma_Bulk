@@ -10,6 +10,10 @@
 		<sys:String>Ручной</sys:String>
 		<sys:String>Автоматический</sys:String>
 	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="AutoModes">
+		<sys:String>Активен режим без блока сушки</sys:String>
+		<sys:String>Активен режим с блоком сушки</sys:String>
+	</scg:List>
 	<scg:List x:TypeArguments="sys:String" x:Key="CommWays">
 		<sys:String>USB</sys:String>
 		<sys:String>ETHERNET</sys:String>

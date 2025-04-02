@@ -52,6 +52,10 @@
         public Parameter<bool> DownBarabanCmd { get; } = new Parameter<bool>(nameof(DownBarabanCmd), "Опустить барабан", false, true, 200, 14);
         #endregion
 
+        #region Вращать барабан
+        public Parameter<bool> RotateBarabanCmd { get; } = new Parameter<bool>(nameof(RotateBarabanCmd), "Вращать барабан", false, true, 201, 7);
+        #endregion
+
         #region Запустить возврат проб
         public Parameter<bool> SysReturnCmd { get; } = new Parameter<bool>(nameof(SysReturnCmd), "Запустить транспортер", false, true, 201, 1);
         #endregion

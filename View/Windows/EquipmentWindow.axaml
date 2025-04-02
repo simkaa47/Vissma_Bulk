@@ -20,7 +20,7 @@
 		</scg:List>
 	</Window.Resources>
 	<Viewbox>
-		<Canvas Width="1024" Height="600" Background="{Binding PlcViewModel.ControlPageSecond, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource BackgroundPaths}}">
+		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
 				<ImageBrush Source="/Assets/03.png" BitmapInterpolationMode="HighQuality"/>
 			</Canvas.Background>
@@ -41,14 +41,16 @@
 				
 				<!--Индикатор проботборника-->
 				<Grid Height="183" Width="230" Canvas.Top="50" Canvas.Left="24" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding Indication.ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
+					<Image Source="{Binding Indication.ProbotborStatus1.Value, 
+					Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
 					    Height="183" Width="230" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenProbotborWindow"/>					
 				</Grid>
 				<!--Индикатор питателя-->
 				<Grid Height="183" Width="230" Canvas.Top="50" Canvas.Left="538" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding Indication.PitatelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource PitatelImageStatuses}}"
+					<Image Source="{Binding Indication.PitatelStatus.Value, 
+					Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource PitatelImageStatuses}}"
 					    Height="183" Width="230" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenPitetelWindow"/>
@@ -56,53 +58,57 @@
 				<!--Статус проботборника{Binding Indication.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}} -->
 				<Grid  Height="50" Width="240" Canvas.Top="50" Canvas.Left="285">
 					<TextBlock Classes="textStatus"  TextWrapping="Wrap"
-							   Text="{Binding Indication.ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}}"/>
+							   Text="{Binding Indication.ProbotborStatus1.Value, 
+							   Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"/>
 				</Grid>
 				<!--Скорость ПЧ проботборника-->
 				<par:NumericParameter Canvas.Left="448" Canvas.Top="109"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.FcFrequencesSvs[2]}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.FcFrequencesSvs[2]}"
 								  DescriptionInvisible="True"/>
 				<!--Время сбора в одну канистру, мин -->
 				<par:NumericParameter Canvas.Left="448" Canvas.Top="144"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.TimeForKanistra}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.TimeForKanistra}"
 								  DescriptionInvisible="True"/>
 				<!--Статус питателя -->
 				<Grid  Height="50" Width="240" Canvas.Top="50" Canvas.Left="770">
 					<TextBlock Classes="textStatus"  TextWrapping="Wrap"
-							   Text="{Binding Indication.PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"/>
+							   Text="{Binding Indication.PitatelStatus.Value, 
+							   Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"/>
 				</Grid>
 				<!--Скорость ПЧ питателя-->
 				<par:NumericParameter Canvas.Left="932" Canvas.Top="109"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.FcFrequencesSvs[0]}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.FcFrequencesSvs[0]}"
 								  DescriptionInvisible="True"/>
 				<!--ВРемя работы питателя-->
 				<par:NumericParameter Canvas.Left="932" Canvas.Top="144"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.PitatelWorkTime}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.PitatelWorkTime}"
 								  DescriptionInvisible="True"/>
 				<!--текущее ВРемя работы питателя-->
 				<par:NumericParameter Canvas.Left="932" Canvas.Top="179"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Indication.PitatelTimeCurrent}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Indication.PitatelTimeCurrent}"
 								  DescriptionInvisible="True"/>
 				<!--Индикатор дробилки-->
 				<Grid Height="183" Width="230" Canvas.Top="275" Canvas.Left="24" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding Indication.DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DrobilkaImageStatuses}}"
+					<Image Source="{Binding Indication.DrobilkaStatus.Value, 
+					Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DrobilkaImageStatuses}}"
 					    Height="183" Width="230" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenDrobilkaWindow"/>
 				</Grid>
 				<!--Индикатор делителя-->
 				<Grid Height="183" Width="230" Canvas.Top="275" Canvas.Left="538" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding Indication.ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DelitelImageStatuses}}"
+					<Image Source="{Binding Indication.ProbotborStatus2.Value, 
+					Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DelitelImageStatuses}}"
 					    Height="183" Width="230" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenDelitelWindow"/>
@@ -110,29 +116,32 @@
 				<!--Статус дробилки-->
 				<Grid  Height="50" Width="240" Canvas.Top="275" Canvas.Left="285">
 					<TextBlock Classes="textStatus"  TextWrapping="Wrap"
-							   Text="{Binding Indication.DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"/>
+							   Text="{Binding Indication.DrobilkaStatus.Value, 
+							   Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"/>
 				</Grid>
 				<!--Статус делителя -->
 				<Grid  Height="50" Width="240" Canvas.Top="275" Canvas.Left="770">
 					<TextBlock Classes="textStatus"  TextWrapping="Wrap"
-							   Text="{Binding Indication.ProbotborStatus2.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}}"/>
+							   Text="{Binding Indication.ProbotborStatus2.Value, 
+							   Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"/>
 				</Grid>
 				<!--Скорость ПЧ делителя-->
 				<par:NumericParameter Canvas.Left="932" Canvas.Top="331"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.FcFrequencesSvs[1]}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, 
+								  Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.FcFrequencesSvs[1]}"
 								  DescriptionInvisible="True"/>
 				<!--Время работы делителя-->
 				<par:NumericParameter Canvas.Left="932" Canvas.Top="366"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.DelitelWorkTime}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.DelitelWorkTime}"
 								  DescriptionInvisible="True"/>
 				<!-- Текущее Время работы делителя-->
 				<par:NumericParameter Canvas.Left="932" Canvas.Top="401"
 									  ParamWidth="50"								  
-									DataContext="{Binding Indication.DelitelTimeCurrent}}"
+									DataContext="{Binding Indication.DelitelTimeCurrent}"
 									DescriptionInvisible="True"/>
 			</Canvas>
 			<!--Панель 2-->
@@ -143,14 +152,16 @@
 
 				<!--Индикатор сушки-->
 				<Grid Height="183" Width="230" Canvas.Top="50" Canvas.Left="24" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding Indication.DryUnitStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DryImageStatuses}}"
+					<Image Source="{Binding Indication.DryUnitStatus.Value, 
+					Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
 					    Height="183" Width="230" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenDryWindow"/>
 				</Grid>
 				<!--Индикатор истирателя-->
 				<Grid Height="183" Width="230" Canvas.Top="50" Canvas.Left="538" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding Indication.IstiratelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource IstiratelImageStatuses}}"
+					<Image Source="{Binding Indication.IstiratelStatus.Value, 
+					Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource IstiratelImageStatuses}}"
 					    Height="183" Width="230" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenIstiratelWindow"/>
@@ -158,19 +169,21 @@
 				<!--Статус сушки-->
 				<Grid  Height="50" Width="240" Canvas.Top="50" Canvas.Left="285">
 					<TextBlock Classes="textStatus"  TextWrapping="Wrap"
-							   Text="{Binding Indication.DryUnitStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource DryUnitStatus}}"/>
+							   Text="{Binding Indication.DryUnitStatus.Value, 
+							   Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DryUnitStatus}}"/>
 				</Grid>
 				<!--Время сушки-->
 				<par:NumericParameter Canvas.Left="448" Canvas.Top="109"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.DryUnitDryTime}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, 
+								  Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.DryUnitDryTime}"
 								  DescriptionInvisible="True"/>
 				<!--Уставка температуры сушки -->
 				<par:NumericParameter Canvas.Left="448" Canvas.Top="144"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.DryUnitTemperatureSv}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.DryUnitTemperatureSv}"
 								  DescriptionInvisible="True"/>
 				<!--Температура сушки -->
 				<TextBlock Canvas.Left="478" Canvas.Top="184" Text="{Binding Indication.DryUnitCurrentTemperature.Value, StringFormat={}{0:f1}}" 
@@ -178,13 +191,14 @@
 				<!--Статус истирателя -->
 				<Grid  Height="50" Width="240" Canvas.Top="50" Canvas.Left="770">
 					<TextBlock Classes="textStatus"  TextWrapping="Wrap"
-							   Text="{Binding Indication.IstiratelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"/>
+							   Text="{Binding Indication.IstiratelStatus.Value, 
+							   Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"/>
 				</Grid>
 				<!--Время работы истирателя-->
 				<par:NumericParameter Canvas.Left="932" Canvas.Top="109"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.IstiratelWorkTime}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.IstiratelWorkTime}"
 								  DescriptionInvisible="True"/>
 				<!--Текущее время работы питателя-->
 				<TextBlock Canvas.Left="962" Canvas.Top="148" Text="{Binding Indication.IstiratelTimeCurrent.Value}"
@@ -193,14 +207,16 @@
 				
 				<!--Индикатор накопителя-->
 				<Grid Height="183" Width="230" Canvas.Top="275" Canvas.Left="24" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding Indication.NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource NakopitelImageStatuses}}"
+					<Image Source="{Binding Indication.NakopitelStatus.Value, 
+					Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
 					    Height="183" Width="230" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenNakopitelWindow"/>
 				</Grid>
 				<!--Индикатор возврата-->
 				<Grid Height="183" Width="230" Canvas.Top="275" Canvas.Left="538" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding Indication.SysReturnStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource SysRetImageStatuses}}"
+					<Image Source="{Binding Indication.SysReturnStatus.Value, 
+					Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource SysRetImageStatuses}}"
 					    Height="183" Width="230" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenSysReturnWindow"/>
@@ -208,31 +224,33 @@
 				<!--Статус накопителя-->
 				<Grid  Height="50" Width="240" Canvas.Top="275" Canvas.Left="285">
 					<TextBlock Classes="textStatus"  TextWrapping="Wrap"
-							   Text="{Binding Indication.NakopitelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource NakopStatus}}"/>
+							   Text="{Binding Indication.NakopitelStatus.Value, 
+							   Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource NakopStatus}}"/>
 				</Grid>
 				<!--Скорость ПЧ накопителя-->
 				<par:NumericParameter Canvas.Left="448" Canvas.Top="331"
 									  ParamWidth="50"
 									  DescriptionInvisible="True"
-									  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								      DataContext="{Binding Settings.FcFrequencesSvs[3]}}"/>
+									  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								      DataContext="{Binding Settings.FcFrequencesSvs[3]}"/>
 				<!--Предельное кол-во проб в канистру-->
 				<par:NumericParameter Canvas.Left="448" Canvas.Top="366"
 									  ParamWidth="50"
 									  DescriptionInvisible="True"
-									  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								      DataContext="{Binding Settings.KanistraSv}}"/>
+									  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								      DataContext="{Binding Settings.KanistraSv}"/>
 				
 				<!--Статус возврата -->
 				<Grid  Height="50" Width="240" Canvas.Top="275" Canvas.Left="770">
 					<TextBlock Classes="textStatus"  TextWrapping="Wrap"
-							   Text="{Binding Indication.SysReturnStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"/>
+							   Text="{Binding Indication.SysReturnStatus.Value, 
+							   Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"/>
 				</Grid>
 				<!--Время работы возврата-->
 				<par:NumericParameter Canvas.Left="932" Canvas.Top="331"
 									  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding Settings.SysReturnWorkTime}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding Settings.SysReturnWorkTime}"
 								  DescriptionInvisible="True"/>
 				<!--Текущее время работы возврата-->
 				<TextBlock Canvas.Left="962" Canvas.Top="370" Text="{Binding Indication.IstiratelTimeCurrent.Value}"

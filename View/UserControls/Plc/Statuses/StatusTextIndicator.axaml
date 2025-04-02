@@ -5,7 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:this="using:View.UserControls.Plc"
              x:Class="View.UserControls.Plc.StatusTextIndicator">
-	<HeaderedContentControl Header="{Binding RelativeSource={RelativeSource AncestorType=this:StatusTextIndicator} Path=StatusName}" Background="Black">
+	<HeaderedContentControl Header="{Binding RelativeSource={RelativeSource AncestorType=this:StatusTextIndicator}, Path=StatusName}" Background="Black">
 		<TextBlock Margin="5"
 				   VerticalAlignment="Center"
 				   HorizontalAlignment="Center">

@@ -35,14 +35,15 @@
 				</Button>				
 			</Grid>
 			<!--Индикатор пробоотборника-->
-			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, 
+			Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
 			
 			<!--Статус пррботборника-->
 			<TextBlock Canvas.Left="550" Canvas.Top="200"
 				Foreground="White" FontSize="18" 
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, 
-					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource ProbotborStatus}}"/>
 			<!--Когда начентся новый цикл-->
 			<Canvas Canvas.Top="236" Canvas.Left="806" Height="30" Width="240"
@@ -70,14 +71,14 @@
 			<!--Скорость ПЧ проботборника-->
 			<par:NumericParameter Canvas.Top="269" Canvas.Left="782"
 								  ParamWidth="50"
-							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}}"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}"
 							  DescriptionInvisible="True"/>
 			<!--Время сбора в одну канистру-->
 			<par:NumericParameter Canvas.Top="302" Canvas.Left="782"
 								  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
 								  DescriptionInvisible="True"/>
 			<!--Индикаторы-->
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"

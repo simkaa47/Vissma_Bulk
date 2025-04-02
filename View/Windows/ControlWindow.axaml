@@ -21,7 +21,7 @@
 	</Window.Resources>
 	<Viewbox>
 		<!--{Binding PlcViewModel.ControlPageSecond, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource BackgroundPaths}}-->
-		<Canvas Width="1024" Height="600" Background="{Binding PlcViewModel.ControlPageSecond, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource BackgroundPaths}}">
+		<Canvas Width="1024" Height="600" >
 			<Canvas.Background>
 				<ImageBrush Source="/Assets/01.png" BitmapInterpolationMode="HighQuality"/>
 			</Canvas.Background>
@@ -51,16 +51,16 @@
 				<Grid RowDefinitions="*,*,*,*" Width="265" Height="210" Margin="0,3,0,0"
 					  HorizontalAlignment="Right" Canvas.Left="200">
 					<!--Проботоборник-->
-					<TextBlock Classes="textStatus" Text="{Binding ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}}" 
+					<TextBlock Classes="textStatus" Text="{Binding ProbotborStatus1.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}" 
 							   Canvas.Top="18" Canvas.Left="200"/>
 					<!--Питатель-->
-					<TextBlock Classes="textStatus" Text="{Binding PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding PitatelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"
 							   Canvas.Top="18" Canvas.Left="200" Grid.Row="1"/>
 					<!--Дробилка-->
-					<TextBlock Classes="textStatus" Text="{Binding DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding DrobilkaStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"
 							   Canvas.Top="18" Canvas.Left="200" Grid.Row="2"/>
 					<!--Делитель-->
-					<TextBlock Classes="textStatus" Text="{Binding ProbotborStatus2.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource ProbotborStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding ProbotborStatus2.Value, Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource ProbotborStatus}}"
 							   Canvas.Top="18" Canvas.Left="200" Grid.Row="3"/>
 				</Grid>
 				
@@ -74,16 +74,20 @@
 				<Grid RowDefinitions="*,*,*,*" Width="265" Height="210" Margin="0,3,0,0"
 					  HorizontalAlignment="Right" Canvas.Left="200">
 					<!--Сушка-->
-					<TextBlock Classes="textStatus" Text="{Binding DryUnitStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource DryUnitStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding DryUnitStatus.Value, 
+					Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource DryUnitStatus}}"
 							   Canvas.Top="18" Canvas.Left="200"/>
 					<!--Истиратель-->
-					<TextBlock Classes="textStatus" Text="{Binding IstiratelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding IstiratelStatus.Value, 
+					Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"
 							   Canvas.Top="18" Canvas.Left="200" Grid.Row="1"/>
 					<!--Накоптитель-->
-					<TextBlock Classes="textStatus" Text="{Binding NakopitelStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource NakopStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding NakopitelStatus.Value, 
+					Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource NakopStatus}}"
 							   Canvas.Top="18" Canvas.Left="200" Grid.Row="2"/>
 					<!--Возврат пробы-->
-					<TextBlock Classes="textStatus" Text="{Binding SysReturnStatus.Value, Converter={StaticResource GetByIndexFromParameterConverter} ConverterParameter={StaticResource UniversalStatus}}"
+					<TextBlock Classes="textStatus" Text="{Binding SysReturnStatus.Value, 
+					Converter={StaticResource GetByIndexFromParameterConverter}, ConverterParameter={StaticResource UniversalStatus}}"
 							   Canvas.Top="18" Canvas.Left="200" Grid.Row="3"/>
 				</Grid>
 
@@ -112,16 +116,16 @@
 			</Canvas>
 			<!--Время сбора в одну канистру-->
 			<par:NumericParameter Canvas.Left="764" Canvas.Top="453" 
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
 								  DescriptionInvisible="True"/>
 			<!--Предельное кол-во проб в канистру-->
 			<par:NumericParameter Canvas.Left="764" Canvas.Top="485"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.KanistraSv}}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.KanistraSv}"
 								  DescriptionInvisible="True"/>
 			<!--id партии-->
-			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.ProbeId.Value}}"
+			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.ProbeId.Value}"
 					   Canvas.Left="790" Canvas.Top="525"
 					   Foreground="White"/>
 			<!--Панель индикаторов 1-->
@@ -134,7 +138,7 @@
 				
 				<!--Проботборник 1-->
 				<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
+					<Image Source="{Binding ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
 					    Height="183" Width="275" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenProbotborWindow"/>
@@ -144,7 +148,7 @@
 				</Grid>
 				<!--Питатель-->
 				<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1">
-					<Image Source="{Binding PitatelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource PitatelImageStatuses}}"
+					<Image Source="{Binding PitatelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource PitatelImageStatuses}}"
 					    Height="183" Width="275"/>
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenPitetelWindow"/>
@@ -154,7 +158,7 @@
 				</Grid>
 				<!--Дробилка-->
 				<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1">
-					<Image Source="{Binding DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DrobilkaImageStatuses}}"
+					<Image Source="{Binding DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DrobilkaImageStatuses}}"
 					    Height="183" Width="275"/>
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenDrobilkaWindow"/>
@@ -164,7 +168,7 @@
 				</Grid>
 				<!--Делитель-->
 				<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1">
-					<Image Source="{Binding ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DelitelImageStatuses}}"
+					<Image Source="{Binding ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DelitelImageStatuses}}"
 					    Height="183" Width="275"/>
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenDelitelWindow"/>
@@ -190,7 +194,7 @@
 
 				<!--Сушка-->
 				<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left">
-					<Image Source="{Binding DryUnitStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DryImageStatuses}}"
+					<Image Source="{Binding DryUnitStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
 					    Height="183" Width="275" />
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenDryWindow"/>
@@ -200,7 +204,7 @@
 				</Grid>
 				<!--Истиратель-->
 				<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1">
-					<Image Source="{Binding IstiratelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource IstiratelImageStatuses}}"
+					<Image Source="{Binding IstiratelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource IstiratelImageStatuses}}"
 					    Height="183" Width="275"/>
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenIstiratelWindow"/>
@@ -210,7 +214,7 @@
 				</Grid>
 				<!--Накопитель-->
 				<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="1">
-					<Image Source="{Binding NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource NakopitelImageStatuses}}"
+					<Image Source="{Binding NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
 					    Height="183" Width="275"/>
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenNakopitelWindow"/>
@@ -220,7 +224,7 @@
 				</Grid>
 				<!--Возврат-->
 				<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1">
-					<Image Source="{Binding SysReturnStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource SysRetImageStatuses}}"
+					<Image Source="{Binding SysReturnStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource SysRetImageStatuses}}"
 					    Height="183" Width="275"/>
 					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
 							Click="OpenSysReturnWindow"/>

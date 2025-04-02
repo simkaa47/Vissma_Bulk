@@ -9,9 +9,9 @@
 	<DockPanel>
 		<TextBlock Text="{Binding Description}"
 				   VerticalAlignment="Center"
-				   IsVisible="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon} Path=!DescriptionInvisible}"/>
+				   IsVisible="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=!DescriptionInvisible}"/>
 		<StackPanel Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
-			<TextBox Name="Input" Width="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon} Path=ParamWidth, TargetNullValue=40}"
+			<TextBox Name="Input" Width="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=ParamWidth, TargetNullValue=40}"
 					 Background="Transparent"
 					 MinWidth="20"
 					 BorderThickness="0"
@@ -19,7 +19,7 @@
 					Text="{Binding WriteValue}">
 				<TextBox.KeyBindings>
 					<KeyBinding Gesture="Enter"
-								Command="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon} Path=Command}"
+								Command="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=Command}"
 								CommandParameter="{Binding}">
 
 					</KeyBinding>

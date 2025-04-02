@@ -35,24 +35,24 @@
 				</Button>
 			</Grid>
 			<!--Индикатор делителя-->
-			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ConverterParameter={StaticResource DelitelImageStatuses}}"
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter} ,ConverterParameter={StaticResource DelitelImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
 			<!--Статус делителя-->
 			<TextBlock Canvas.Left="550" Canvas.Top="200"
 				Foreground="White" FontSize="18"
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus2.Value, 
-					   Converter={StaticResource GetByIndexFromParameterConverter} 
+					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource ProbotborStatus}}"/>
 			<!--Скорость ПЧ делителя-->
 			<par:NumericParameter Canvas.Top="239" Canvas.Left="700"
 								  ParamWidth="50"
-							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[1]}"
 							  DescriptionInvisible="True"/>
 			<!--Время работы делителя -->
 			<par:NumericParameter Canvas.Top="272" Canvas.Left="700"
 								  ParamWidth="50"
-							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window} ,Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DelitelWorkTime}"
 							  DescriptionInvisible="True"/>
 			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DelitelTimeCurrent.Value}" Foreground="White"
