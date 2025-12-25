@@ -76,7 +76,11 @@
                 new Parameter<bool>("ErrKonveyor39",                "Нет готовности от конвеера 39",                        false, true, 205, 13),
                 new Parameter<bool>("ErrFcFun",                     "Нет связи с ПЧ воздуходувки",                          false, true, 205, 14),
                 new Parameter<bool>("ErrRotateBaraban",             "Ошибка вращения барабана",                             false, true, 205, 15),
-                new Parameter<bool>("ErrRotateBaraban",             "Нажата кнопка 'CТОП отбора' на шкафу управления",      false, true, 206, 0)
+                new Parameter<bool>("ErrRotateBaraban",             "Нажата кнопка 'CТОП отбора' на шкафу управления",      false, true, 206, 0),
+                new Parameter<bool>("ErrSqValveOff",                "Ошибка положения шибера сушки в режиме ВЫКЛ",          false, true, 206, 1),
+                new Parameter<bool>("ErrSqValveOn",                 "Ошибка положения шибера сушки в режиме ВКЛ",           false, true, 206, 2),
+                new Parameter<bool>("ErrSqValve",                   "Ошибка одновременного срабатывания датчиков шибера сушки",           false, true, 206, 3),
+                
 
 
             };

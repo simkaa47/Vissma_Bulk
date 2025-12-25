@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="View/Resourses/CommonEnums.axaml" value="View/View.csproj" />
+        <entry key="View/UserControls/HighBar/HighBar.axaml" value="View/View.csproj" />
+        <entry key="View/UserControls/Parameters/BoolIndicator.axaml" value="View/View.csproj" />
+        <entry key="View/UserControls/Parameters/BoolParameter.axaml" value="View/View.csproj" />
+        <entry key="View/UserControls/Parameters/NumericParameter.axaml" value="View/View.csproj" />
+        <entry key="View/UserControls/Plc/Statuses/NakopitelStatus.axaml" value="View/View.csproj" />
+        <entry key="View/UserControls/Plc/Statuses/ProbotborStatus.axaml" value="View/View.csproj" />
+        <entry key="View/UserControls/Plc/Statuses/StatusTextIndicator.axaml" value="View/View.csproj" />
+        <entry key="View/UserControls/Plc/Statuses/UniversalBlockStatusControl.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/ControlWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/DelitelSettingsWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/DrobilkaSettingsWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/DrySettingsWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/EquipmentWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/IstiratelSettingsWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/NakopitelSettingsWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/PitatelSettingsWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/ProbotbornikSettingsWindow.axaml" value="View/View.csproj" />
+        <entry key="View/Windows/SysReturnSettingsWindow.axaml" value="View/View.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

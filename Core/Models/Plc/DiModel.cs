@@ -60,6 +60,20 @@
         #region Накопитель - датчик канистры
         public Parameter<bool> SqNakopKanistra { get; } = new Parameter<bool>(nameof(SqNakopKanistra), "Датчик канистры", false, true, 32770, 10) { IsOnlyRead = true, RegType = Registers.Input };
         #endregion
+        
+        #region Шибер - сушка выключена
+        public Parameter<bool> SqDryValveOff { get; } = 
+            new Parameter<bool>(nameof(SqDryValveOff), "Шибер - сушка выключена", false, true, 32771, 9){ IsOnlyRead = true, RegType = Registers.Input };
+
+        #endregion
+        
+        #region Шибер - сушка выключена
+        public Parameter<bool> SqDryValveOn { get; } = 
+            new Parameter<bool>(nameof(SqDryValveOn), "Шибер - сушка включена", false, true, 32771, 10){ IsOnlyRead = true, RegType = Registers.Input };
+
+        #endregion
+        
+        
     }
 }
 

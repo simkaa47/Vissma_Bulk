@@ -21,7 +21,7 @@
 	</Window.Resources>
 	<Viewbox>
 		<!--{Binding PlcViewModel.ControlPageSecond, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource BackgroundPaths}}-->
-		<Canvas Width="1024" Height="600" >
+		<Canvas Width="1024" Height="600" x:DataType="vm:MainViewModel">
 			<Canvas.Background>
 				<ImageBrush Source="/Assets/01.png" BitmapInterpolationMode="HighQuality"/>
 			</Canvas.Background>
@@ -34,6 +34,27 @@
 				</Style>
 			</Canvas.Styles>
 			<hb:HighBar/>
+			<!--Датчики шиберной заслонки-->
+			<DockPanel Canvas.Left="550" Canvas.Top="162"
+			           Width="240"
+			           ZIndex="1" >
+				<par:BoolIndicator DescriptionInvisible="True" DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryValveOff}"/>
+				<TextBlock Text="Шибер открыт для режима без сушки"
+				           Foreground="WhiteSmoke"
+				           VerticalAlignment="Center"
+				           TextWrapping="Wrap"/>
+			</DockPanel>
+			<DockPanel Canvas.Left="780" Canvas.Top="162"
+			           Width="240"
+			           ZIndex="1" >
+				<par:BoolIndicator DescriptionInvisible="True" DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryValveOn}"/>
+				<TextBlock Text="Шибер открыт для режима c сушкой"
+				           Foreground="WhiteSmoke"
+				           VerticalAlignment="Center"
+				           TextWrapping="Wrap"/>
+			</DockPanel>
+			
+			
 			<!--Старт отбора-->
 			<Canvas Canvas.Top="106" x:DataType="vm:PlcViewModel" Canvas.Left="550" Height="56" Width="237" DataContext="{Binding PlcViewModel}">
 				<Image Source="/Assets/104.jpg" IsVisible="{Binding !PlcMainService.PlcModel.Settings.AutoMode.Value}"/>
