@@ -1,0 +1,96 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:hb="using:View.UserControls.HighBar"
+             
+             xmlns:ev="using:View.UserControls.Events"
+             xmlns:eq="using:View.UserControls.Equipment"
+             xmlns:vm="using:Core.ViewModels"
+             x:DataType="vm:MainViewModel"
+             mc:Ignorable="d" d:DesignWidth="768" d:DesignHeight="1024"
+             x:Class="View.UserControls.ControlPanel.ControlPanel">
+    <UserControl.Styles>
+        <Style Selector="TabControl">
+        <Setter Property="TabStripPlacement" Value="Bottom" />
+    </Style>
+
+    <!-- Стиль для TabItem: нормальное состояние -->
+    <Style Selector="TabItem">
+        <Setter Property="Background" Value="Transparent" />
+        
+        <Setter Property="Padding" Value="12,8" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DockPanel>
+                    <!-- Область содержимого вкладки -->
+                    <ContentPresenter Name="PART_ContentPresenter"
+                                      DockPanel.Dock="Top" />
+                    
+                    <!-- Заголовок вкладки (снизу) -->
+                    <Border Name="PART_HeaderBorder"
+                            DockPanel.Dock="Bottom"
+                            Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}">
+                        <!-- Просто отображаем то, что в Header -->
+                        <ContentControl Content="{TemplateBinding Header}"/>
+                    </Border>
+                </DockPanel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!-- Псевдокласс :selected — активная вкладка -->
+    <Style Selector="TabItem:selected">
+        <Setter Property="Background" Value="#4A4A4A" />
+    </Style>
+
+    <!-- Стиль для текста в активной вкладке -->
+    <Style Selector="TabItem:selected TextBlock">
+        <Setter Property="Foreground" Value="#28BCBA" />
+    </Style>
+
+    <!-- Псевдокласс :pointerover — при наведении курсора -->
+    <Style Selector="TabItem:pointerover">
+        <Setter Property="Background" Value="#3D3D3D" />
+    </Style>
+    </UserControl.Styles>
+  <Grid RowDefinitions="Auto, *">
+      <hb:HighBar/>
+      <TabControl TabStripPlacement="Bottom" Grid.Row="1">
+
+        <TabItem>
+            <TabItem.Header >
+                <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
+                    <Image Source="/Assets/114.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                    <TextBlock Text="Управление" VerticalAlignment="Center"/>
+                </StackPanel>
+            </TabItem.Header>
+            <eq:EquipmentControl/>
+        </TabItem>
+
+          <TabItem>
+              <TabItem.Header >
+                <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
+                    <Image Source="/Assets/114.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                    <TextBlock Text="Оборудование" VerticalAlignment="Center"/>
+                </StackPanel>
+            </TabItem.Header>
+              <Grid>
+                  <TextBlock Text="HELLO WORLD!!!!" FontSize="72"/>
+              </Grid>
+          </TabItem>
+          <TabItem>
+              <TabItem.Header >
+                <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
+                    <Image Source="/Assets/EventsIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                    <TextBlock Text="Ошибки" VerticalAlignment="Center"/>
+                </StackPanel>
+            </TabItem.Header>
+              <ev:CurrentEventsUserControl DataContext="{Binding EventsVm}" Margin="0, 10"/>
+          </TabItem>
+      </TabControl>
+  </Grid>
+</UserControl>

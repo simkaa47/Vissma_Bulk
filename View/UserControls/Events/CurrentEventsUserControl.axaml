@@ -10,30 +10,31 @@
 	<Grid>
 		<Grid.Styles>
 			<Style Selector="DataGridRow">
-				<Setter Property="IsVisible" Value="{Binding IsActive}"/>
+				<Setter Property="IsVisible" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=IsActive}"/>
 				<Setter Property="Background" Value="Red"/>
 			</Style>
 		</Grid.Styles>
-		<DataGrid Items="{Binding ActivePoints}" 				  			        
+		<DataGrid ItemsSource="{Binding ActivePoints}" 				  			        
 				  IsReadOnly="True">		
 			
 			<DataGrid.Columns>
-				<DataGridTextColumn Width="120" Binding="{Binding EventCode}">
+				<DataGridTextColumn  Binding="{Binding EventCode}">
 					<DataGridTextColumn.Header>
-						<TextBlock Text="Код события" HorizontalAlignment="Center"/>
+						<TextBlock Text="Код события" FontSize="14" HorizontalAlignment="Center"/>
 					</DataGridTextColumn.Header>
 				</DataGridTextColumn>
 				<DataGridTextColumn  Binding="{Binding Message}">
 					<DataGridTextColumn.Header>
-						<TextBlock Text="Название" HorizontalAlignment="Center"/>
+						<TextBlock Text="Название" FontSize="14" HorizontalAlignment="Center"/>
 					</DataGridTextColumn.Header>
 				</DataGridTextColumn>				
 				<DataGridTextColumn  Binding="{Binding LastDateTime}">
 					<DataGridTextColumn.Header>
-						<TextBlock Text="Дата детектирования" HorizontalAlignment="Center"/>
+						<TextBlock Text="Дата детектирования" FontSize="14" HorizontalAlignment="Center"/>
 					</DataGridTextColumn.Header>
 				</DataGridTextColumn>
 			</DataGrid.Columns>
 		</DataGrid>
+		<!--<TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Left" Text="{Binding Cnt}" Margin="5"/>-->
 	</Grid>
 </UserControl>

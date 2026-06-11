@@ -1,0 +1,79 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:plc="using:Core.Models.Plc"
+             xmlns:vm="using:Core.ViewModels"
+			 xmlns:par="using:View.UserControls.Parameters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Name="prob"
+             x:DataType="vm:MainViewModel"
+             x:Class="View.UserControls.Equipment.Probootbor.ProbotbornikControl">
+	<Grid ColumnDefinitions="Auto, *" RowDefinitions="*, Auto">
+
+		<Grid  VerticalAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}" 
+				x:DataType="plc:PlcIndicationModel"
+				RowDefinitions="*, Auto">
+			<Image Source="{Binding ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
+			    Height="183" Width="275" />
+			<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+					Click="OpenProbotborWindow"/><!---->
+			<Image Source="/Assets/116.jpg" Margin="5"
+				   VerticalAlignment="Top" Height="30" Width="30"
+				   HorizontalAlignment="Left"/>
+			
+		</Grid>
+		
+
+		<StackPanel Grid.Column="1" Orientation="Vertical" Grid.RowSpan="2">
+	
+			<!--Статус пррботборника-->
+			<TextBlock
+				Foreground="White" FontSize="18" Margin="10, 0"
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, 
+					   Converter={StaticResource GetByIndexFromParameterConverter}, 
+					   ConverterParameter={StaticResource ProbotborStatus}}"/>
+			<StackPanel Orientation="Horizontal" Margin="5"
+					DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+					x:DataType="plc:PlcIndicationModel">
+				<StackPanel.Styles>
+					<Style Selector="TextBlock">
+						<Setter Property="Foreground" Value="White"/>
+						<Setter Property="FontSize" Value="12"/>
+						<Setter Property="Margin" Value="5"/>
+						<Setter Property="VerticalAlignment" Value="Center"/>
+						<Setter Property="HorizontalAlignment" Value="Left"/>
+					</Style>
+				</StackPanel.Styles>
+				<TextBlock Text="Новый цикл пробоотбора начнётся через"/>
+				<Border Height="28" Width="40" Background="Black" CornerRadius="6">
+					<TextBlock Text="{Binding TimeBeforeNextOtborHours.Value, StringFormat={}{0:00}}"/>
+				</Border>
+				<TextBlock Text="ч"/>
+				<Border Height="28" Width="40" Background="Black" CornerRadius="6">
+					<TextBlock Text="{Binding TimeBeforeNextOtborMinutes.Value, StringFormat={}{0:00}}"/>
+				</Border>
+				<TextBlock Text="мин"/>
+				<Border  Height="28" Width="40" Background="Black" CornerRadius="6">
+					<TextBlock Text="{Binding TimeBeforeNextOtborSeconds.Value, StringFormat={}{0:00}}"/>
+				</Border>
+				<TextBlock Text="c"/>
+			</StackPanel>
+			
+			<!--Индикаторы-->
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
+							   DescriptionInvisible="False"
+							   />			
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHome1}"
+							   DescriptionInvisible="False"
+							   />
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWork1}"
+							   DescriptionInvisible="False"
+							   />
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWorkAbort1}"
+							   DescriptionInvisible="False"
+							   />
+		</StackPanel>
+	</Grid>
+
+</UserControl>

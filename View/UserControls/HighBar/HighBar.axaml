@@ -3,14 +3,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:Core.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="83"
+             mc:Ignorable="d" d:DesignWidth="768" d:DesignHeight="83"
 			 xmlns:acc="using:Core.Models.AccesControl"
              x:Class="View.UserControls.HighBar.HighBar"
              x:DataType="vm:MainViewModel">
-	<Canvas Width="1024" Height="83">
+	<Canvas Width="768" Height="83">
 		<TextBlock Canvas.Top="40"
 		           Margin="12,5"
-		           Foreground="White"
+		           
 		           MaxWidth="120"
 		           Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitMode.Value, 
 		           Converter={StaticResource IfTrueConverter}, 
@@ -19,27 +19,50 @@
 		<!--Индикатор режима с сушкой или без-->
 		
 		<!--Кнопка Logout-->
-		<Button Canvas.Top="0" Canvas.Left="932" Width="92" Height="83"
-				Click="LogoutClick" Background="Transparent"/>
+		<Button Canvas.Top="0" Canvas.Left="699" Width="69" Height="83"
+				Click="LogoutClick" Background="Transparent">
+			<Button.Content>
+				<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+					<Image Source="..\..\Assets\ResetTv.png" Width="42" Height="42"
+						/>
+					<TextBlock Text="Выход" HorizontalAlignment="Center"/>
+				</StackPanel>
+			</Button.Content>
+		</Button>
 		<!--Кнопка Reset-->
-		<Button Canvas.Top="8" Canvas.Left="625" Width="121" Height="69"
+		<Button Canvas.Top="8" Canvas.Left="459" Width="91" Height="83"
 				CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RstCmd}"
 				Command="{Binding PlcViewModel.WriteParameterCommand}"
-				Background="Transparent"/>
+				Background="Transparent">
+			<Button.Content>
+				<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+					<Image Source="..\..\Assets\108.jpg" Width="32" Height="32"
+						/>
+					<TextBlock HorizontalAlignment="Center" FontSize="10">
+						СБРОС
+					</TextBlock>
+					<TextBlock HorizontalAlignment="Center" FontSize="10">
+						ОШИБОК
+					</TextBlock>
+				</StackPanel>
+			</Button.Content>
+		</Button>
 		<!--Показания влагомера-->
 		<TextBlock Text="Показания влагомера, %"
 				   Foreground="White"
-				   Width="100"
+				   FontSize="12"
+				   Width="75"
 				   TextWrapping="Wrap"
-				   Canvas.Left="762" Canvas.Top="45"/>
-		<Border Background="White" Canvas.Left="860" Canvas.Top="45"
-				Height="30" Width="60">
+				   Canvas.Left="562" Canvas.Top="45"/>
+		<Border Background="White" Canvas.Left="645" Canvas.Top="45"
+				Height="30" Width="45">
 			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.CurrentHumm.Value, StringFormat={}{0:0.0}}"
 					   VerticalAlignment="Center"
+					   Foreground="Black"
 					   HorizontalAlignment="Center"/>
 		</Border>
 		<!--Время-->
-		<Border Canvas.Left="762" Canvas.Top="15" Width="78" Height="27">
+		<Border Canvas.Left="572" Canvas.Top="15" Width="59" Height="27">
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
 				<TextBlock.Text>
 					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:t}">
@@ -54,7 +77,7 @@
 			</TextBlock>
 		</Border>
 		<!--Дата-->
-		<Border Canvas.Left="847" Canvas.Top="15" Width="78" Height="27">
+		<Border Canvas.Left="635" Canvas.Top="15" Width="59" Height="27">
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
 				<TextBlock.Text>
 					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:d}">
@@ -69,13 +92,78 @@
 			</TextBlock>
 		</Border>
 		<!--Общая ошибка-->
-		<Image Source="..\..\Assets\109.jpg" Canvas.Top="9" Canvas.Left="305"
-			   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}"/>
-		<!--Кнопка Параметры-->
-		<Button Canvas.Top="9" Canvas.Left="148" Width="146" Height="69"
-				IsEnabled="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter}, ConverterParameter={x:Static acc:UserAccessLevel.Service}}"
-				Background="Transparent" Click="OpenParametersWindowClick"/>
+<!--		<Image Source="..\..\Assets\109.jpg" Canvas.Top="9" Canvas.Left="229" Width="240" Height="83"
+			   IsVisible="True"/>--> <!-- {Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}  -->
+			<Border Background="Red" Padding="10" Canvas.Top="9" Canvas.Left="241" Width="220" Height="83"
+					IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}">
+				<Grid>
+				    <TextBlock Text="ВНИМАНИЕ" 
+				               HorizontalAlignment="Center" 
+				               VerticalAlignment="Center"
+				               FontWeight="Bold"
+				               Foreground="White">
+				        <TextBlock.Styles>
+				            <Style Selector="TextBlock">
+				                <Style.Animations>
+				                    <Animation Duration="0:0:5"
+				                               IterationCount="INFINITE"
+				                               PlaybackDirection="Normal">
+				                        <KeyFrame Cue="0%">
+				                            <Setter Property="IsVisible" Value="True" />
+				                        </KeyFrame>
+				                        <KeyFrame Cue="50%">
+				                            <Setter Property="IsVisible" Value="False" />
+				                        </KeyFrame>
+				                        <KeyFrame Cue="100%">
+				                            <Setter Property="IsVisible" Value="True" />
+				                        </KeyFrame>
+				                    </Animation>
+				                </Style.Animations>
+				            </Style>
+				        </TextBlock.Styles>
+				    </TextBlock>
 
+				    <TextBlock Text="ОБНАРУЖЕНЫ ОШИБКИ" 
+				               HorizontalAlignment="Center" 
+				               VerticalAlignment="Center"
+				               FontWeight="Bold"
+				               Foreground="White">
+				        <TextBlock.Styles>
+				            <Style Selector="TextBlock">
+				                <Style.Animations>
+				                    <Animation Duration="0:0:5"
+				                               IterationCount="INFINITE"
+				                               PlaybackDirection="Normal"
+				                               ><!--Delay="0:0:2.5"-->
+				                        <KeyFrame Cue="0%">
+				                            <Setter Property="IsVisible" Value="False" />
+				                        </KeyFrame>
+				                        <KeyFrame Cue="50%">
+				                            <Setter Property="IsVisible" Value="True" />
+				                        </KeyFrame>
+				                        <KeyFrame Cue="100%">
+				                            <Setter Property="IsVisible" Value="False" />
+				                        </KeyFrame>
+				                    </Animation>
+				                </Style.Animations>
+				            </Style>
+				        </TextBlock.Styles>
+				    </TextBlock>
+				</Grid>
+			</Border>
+		<!--Кнопка Параметры-->
+		<Button Canvas.Top="9" Canvas.Left="130" Width="110" Height="83"
+				IsEnabled="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter}, ConverterParameter={x:Static acc:UserAccessLevel.Service}}"
+				Background="Transparent" Click="OpenParametersWindowClick">
+			<Button.Content>
+				<StackPanel Orientation="Vertical" VerticalAlignment="Center">
+					<Image Source="..\..\Assets\TuneIcon.png" Width="42" Height="42"
+						/>
+					<TextBlock Text="ПАРАМЕТРЫ" HorizontalAlignment="Center"/>
+				</StackPanel>
+			</Button.Content>
+		</Button>
+		<Image Source="..\..\Assets\Logo_Konvels_blue.png" Width="120" Height="52" Margin="5, 0, 0, 0"/>
 	</Canvas>
 	
 </UserControl>

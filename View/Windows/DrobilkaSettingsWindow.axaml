@@ -14,7 +14,7 @@
 	<Viewbox>
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/13.png" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/13.png"/>
 			</Canvas.Background>
 			<hb:HighBar/>
 			<!--Кнопка Пуск-->

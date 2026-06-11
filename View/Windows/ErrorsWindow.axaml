@@ -11,13 +11,14 @@
 		xmlns:hb="using:View.UserControls.HighBar"		
 		xmlns:e="using:View.ViewModels"
 		xmlns:vm="using:Core.ViewModels"
+		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.ErrorsWindow"
         Title="ErrorsWindow">
 	<Viewbox>
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/04.png" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/04.png"/>
 			</Canvas.Background>
 			<hb:HighBar/>
 			<!--Панель навигации-->
@@ -43,7 +44,7 @@
 						<Setter Property="Foreground" Value="White"/>
 					</Style>
 				</Grid.Styles>
-				<DataGrid Items="{Binding ActivePoints}"
+				<DataGrid ItemsSource="{Binding ActivePoints}"
 						  
 						  IsReadOnly="True" Foreground="White">
 

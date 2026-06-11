@@ -11,18 +11,19 @@
 		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
 		xmlns:sys="clr-namespace:System;assembly=netstandard"
 		xmlns:hb="using:View.UserControls.HighBar"
+		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         Title="EquipmentWindow">
 	<Window.Resources>
 		<scg:List x:TypeArguments="ImageBrush" x:Key="BackgroundPaths">
-			<ImageBrush Source="/Assets/02.png" BitmapInterpolationMode="HighQuality"/>
-			<ImageBrush Source="/Assets/03.png" BitmapInterpolationMode="HighQuality"/>
+			<ImageBrush Source="/Assets/02.png" />
+			<ImageBrush Source="/Assets/03.png" />
 		</scg:List>
 	</Window.Resources>
 	<Viewbox>
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/03.png" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/03.png"/>
 			</Canvas.Background>
 			<Canvas.Styles>
 				<Style Selector="TextBlock.textStatus">

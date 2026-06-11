@@ -3,16 +3,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
-		Width="1920" Height="1080"
+		Width="768" Height="1024"
 		xmlns:a="using:Core.Models.AccesControl"
 		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
 		xmlns:sys="clr-namespace:System;assembly=netstandard"
 		xmlns:vm="using:Core.ViewModels"
+		x:CompileBindings="False"
         x:Class="View.Windows.AuthorizationWindow"
 		x:DataType="vm:MainViewModel"
-		WindowState="Maximized"
+		Background="Gray"
 		WindowStartupLocation="CenterScreen"
-        Title="Vissma Bulk - Авторизация">
+        Title="Vissma Bulk - Авторизация"><!--WindowState="Maximized"-->
 	<Window.Resources>
 		<a:Login x:Key="LoginModel"/>
 		<scg:List x:TypeArguments="sys:Object" x:Key="TextBoxErrorColors">
@@ -20,32 +21,62 @@
 			<SolidColorBrush Color="Red"/>
 		</scg:List>
 	</Window.Resources>	
-	<Viewbox>
-		<Canvas Width="1920" Height="1080">
+<!--	<Viewbox>
+		<Canvas Width="768" Height="1024">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/00.png" Stretch="Fill" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/00.png" Stretch="Fill"/>
 			</Canvas.Background>
-			<Button Height="92" Width="208"
+			<Button Height="52" Width="108"
 					Click="LoginClick"
-					Canvas.Left="1630" Canvas.Top="792"/>
+					Canvas.Left="870" Canvas.Top="440"/>
 
-			<TextBox Width="446" Height="104"
-					 
+			<TextBox Width="236" Height="58"
 					 DataContext="{StaticResource LoginModel}"
-					 Canvas.Left="1390" Canvas.Top="562"
-					 Name="Login" FontSize="36" Padding="10"
+					 Canvas.Left="742" Canvas.Top="312"
+					 Name="Login" FontSize="18" Padding="5"
 					 VerticalContentAlignment="Center"
 					 Text="{Binding LoginName}"
 					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"/>
-			<TextBox Width="446" Height="104"
-					 Canvas.Left="1390" Canvas.Top="687"
-					 Name="Password" FontSize="36" Padding="10"
+			<TextBox Width="236" Height="58"
+					 Canvas.Left="742" Canvas.Top="381"
+					 Name="Password" FontSize="18" Padding="5"
 					 VerticalContentAlignment="Center"
 				     DataContext="{StaticResource LoginModel}"
 					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"
 					 Text="{Binding Password}"					 
 					 PasswordChar="•"/>
 		</Canvas>
-	</Viewbox>
+	</Viewbox>-->
+
+	<Grid RowDefinitions="Auto, Auto, Auto" VerticalAlignment="Center">
+		<Button Height="52" Width="108"
+				Margin="0, 5"
+					Click="LoginClick"
+					Content="ВОЙТИ"
+					HorizontalContentAlignment="Center"
+					VerticalContentAlignment="Center"
+					HorizontalAlignment="Center"
+					Grid.Row="2"/>
+
+			<TextBox Width="276" Height="58"
+					 Margin="0, 5"
+					 DataContext="{StaticResource LoginModel}"
+					 Watermark="Введите логин"
+					 Name="Login" FontSize="18" Padding="5"
+					 VerticalContentAlignment="Center"
+					 Text="{Binding LoginName}"
+					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"/>
+			<TextBox Width="276" Height="58"
+					 Grid.Row="1"
+					 Margin="0, 5"
+					 Watermark="Введите пароль"
+					 Name="Password" FontSize="18" Padding="5"
+					 VerticalContentAlignment="Center"
+				     DataContext="{StaticResource LoginModel}"
+					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"
+					 Text="{Binding Password}"					 
+					 PasswordChar="•"/>
+		
+	</Grid>
 	
 </Window>

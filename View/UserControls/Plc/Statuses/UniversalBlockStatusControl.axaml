@@ -5,6 +5,7 @@
 			 xmlns:par="using:View.UserControls.Parameters"
 			 xmlns:plc="using:View.UserControls.Plc"
 			 xmlns:stat="using:View.UserControls.Plc.Statuses"
+			 x:CompileBindings="False"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="View.UserControls.Plc.Statuses.UniversalBlockStatusControl">
 	<HeaderedContentControl Header="{Binding RelativeSource={RelativeSource AncestorType=stat:UniversalBlockStatusControl}, Path=StatusName}"

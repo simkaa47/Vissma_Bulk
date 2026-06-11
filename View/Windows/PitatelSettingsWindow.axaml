@@ -7,13 +7,14 @@
 		xmlns:vm="using:Core.ViewModels"
 		xmlns:par="using:View.UserControls.Parameters"
 		xmlns:hb="using:View.UserControls.HighBar"
+		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.PitatelSettingsWindow"
         Title="PitatelSettingsWindow">
 	<Viewbox>
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/10.png" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/10.png"/>
 			</Canvas.Background>
 			<hb:HighBar/>
 			<!--Кнопка Вкл-->

@@ -5,25 +5,30 @@
         mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
 		xmlns:vm="using:Core.ViewModels"
 		xmlns:plc="using:Core.Models.Plc"
-		Width="1024" Height="600"
+		Width="768" Height="1024"
 		xmlns:par="using:View.UserControls.Parameters"
+		xmlns:uc="using:View.UserControls.ControlPanel"
 		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
 		xmlns:sys="clr-namespace:System;assembly=netstandard"
 		xmlns:hb="using:View.UserControls.HighBar"
+		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.ControlWindow"
         Title="ControlWindow">
 	<Window.Resources>
 		<scg:List x:TypeArguments="ImageBrush" x:Key="BackgroundPaths">
-			<ImageBrush Source="/Assets/01.png" BitmapInterpolationMode="HighQuality"/>
-			<ImageBrush Source="/Assets/07.png" BitmapInterpolationMode="HighQuality"/>
+			<ImageBrush Source="/Assets/01.png"/>
+			<ImageBrush Source="/Assets/07.png"/>
 		</scg:List>
 	</Window.Resources>
-	<Viewbox>
+	<Grid>
+		<uc:ControlPanel IsVisible="True"/>
+		<Viewbox>
+		
 		<!--{Binding PlcViewModel.ControlPageSecond, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource BackgroundPaths}}-->
-		<Canvas Width="1024" Height="600" x:DataType="vm:MainViewModel">
+		<Canvas Width="1024" Height="600" x:DataType="vm:MainViewModel" IsVisible="False">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/01.png" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/01.png"/>
 			</Canvas.Background>
 			<Canvas.Styles>
 				<Style Selector="TextBlock.textStatus">
@@ -34,6 +39,7 @@
 				</Style>
 			</Canvas.Styles>
 			<hb:HighBar/>
+
 			<!--Датчики шиберной заслонки-->
 			<DockPanel Canvas.Left="550" Canvas.Top="162"
 			           Width="240"
@@ -279,4 +285,6 @@
 					Width="342"/>
 		</Canvas>		
 	</Viewbox>
+	</Grid>
+	
 </Window>

@@ -3,43 +3,37 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using System;
+using View.Windows;
 
-namespace View.Windows;
+namespace View.UserControls.Equipment;
 
-public partial class ProbotbornikSettingsWindow : Window
+public partial class EquipmentControl : UserControl
 {
-    public ProbotbornikSettingsWindow()
+    public EquipmentControl()
     {
         InitializeComponent();
-        this.Opened += OnOpened;
     }
 
-    private void OnOpened(object? sender, EventArgs e)
-    {
-        //this.WindowState = WindowState.Maximized;
-    }
-
-    private void OpenControlWindow(object? sender, RoutedEventArgs args)
+    private void OpenPitetelWindow(object? sender, RoutedEventArgs args)
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             var current = desktop.MainWindow;
-            desktop.MainWindow = new ControlWindow
+            desktop.MainWindow = new PitatelSettingsWindow
             {
                 DataContext = this.DataContext
             };
-            desktop.MainWindow.Show(); 
+            desktop.MainWindow.Show();
             current.Close();
         }
     }
 
-    private void OpenErrorsWindow(object? sender, RoutedEventArgs args)
+    private void OpenNakopitelWindow(object? sender, RoutedEventArgs args)
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             var current = desktop.MainWindow;
-            desktop.MainWindow = new ErrorsWindow
+            desktop.MainWindow = new NakopitelSettingsWindow
             {
                 DataContext = this.DataContext
             };

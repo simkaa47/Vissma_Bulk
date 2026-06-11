@@ -8,13 +8,14 @@
 		xmlns:plc="using:Core.Models.Plc"
 		xmlns:par="using:View.UserControls.Parameters"
 		xmlns:hb="using:View.UserControls.HighBar"
+		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"        
         x:Class="View.Windows.DrySettingsWindow"
         Title="DrySettingsWindow">
 	<Viewbox>
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/15.png" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/15.png"/>
 			</Canvas.Background>
 			<hb:HighBar/>
 			<!--Панель навигации-->

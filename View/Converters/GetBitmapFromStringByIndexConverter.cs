@@ -33,8 +33,8 @@ namespace View.Converters
                 uri = new Uri($"avares://{assemblyName}/{path}");
             }
 
-            var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
-            var asset = assets.Open(uri);
+            //var assets = AvaloniaLocator.Current.GetService<IAssetLoader>();
+            var asset = AssetLoader.Open(uri);
 
             return new Bitmap(asset);
         }

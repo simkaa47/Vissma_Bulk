@@ -12,7 +12,7 @@
 							Header="Накопитель">
 		<Grid ColumnDefinitions="Auto,*">
 			<!--Таблица канистр-->
-			<DataGrid Items="{Binding PlcMainService.PlcModel.Indication.Kanistras}"
+			<DataGrid ItemsSource="{Binding PlcMainService.PlcModel.Indication.Kanistras}"
 					  Margin="10"
 					  Height="280"
 					  VerticalScrollBarVisibility="Disabled"

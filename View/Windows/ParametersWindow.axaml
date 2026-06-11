@@ -29,7 +29,7 @@
 			<TextBox Text="{Binding PlcMainService.PlcConnectSettings.ScanFrequence}" Width="200"
 					 HorizontalContentAlignment="Center" HorizontalAlignment="Left"/>
 		</StackPanel>
-		<Button Content="Сохранить настройки" Command="{Binding SavePlcConnectSettingsCommand} ">
+		<Button Content="Сохранить настройки" Command="{Binding SavePlcConnectSettingsCommand}">
 			<Button.IsEnabled>
 				<MultiBinding Converter="{x:Static BoolConverters.And}">
 					<Binding Path="!PlcMainService.PlcConnectSettings.EthernetSettings.HasErrors"/>

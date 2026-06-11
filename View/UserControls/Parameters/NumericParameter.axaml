@@ -5,6 +5,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:local="using:View.UserControls.Parameters"
 			 xmlns:material="using:Material.Icons.Avalonia"
+			 x:CompileBindings="False"
              x:Class="View.UserControls.Parameters.NumericParameter">
 	<DockPanel>
 		<TextBlock Text="{Binding Description}"
@@ -14,7 +15,8 @@
 			<TextBox Name="Input" Width="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=ParamWidth, TargetNullValue=40}"
 					 Background="Transparent"
 					 MinWidth="20"
-					 BorderThickness="0"
+					 BorderThickness="1"
+					 CornerRadius="4"
 					 IsReadOnly="{Binding IsOnlyRead}"					 
 					Text="{Binding WriteValue}">
 				<TextBox.KeyBindings>

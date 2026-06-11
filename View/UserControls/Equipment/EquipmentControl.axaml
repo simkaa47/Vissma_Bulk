@@ -1,0 +1,114 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:plc="using:Core.Models.Plc"
+			 xmlns:pb="using:View.UserControls.Equipment.Probootbor"
+             xmlns:vm="using:Core.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="768" d:DesignHeight="1024"
+             x:DataType="vm:MainViewModel"
+             x:Class="View.UserControls.Equipment.EquipmentControl">
+    <ScrollViewer>
+        <Grid ColumnDefinitions="*,Auto">
+			
+            <ListBox Grid.Row="1">
+
+				
+				<!--Проботборник 1-->
+					<pb:ProbotbornikControl x:DataType="vm:MainViewModel"/>
+				<!--Питатель-->
+				<StackPanel Orientation="Horizontal">
+					<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left" 
+						  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+						  x:DataType="plc:PlcIndicationModel">
+						<Image Source="{Binding PitatelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource PitatelImageStatuses}}"
+						    Height="183" Width="275"/>
+						<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+								Click="OpenPitetelWindow"/><!---->
+						<Image Source="/Assets/117.jpg" Margin="5"
+							   VerticalAlignment="Top" Height="30" Width="30"
+							   HorizontalAlignment="Left"/>
+					</Grid>
+					<TextBlock VerticalAlignment="Top" Margin="10, 5"
+						HorizontalAlignment="Center"	   
+						Foreground="White" FontSize="18"
+						Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.PitatelStatus.Value, 
+						Converter={StaticResource GetByIndexFromParameterConverter},
+						ConverterParameter={StaticResource UniversalStatus}}"/>
+				</StackPanel>
+					
+					<!--Дробилка-->
+				<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+					  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+						  x:DataType="plc:PlcIndicationModel">
+					<Image Source="{Binding DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DrobilkaImageStatuses}}"
+					    Height="183" Width="275"/>
+					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							/><!--Click="OpenDrobilkaWindow"-->
+					<Image Source="/Assets/118.jpg" Margin="5"
+						   VerticalAlignment="Top" Height="30" Width="30"
+						   HorizontalAlignment="Left"/>
+				</Grid>
+				<!--Делитель-->
+				<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+					  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+						  x:DataType="plc:PlcIndicationModel">
+					<Image Source="{Binding ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DelitelImageStatuses}}"
+					    Height="183" Width="275"/>
+					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							/><!--Click="OpenDelitelWindow"-->
+					<Image Source="/Assets/119.jpg" Margin="5"
+						   VerticalAlignment="Top" Height="30" Width="30"
+						   HorizontalAlignment="Left"/>
+				</Grid>
+				<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left"
+					  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+						  x:DataType="plc:PlcIndicationModel">
+					<Image Source="{Binding DryUnitStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
+					    Height="183" Width="275" />
+					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							/> <!--Click="OpenDryWindow"-->
+					<Image Source="/Assets/120.jpg" Margin="5"
+						   VerticalAlignment="Top" Height="30" Width="30"
+						   HorizontalAlignment="Left"/>
+				</Grid>
+				<!--Истиратель-->
+				<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left" 
+					  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+						  x:DataType="plc:PlcIndicationModel">
+					<Image Source="{Binding IstiratelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource IstiratelImageStatuses}}"
+					    Height="183" Width="275"/>
+					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							/> <!--Click="OpenIstiratelWindow"-->
+					<Image Source="/Assets/121.jpg" Margin="5"
+						   VerticalAlignment="Top" Height="30" Width="30"
+						   HorizontalAlignment="Left"/>
+				</Grid>
+				<!--Накопитель-->
+				<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+					  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+						  x:DataType="plc:PlcIndicationModel">
+					<Image Source="{Binding NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
+					    Height="183" Width="275"/>
+					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							Click="OpenNakopitelWindow"/> <!---->
+					<Image Source="/Assets/122.jpg" Margin="5"
+						   VerticalAlignment="Top" Height="30" Width="30"
+						   HorizontalAlignment="Left"/>
+				</Grid>
+				<!--Возврат-->
+				<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+					  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+						  x:DataType="plc:PlcIndicationModel">
+					<Image Source="{Binding SysReturnStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource SysRetImageStatuses}}"
+					    Height="183" Width="275"/>
+					<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+							/><!--Click="OpenSysReturnWindow"-->
+					<Image Source="/Assets/123.jpg" Margin="5"
+						   VerticalAlignment="Top" Height="30" Width="30"
+						   HorizontalAlignment="Left"/>
+				</Grid>
+            </ListBox>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -3,28 +3,134 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
-		Width="1024" Height="600"
+		Width="768" Height="512"
 		xmlns:vm="using:Core.ViewModels"
 		xmlns:plc="using:Core.Models.Plc"
 		xmlns:par="using:View.UserControls.Parameters"
 		xmlns:hb="using:View.UserControls.HighBar"
+		Background="#2C2C2C"
+		x:Name="prob"
+		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.ProbotbornikSettingsWindow"
         Title="ProbotbornikSettingsWindow">
-	<Viewbox>
+	<Grid ColumnDefinitions="*, *"
+		  RowDefinitions="*, *">
+		<Grid DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}" 
+				x:DataType="plc:PlcIndicationModel"
+				RowDefinitions="*, Auto">
+			<Image Source="{Binding ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
+			    Height="183" Width="275" />
+			<Image Source="/Assets/116.jpg" Margin="5"
+				   VerticalAlignment="Top" Height="30" Width="30"
+				   HorizontalAlignment="Left"/>
+			
+		</Grid>
+		<StackPanel Grid.Row="1" Orientation="Vertical"
+					Margin="5"
+					VerticalAlignment="Top">
+			<!--Кнопка Отбор-->
+				<Button Background="Transparent"
+						HorizontalAlignment="Stretch"
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OtborCmd1}">
+					<Button.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/107.jpg" Width="32" Height="32"/>
+							<TextBlock Text="ОТОБРАТЬ ЕДИНИЧНУЮ ПРОБУ" Margin="5"/>
+						</StackPanel>
+					</Button.Content>
+
+				</Button>	
+			<!--Кнопка Возврат ковша-->
+
+				<Button Background="Transparent"
+						
+						HorizontalAlignment="Stretch"
+						
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}"><!--IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}"-->
+					<Button.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/108.jpg" Width="32" Height="32"/>
+							<TextBlock Text="ВОЗВРАТ КОВША" Margin="5"/>
+						</StackPanel>
+					</Button.Content>
+
+				</Button>
+			<!--Кнопка набор воды-->
+					<Button Background="Transparent"
+						HorizontalAlignment="Stretch"
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}"><!--IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}"-->
+					<Button.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/107.jpg" Width="32" Height="32"/>
+							<TextBlock Text="НАБОР ВОДЫ" Margin="5"/>
+						</StackPanel>
+					</Button.Content>
+				</Button>
+		</StackPanel>
+		<StackPanel Orientation="Vertical"  Grid.Column="1" Grid.RowSpan="2">
+			
+			<!--Скорость ПЧ проботборника-->
+			<par:NumericParameter Margin="10"
+								  DescriptionInvisible="False"
+								  ParamWidth="80"
+							  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}"
+							  />
+			<!--Время сбора в одну канистру-->
+			<par:NumericParameter Margin="10"
+								  ParamWidth="80"
+								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
+								  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DescriptionInvisible="False"/>
+
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
+							   DescriptionInvisible="False"
+							   Margin="0, 10"
+							   />			
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHome1}"
+							   DescriptionInvisible="False"
+							   Margin="0, 10"
+							   />
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWork1}"
+							   DescriptionInvisible="False"
+							   Margin="0, 10"
+							   />
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWorkAbort1}"
+							   DescriptionInvisible="False"
+							   Margin="0, 10"
+							   />
+
+			</StackPanel>
+		<Button Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="OpenControlWindow"
+				Margin="10, 20"
+				Background="Transparent">
+			<Button.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/106.jpg" Width="32" Height="32"/>
+							<TextBlock Text="Вернуться на главную" Margin="5"/>
+						</StackPanel>
+					</Button.Content>
+		</Button>
+	</Grid>
+	<!--<Viewbox>
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/08.png" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/08.png"/>
 			</Canvas.Background>
 			<hb:HighBar/>
-			<!--Кнопка Отбор-->
+			<!-Кнопка Отбор->
 			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="10"
 					Background="Transparent"
 					Command="{Binding PlcViewModel.WriteParameterCommand}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OtborCmd1}"/>
-			<!--Кнопка Возврат-->
+			<!-Кнопка Возврат->
 			<Grid  Height="70" Width="238" Canvas.Top="100" Canvas.Left="270"
-				   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}">
+				   IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}"
+				   >
 				<Image Source="/Assets/115.jpg"/>
 				<Button Background="Transparent"
 						HorizontalAlignment="Stretch"
@@ -34,18 +140,18 @@
 
 				</Button>				
 			</Grid>
-			<!--Индикатор пробоотборника-->
+			<!-Индикатор пробоотборника->
 			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, 
 			Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
 			
-			<!--Статус пррботборника-->
+			<!-Статус пррботборника->
 			<TextBlock Canvas.Left="550" Canvas.Top="200"
 				Foreground="White" FontSize="18" 
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, 
 					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource ProbotborStatus}}"/>
-			<!--Когда начентся новый цикл-->
+			<!-Когда начентся новый цикл->
 			<Canvas Canvas.Top="236" Canvas.Left="806" Height="30" Width="240"
 					DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
 					x:DataType="plc:PlcIndicationModel">
@@ -68,19 +174,20 @@
 					<TextBlock Text="{Binding TimeBeforeNextOtborSeconds.Value, StringFormat={}{0:00}}"/>
 				</Border>
 			</Canvas>
-			<!--Скорость ПЧ проботборника-->
+			<!-Скорость ПЧ проботборника->
 			<par:NumericParameter Canvas.Top="269" Canvas.Left="782"
 								  ParamWidth="50"
 							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}"
 							  DescriptionInvisible="True"/>
-			<!--Время сбора в одну канистру-->
+			<!-Время сбора в одну канистру->
 			<par:NumericParameter Canvas.Top="302" Canvas.Left="782"
 								  ParamWidth="50"
-								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  
 								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
+								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 								  DescriptionInvisible="True"/>
-			<!--Индикаторы-->
+			<!-Индикаторы->
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
 							   DescriptionInvisible="True"
 							   Canvas.Top="376" Canvas.Left="555"/>			
@@ -94,7 +201,7 @@
 							   DescriptionInvisible="True"
 							   Canvas.Top="498" Canvas.Left="555"/>
 			
-			<!--Панель навигации-->
+			<!-Панель навигации->
 			<Button Canvas.Bottom="0" Canvas.Left="0"
 					Height="42"
 					Background="Transparent"
@@ -106,5 +213,5 @@
 					Click="OpenErrorsWindow"
 					Width="342"/>
 		</Canvas>
-	</Viewbox>
+	</Viewbox>-->
 </Window>

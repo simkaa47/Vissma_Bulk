@@ -8,6 +8,7 @@
 		xmlns:plc="using:Core.Models.Plc"
 		xmlns:par="using:View.UserControls.Parameters"
 		xmlns:hb="using:View.UserControls.HighBar"
+		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.NakopitelSettingsWindow"
         Title="NakopitelSettingsWindow">
@@ -20,7 +21,7 @@
 				</Style>
 			</Canvas.Styles>
 			<Canvas.Background>
-				<ImageBrush Source="/Assets/12.png" BitmapInterpolationMode="HighQuality"/>
+				<ImageBrush Source="/Assets/12.png" />
 			</Canvas.Background>
 			<hb:HighBar/>
 			<!--Кнопка Калибровка накопителя-->
@@ -81,7 +82,7 @@
 			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="370" Canvas.Left="120"/>
 			<!--Канистры-->
-			<ListBox Items="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras}" Canvas.Top="146" Canvas.Left="511" Background="Transparent">
+			<ListBox ItemsSource="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras}" Canvas.Top="146" Canvas.Left="511" Background="Transparent">
 				<ListBox.ItemTemplate>
 					<DataTemplate x:DataType="plc:Kanistra">
 						<Canvas Width="504" Height="51" Background="Transparent" Opacity="1" 
