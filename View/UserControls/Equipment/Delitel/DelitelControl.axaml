@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:Core.ViewModels"
+			 xmlns:plc="using:Core.Models.Plc"
+			 xmlns:par="using:View.UserControls.Parameters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:DataType="vm:MainViewModel"
+             x:Class="View.UserControls.Equipment.Delitel.DelitelControl">
+  	<!--Делитель-->
+	<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
+		<TextBlock Text="Делитель" FontSize="18"
+				Foreground="White"
+				FontWeight="Bold"
+				VerticalAlignment="Top" 
+				HorizontalAlignment="Left" 
+				ZIndex="5"
+				Grid.ColumnSpan="2" />
+		<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+			  Grid.Row="1"
+				DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
+			  x:DataType="plc:PlcIndicationModel">
+			<Image Source="{Binding ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DelitelImageStatuses}}"
+			    Height="183" Width="275"/>
+			<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+					Click="OpenDelitelWindow"/><!---->
+			<Image Source="/Assets/119.jpg" Margin="5"
+				   VerticalAlignment="Top" Height="30" Width="30"
+				   HorizontalAlignment="Left"/>
+		</Grid>
+		<StackPanel Grid.Column="1" Grid.Row="1">
+			<!--Статус делителя-->
+			<TextBlock Margin="10, 5"
+				Foreground="White" FontSize="18"
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus2.Value, 
+					   Converter={StaticResource GetByIndexFromParameterConverter}, 
+					   ConverterParameter={StaticResource ProbotborStatus}}"/>
+			<!--Индикаторы-->
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort2}"
+							   DescriptionInvisible="False"
+							   Margin="0,5"/>
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHome2}"
+							   DescriptionInvisible="False"
+							   Margin="0,5"/>
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWork2}"
+							   DescriptionInvisible="False"
+							   Margin="0,5"/>
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWorkAbort2}"
+							   DescriptionInvisible="False"
+							   Margin="0,5"/>
+		</StackPanel>
+	</Grid>
+</UserControl>

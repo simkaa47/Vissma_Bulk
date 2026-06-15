@@ -10,11 +10,11 @@
 	<DockPanel VerticalAlignment="Center">
 		
 		<StackPanel Margin="10,0,10,0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-			<Image Source="/Assets/106.jpg"
+			<Image Source="/Assets/106.png"
 				   Height="30"
 				   IsVisible="{Binding WriteValue}"
 				   Width="30"/>
-			<Image Source="/Assets/108.jpg"
+			<Image Source="/Assets/108.png"
 				   Height="30"
 				   IsVisible="{Binding !WriteValue}"
 				   Width="30"/>

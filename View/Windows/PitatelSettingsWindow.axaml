@@ -3,15 +3,85 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
-		Width="1024" Height="600"
+		Width="768" Height="512"
 		xmlns:vm="using:Core.ViewModels"
 		xmlns:par="using:View.UserControls.Parameters"
 		xmlns:hb="using:View.UserControls.HighBar"
+		Background="#2C2C2C"
 		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.PitatelSettingsWindow"
         Title="PitatelSettingsWindow">
-	<Viewbox>
+	<Grid ColumnDefinitions="Auto, *">
+		<StackPanel>
+			<!--Индикатор питателя-->
+			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.PitatelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource PitatelImageStatuses}}"
+					    Margin="10"/><!--Height="183" Width="275"-->
+						<!--Кнопка Вкл-->
+			<Button Height="70" Width="238" Margin="10, 5" HorizontalAlignment="Stretch"
+					Background="Transparent"
+					
+					Command="{Binding PlcViewModel.WriteParameterCommand}"
+					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.PitatelCmd}">
+					<Button.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/108.jpg" Width="32" Height="32"/>
+							<TextBlock Text="ПРОВЕСТИ СОКРАЩЕНИЕ" Margin="5" VerticalAlignment="Center"/>
+						</StackPanel>
+					</Button.Content>
+			</Button>
+		</StackPanel>
+		<StackPanel VerticalAlignment="Top" Grid.Column="1"
+					Margin="10"
+						HorizontalAlignment="Stretch"
+						DockPanel.Dock="Right">
+			<!--Статус питателя-->
+			<TextBlock Margin="0,5"
+					Foreground="White" FontSize="18"
+					Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.PitatelStatus.Value, 
+					Converter={StaticResource GetByIndexFromParameterConverter},
+					ConverterParameter={StaticResource UniversalStatus}}"/>
+			<!--Текущее время работы-->
+			<DockPanel HorizontalAlignment="Stretch" Margin="0,5">
+				<TextBlock Text="Текущее время питателя, с" DockPanel.Dock="Left" />
+				<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.PitatelTimeCurrent.Value}" HorizontalAlignment="Right" DockPanel.Dock="Right"
+						   Margin="0,0,32,0"
+						   FontWeight="Bold"
+				 Foreground="White"
+				 />
+			</DockPanel>
+						<!--Скорость первого шага питетеля-->
+			<par:NumericParameter Canvas.Top="238" Canvas.Left="700"
+								  Margin="0,5"
+								  ParamWidth="50"
+								  
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[0]}"
+							  DescriptionInvisible="False"/>
+			<!--Скорость второго шага питателя-->
+			<par:NumericParameter Canvas.Top="272" Canvas.Left="700"
+								  Margin="0,5"
+								  ParamWidth="50"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.PitatelSecondStepSpeed}"
+							  DescriptionInvisible="False"/>
+			<!--Время работы первгоо шага, с-->
+			<par:NumericParameter Canvas.Top="308" Canvas.Left="700"
+								  Margin="0,5"
+								  ParamWidth="50"
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.PitatelWorkTime}"
+							  DescriptionInvisible="False"/>
+
+			<par:NumericParameter Canvas.Top="344" Canvas.Left="700"
+								  Margin="0,5"
+								  ParamWidth="50"								  
+							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.PitatelSecondStepTime}"
+							  DescriptionInvisible="False"/>
+		</StackPanel>
+
+		<Viewbox IsVisible="False">
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
 				<ImageBrush Source="/Assets/10.png"/>
@@ -106,4 +176,6 @@
 					Width="342"/>
 		</Canvas>
 	</Viewbox>
+	</Grid>
+	
 </Window>

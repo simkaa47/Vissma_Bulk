@@ -9,11 +9,19 @@
 			 x:Name="prob"
              x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.Equipment.Probootbor.ProbotbornikControl">
-	<Grid ColumnDefinitions="Auto, *" RowDefinitions="*, Auto">
-
-		<Grid  VerticalAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}" 
+	<Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, *, Auto">
+		<TextBlock Text="Пробоотборник" FontSize="18"
+				   Foreground="White"
+				   FontWeight="Bold"
+				   VerticalAlignment="Top" 
+				   HorizontalAlignment="Left" 
+				   ZIndex="5"
+				   Grid.ColumnSpan="2" />
+		<Grid  VerticalAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}" Margin="0, 5"
+			   Grid.Row="1"
 				x:DataType="plc:PlcIndicationModel"
 				RowDefinitions="*, Auto">
+			
 			<Image Source="{Binding ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
 			    Height="183" Width="275" />
 			<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
@@ -25,7 +33,7 @@
 		</Grid>
 		
 
-		<StackPanel Grid.Column="1" Orientation="Vertical" Grid.RowSpan="2">
+		<StackPanel Grid.Column="1" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
 	
 			<!--Статус пррботборника-->
 			<TextBlock
