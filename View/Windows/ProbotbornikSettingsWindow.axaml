@@ -37,7 +37,7 @@
 					<Button.Content>
 						<StackPanel Orientation="Horizontal">
 							<Image Source="/Assets/107.jpg" Width="32" Height="32"/>
-							<TextBlock Text="ОТОБРАТЬ ЕДИНИЧНУЮ ПРОБУ" Margin="5"/>
+							<TextBlock Text="ОТОБРАТЬ ЕДИНИЧНУЮ ПРОБУ" Foreground="White" Margin="5"/>
 						</StackPanel>
 					</Button.Content>
 
@@ -53,7 +53,7 @@
 					<Button.Content>
 						<StackPanel Orientation="Horizontal">
 							<Image Source="/Assets/108.jpg" Width="32" Height="32"/>
-							<TextBlock Text="ВОЗВРАТ КОВША" Margin="5"/>
+							<TextBlock Text="ВОЗВРАТ КОВША" Foreground="White" Margin="5"/>
 						</StackPanel>
 					</Button.Content>
 
@@ -66,7 +66,7 @@
 					<Button.Content>
 						<StackPanel Orientation="Horizontal">
 							<Image Source="/Assets/107.jpg" Width="32" Height="32"/>
-							<TextBlock Text="НАБОР ВОДЫ" Margin="5"/>
+							<TextBlock Text="НАБОР ВОДЫ" Foreground="White" Margin="5"/>
 						</StackPanel>
 					</Button.Content>
 				</Button>

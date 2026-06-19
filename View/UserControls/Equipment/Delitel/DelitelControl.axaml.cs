@@ -18,7 +18,7 @@ public partial class DelitelControl : UserControl
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var current = desktop.MainWindow;
+            //var current = desktop.MainWindow;
             var delWindow = new DelitelSettingsWindow
             {
                 DataContext = this.DataContext

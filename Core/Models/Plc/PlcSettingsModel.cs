@@ -30,7 +30,7 @@
         public Parameter<short> PitatelWorkTime { get; } = new Parameter<short>(nameof(PitatelWorkTime), "Питатель, время первого шага, c", 0, 1000, 20017, 0);
         #endregion
         #region Время работы системы возврата проб в автоматическом режиме, с
-        public Parameter<short> SysReturnWorkTime { get; } = new Parameter<short>(nameof(SysReturnWorkTime), "Время работы системы возврата проб в автоматическом режиме, с", 0, 1000, 20018, 0);
+        public Parameter<short> SysReturnWorkTime { get; } = new Parameter<short>(nameof(SysReturnWorkTime), "Время работы в автоматическом режиме, с", 0, 1000, 20018, 0);
         #endregion
         #region Время работы делителя в автоматическом режиме, с
         public Parameter<short> DelitelWorkTime { get; } = new Parameter<short>(nameof(DelitelWorkTime), "Время работы делителя в автоматическом режиме, с", 0, 1000, 20019, 0);

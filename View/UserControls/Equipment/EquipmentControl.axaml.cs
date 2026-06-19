@@ -18,7 +18,7 @@ public partial class EquipmentControl : UserControl
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var current = desktop.MainWindow;
+            //var current = desktop.MainWindow;
             var pitWindow = new PitatelSettingsWindow
             {
                 DataContext = this.DataContext
@@ -29,17 +29,17 @@ public partial class EquipmentControl : UserControl
         }
     }
 
-    private void OpenNakopitelWindow(object? sender, RoutedEventArgs args)
+    private async void OpenNakopitelWindow(object? sender, RoutedEventArgs args)
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var current = desktop.MainWindow;
-            desktop.MainWindow = new NakopitelSettingsWindow
+
+            var nakWindow = new NakopitelSettingsWindow
             {
                 DataContext = this.DataContext
             };
-            desktop.MainWindow.Show();
-            current.Close();
+            await nakWindow.ShowDialog(desktop.MainWindow);
+
         }
     }
 
@@ -47,7 +47,7 @@ public partial class EquipmentControl : UserControl
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var current = desktop.MainWindow;
+            //var current = desktop.MainWindow;
             var drobWindow = new DrobilkaSettingsWindow
             {
                 DataContext = this.DataContext
@@ -63,7 +63,7 @@ public partial class EquipmentControl : UserControl
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var current = desktop.MainWindow;
+            //var current = desktop.MainWindow;
             var delWindow = new DelitelSettingsWindow
             {
                 DataContext = this.DataContext

@@ -9,6 +9,7 @@
              x:Class="View.UserControls.Parameters.NumericParameter">
 	<DockPanel>
 		<TextBlock Text="{Binding Description}"
+				   TextWrapping="WrapWithOverflow"
 				   VerticalAlignment="Center"
 				   IsVisible="{Binding RelativeSource={RelativeSource AncestorType=local:ParameterCommon}, Path=!DescriptionInvisible}"/>
 		<StackPanel Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Right">

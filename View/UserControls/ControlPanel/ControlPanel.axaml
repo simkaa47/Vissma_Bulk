@@ -3,7 +3,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:hb="using:View.UserControls.HighBar"
-             
+             xmlns:nak="View.UserControls.Equipment.Nakopitel"
+             xmlns:dry="View.UserControls.Equipment.DrySettings"
+             xmlns:drysettings="using:View.UserControls.Equipment.DrySettings"
+             xmlns:nakopitel="using:View.UserControls.Equipment.Nakopitel"
              xmlns:ev="using:View.UserControls.Events"
              xmlns:eq="using:View.UserControls.Equipment"
              xmlns:vm="using:Core.ViewModels"
@@ -57,40 +60,46 @@
         <Setter Property="Background" Value="#3D3D3D" />
     </Style>
     </UserControl.Styles>
-  <Grid RowDefinitions="Auto, *">
-      <hb:HighBar/>
-      <TabControl TabStripPlacement="Bottom" Grid.Row="1">
+    <Grid RowDefinitions="Auto, *">
+        <hb:HighBar/>
+        <TabControl TabStripPlacement="Bottom" Grid.Row="1">
+            <TabItem>
+                <TabItem.Header >
+                    <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
+                        <Image Source="/Assets/managementfree.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                        <TextBlock Text="Управление" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <eq:EquipmentControl/>
+            </TabItem>
 
-        <TabItem>
-            <TabItem.Header >
-                <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
-                    <Image Source="/Assets/114.png" Width="36" Height="36" VerticalAlignment="Center"/>
-                    <TextBlock Text="Управление" VerticalAlignment="Center"/>
-                </StackPanel>
-            </TabItem.Header>
-            <eq:EquipmentControl/>
-        </TabItem>
-
-          <TabItem>
-              <TabItem.Header >
-                <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
-                    <Image Source="/Assets/114.png" Width="36" Height="36" VerticalAlignment="Center"/>
-                    <TextBlock Text="Оборудование" VerticalAlignment="Center"/>
-                </StackPanel>
-            </TabItem.Header>
-              <Grid>
-                  <TextBlock Text="HELLO WORLD!!!!" FontSize="72"/>
-              </Grid>
-          </TabItem>
-          <TabItem>
-              <TabItem.Header >
-                <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
-                    <Image Source="/Assets/EventsIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
-                    <TextBlock Text="Ошибки" VerticalAlignment="Center"/>
-                </StackPanel>
-            </TabItem.Header>
-              <ev:CurrentEventsUserControl DataContext="{Binding EventsVm}" Margin="0, 10"/>
-          </TabItem>
+            <TabItem>
+                <TabItem.Header >
+                    <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
+                        <Image Source="/Assets/114.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                        <TextBlock Text="Накопитель" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <nakopitel:NakopitelControl/>
+            </TabItem>
+                        <TabItem>
+                <TabItem.Header >
+                    <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
+                        <Image Source="/Assets/114.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                        <TextBlock Text="Сушилка" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <drysettings:DrySettingsControl/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header >
+                    <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
+                        <Image Source="/Assets/EventsIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                        <TextBlock Text="Ошибки" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ev:CurrentEventsUserControl DataContext="{Binding EventsVm}" Margin="0, 10"/>
+            </TabItem>
       </TabControl>
   </Grid>
 </UserControl>

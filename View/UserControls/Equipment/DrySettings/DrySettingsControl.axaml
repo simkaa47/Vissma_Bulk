@@ -1,0 +1,207 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Core.ViewModels"
+		     xmlns:plc="using:Core.Models.Plc"
+		     xmlns:par="using:View.UserControls.Parameters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Name="drysett"
+             x:DataType="vm:MainViewModel"
+             x:Class="View.UserControls.Equipment.DrySettings.DrySettingsControl">
+  <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
+      <!--Индикатор сушки-->
+      <Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
+             Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
+             Height="183" Width="275"/>
+
+      <StackPanel Grid.Column="1">
+
+          <!--Статус сушки-->
+			<TextBlock 
+				Foreground="White" FontSize="18"
+				Margin="0, 5"
+				Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
+				Converter={StaticResource GetByIndexFromParameterConverter}, 
+				ConverterParameter={StaticResource DryUnitStatus}}"/>
+		  	  <!--Кнопка Запуск сушки-->
+			<Button Height="70"  
+					HorizontalAlignment="Left"
+					Margin="10, 0"
+					  Background="Transparent"
+					  Command="{Binding PlcViewModel.WriteParameterCommand}"
+					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DryCycleCmd}">
+				  <Button.Content>
+					  <StackPanel Orientation="Horizontal">
+						  <Image Source="/Assets/Arrows/arrow_left.png" Width="32" Height="32"/>
+						  <TextBlock Text="Запуск блока сушки" Foreground="White" Margin="5" VerticalAlignment="Center"/>
+					  </StackPanel>
+				  </Button.Content>
+			</Button>
+			<!--Время сушки-->
+			<par:NumericParameter ParamWidth="50"
+								  Margin="0, 5"
+								  Command="{Binding #drysett.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitDryTime}"
+								  DescriptionInvisible="False"/>
+			<!--ТЕмпература сушки -->
+			<par:NumericParameter 
+								  ParamWidth="50"
+								  Margin="0, 5"
+								  Command="{Binding #drysett.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							      DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitTemperatureSv}"
+							      DescriptionInvisible="False"/>
+			<!--Текущая температура-->
+			<DockPanel Margin="0, 5">
+				<TextBlock Text="Температура сушки, °C"/>
+				<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitCurrentTemperature.Value}" Foreground="White"
+						   HorizontalAlignment="Right"
+						   Margin="0, 0, 30, 0"/>
+			</DockPanel>
+
+			<!--Текущая время сушки-->
+			<DockPanel Margin="0, 5">
+				<TextBlock Text="Время работы, с"/>
+				<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryCurrentTime.Value}" Foreground="White"
+						   HorizontalAlignment="Right"
+						   Margin="0, 0, 30, 0"/>
+			</DockPanel>
+
+			<!--Задержка закрытия -->
+			<par:NumericParameter Margin="0, 5"
+								  ParamWidth="50"
+								  Command="{Binding #drysett.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							      DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitDelayClose}"
+							      DescriptionInvisible="False"/>
+      </StackPanel>
+	  <Grid Grid.Row="1" RowDefinitions="*,*,*" Grid.ColumnSpan="2">
+		  <GroupBox Header="Верхний шибер">
+			  <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+				  <Button 
+					  Height="53" 	
+					  Background="Transparent"
+					  Command="{Binding PlcViewModel.WriteParameterCommand}"
+					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OpenHighShiberCmd}">
+					  <Button.Content>
+						  <StackPanel Orientation="Horizontal">
+							  <Image Source="/Assets/Arrows/arrow_left.png" Width="32" Height="32"/>
+							  <TextBlock Text="Открыть" Foreground="White" Margin="5" VerticalAlignment="Center"/>
+						  </StackPanel>
+					  </Button.Content>
+				  </Button>
+				  <Button Grid.Column="1"
+					  Height="53" 	
+					  Background="Transparent"
+					  Command="{Binding PlcViewModel.WriteParameterCommand}"
+					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CloseHighShiberCmd}">
+					  <Button.Content>
+						  <StackPanel Orientation="Horizontal">
+							  <Image Source="/Assets/Arrows/arrow_right.png" Width="32" Height="32"/>
+							  <TextBlock Text="Закрыть" Foreground="White" Margin="5" VerticalAlignment="Center"/>
+						  </StackPanel>
+					  </Button.Content>
+				  </Button>
+				  <!--Датчики положения верхнего шибера-->
+				  <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+					  <TextBlock Text="Датчики верхнего шибера (оба активны - открыт, оба неактивны - закрыт)" FontSize="12"
+								 HorizontalAlignment="Center"
+								   TextWrapping="Wrap"
+								   Foreground="White"/>
+					  <StackPanel Orientation="Horizontal" Margin="5">
+						  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryHighShiberOpened}"/>
+						  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryHighShiberClosed}"/>
+					  </StackPanel>
+				  </StackPanel>
+			  </Grid>
+		  </GroupBox>
+		  <GroupBox Header="Нижний шибер" Grid.Row="1">
+			  <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+				  <Button 
+					  Height="53" 	
+					  Background="Transparent"
+					  Command="{Binding PlcViewModel.WriteParameterCommand}"
+					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OpenLowShiberCmd}">
+					  <Button.Content>
+						  <StackPanel Orientation="Horizontal">
+							  <Image Source="/Assets/Arrows/arrow_left.png" Width="32" Height="32"/>
+							  <TextBlock Text="Открыть" Foreground="White" Margin="5" VerticalAlignment="Center"/>
+						  </StackPanel>
+					  </Button.Content>
+				  </Button>
+				  <Button Grid.Column="1"
+					  Height="53" 	
+					  Background="Transparent"
+					  Command="{Binding PlcViewModel.WriteParameterCommand}"
+					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CloseLowShiberCmd}">
+					  <Button.Content>
+						  <StackPanel Orientation="Horizontal">
+							  <Image Source="/Assets/Arrows/arrow_right.png" Width="32" Height="32"/>
+							  <TextBlock Text="Закрыть" Foreground="White" Margin="5" VerticalAlignment="Center"/>
+						  </StackPanel>
+					  </Button.Content>
+				  </Button>
+				  <!--Датчики положения нижнего шибера-->
+				  <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+					  <TextBlock Text="Датчики нижнего шибера (оба активны - открыт, оба неактивны - закрыт)" FontSize="12"
+								 HorizontalAlignment="Center"
+								 TextWrapping="Wrap"
+								 Foreground="White"/>
+					  <StackPanel Orientation="Horizontal" Margin="5">
+						  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryLowShiberOpened}"/>
+						  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryLowShiberClosed}"/>
+					  </StackPanel>
+				  </StackPanel>
+			  </Grid>
+		  </GroupBox>
+		   <GroupBox Header="Барабан" Grid.Row="2">
+			  <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+				  <Button 
+					  Height="53" 	
+					  Background="Transparent"
+					  Command="{Binding PlcViewModel.WriteParameterCommand}"
+					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.UpBarabanCmd}">
+					  <Button.Content>
+						  <StackPanel Orientation="Horizontal">
+							  <Image Source="/Assets/Arrows/arrow_up.png" Width="32" Height="32"/>
+							  <TextBlock Text="Поднять" Foreground="White" Margin="5" VerticalAlignment="Center"/>
+						  </StackPanel>
+					  </Button.Content>
+				  </Button>
+				  <Button Grid.Column="1"
+					  Height="53" 	
+					  Background="Transparent"
+					  Command="{Binding PlcViewModel.WriteParameterCommand}"
+					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DownBarabanCmd}">
+					  <Button.Content>
+						  <StackPanel Orientation="Horizontal">
+							  <Image Source="/Assets/Arrows/arrow_down.png" Width="32" Height="32"/>
+							  <TextBlock Text="Спустить" Foreground="White" Margin="5" VerticalAlignment="Center"/>
+						  </StackPanel>
+					  </Button.Content>
+				  </Button>
+				  <!--Датчики положения барабана-->
+				  <StackPanel Grid.Row="1" Orientation="Horizontal">
+					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqBarabanHighPosition}"
+										 HorizontalAlignment="Stretch"/>
+					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqBarabanLowPosition}"										 
+										 HorizontalAlignment="Stretch"/>
+				  </StackPanel>
+				  <Button Height="53"
+						  Grid.Row="1"
+						  Grid.Column="1"
+						  Foreground="White"
+						  Background="Transparent"
+						  Command="{Binding PlcViewModel.WriteParameterCommand}"
+						  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RotateBarabanCmd}">
+					  <TextBlock Text="ВРАЩАТЬ БАРАБАН"
+						   Foreground="White"
+						   VerticalAlignment="Center"
+						   HorizontalAlignment="Center"
+						   TextWrapping="Wrap"
+						   FontSize="10"/>
+				  </Button>
+			  </Grid>
+		  </GroupBox>
+	  </Grid>
+  </Grid>
+</UserControl>

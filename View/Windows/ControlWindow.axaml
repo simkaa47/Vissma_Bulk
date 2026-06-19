@@ -10,6 +10,7 @@
 		xmlns:uc="using:View.UserControls.ControlPanel"
 		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
 		xmlns:sys="clr-namespace:System;assembly=netstandard"
+		Background="#2C2C2C"
 		xmlns:hb="using:View.UserControls.HighBar"
 		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"

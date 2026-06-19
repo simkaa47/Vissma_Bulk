@@ -3,16 +3,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
-		Width="1024" Height="600"
+		Width="768" Height="1024"
 		xmlns:vm="using:Core.ViewModels"
 		xmlns:plc="using:Core.Models.Plc"
 		xmlns:par="using:View.UserControls.Parameters"
 		xmlns:hb="using:View.UserControls.HighBar"
+		Background="#2C2C2C"
+		xmlns:nak="using:View.UserControls.Equipment.Nakopitel"
 		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.NakopitelSettingsWindow"
         Title="NakopitelSettingsWindow">
-	<Viewbox>
+	<Grid>
+		<nak:NakopitelControl IsVisible="True"/>
+		<Viewbox IsVisible="False">
+		
 		<Canvas Width="1024" Height="600">
 			<Canvas.Styles>
 				<Style Selector="ListBoxItem">
@@ -103,4 +108,6 @@
 			
 		</Canvas>
 	</Viewbox>
+	</Grid>
+	
 </Window>

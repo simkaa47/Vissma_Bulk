@@ -21,32 +21,6 @@
 			<SolidColorBrush Color="Red"/>
 		</scg:List>
 	</Window.Resources>	
-<!--	<Viewbox>
-		<Canvas Width="768" Height="1024">
-			<Canvas.Background>
-				<ImageBrush Source="/Assets/00.png" Stretch="Fill"/>
-			</Canvas.Background>
-			<Button Height="52" Width="108"
-					Click="LoginClick"
-					Canvas.Left="870" Canvas.Top="440"/>
-
-			<TextBox Width="236" Height="58"
-					 DataContext="{StaticResource LoginModel}"
-					 Canvas.Left="742" Canvas.Top="312"
-					 Name="Login" FontSize="18" Padding="5"
-					 VerticalContentAlignment="Center"
-					 Text="{Binding LoginName}"
-					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"/>
-			<TextBox Width="236" Height="58"
-					 Canvas.Left="742" Canvas.Top="381"
-					 Name="Password" FontSize="18" Padding="5"
-					 VerticalContentAlignment="Center"
-				     DataContext="{StaticResource LoginModel}"
-					 Foreground="{Binding FaliledLogin, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource TextBoxErrorColors}}"
-					 Text="{Binding Password}"					 
-					 PasswordChar="•"/>
-		</Canvas>
-	</Viewbox>-->
 
 	<Grid RowDefinitions="Auto, Auto, Auto" VerticalAlignment="Center">
 		<Button Height="52" Width="108"
@@ -61,7 +35,7 @@
 			<TextBox Width="276" Height="58"
 					 Margin="0, 5"
 					 DataContext="{StaticResource LoginModel}"
-					 Watermark="Введите логин"
+					 PlaceholderText="Введите логин"
 					 Name="Login" FontSize="18" Padding="5"
 					 VerticalContentAlignment="Center"
 					 Text="{Binding LoginName}"
@@ -69,7 +43,7 @@
 			<TextBox Width="276" Height="58"
 					 Grid.Row="1"
 					 Margin="0, 5"
-					 Watermark="Введите пароль"
+					 PlaceholderText="Введите пароль"
 					 Name="Password" FontSize="18" Padding="5"
 					 VerticalContentAlignment="Center"
 				     DataContext="{StaticResource LoginModel}"

@@ -1,0 +1,206 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Core.ViewModels"
+		     xmlns:plc="using:Core.Models.Plc"
+		     xmlns:par="using:View.UserControls.Parameters"
+		     xmlns:hb="using:View.UserControls.HighBar"
+             x:CompileBindings="False"
+		     x:DataType="vm:MainViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.UserControls.Equipment.Nakopitel.NakopitelControl">
+    <Grid RowDefinitions="Auto, *" ColumnDefinitions="*, Auto">
+        <Grid Grid.Row="0" ColumnDefinitions="Auto, *" RowDefinitions="*, Auto" Grid.ColumnSpan="2">
+            <!--Индикатор-->
+			<Image HorizontalAlignment="Stretch" Margin="10"
+                   Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
+					Height="183" Width="276"/><!--Width="276"-->
+            
+            <StackPanel Grid.Column="1" Margin="10">
+                <!--Статус накопителя-->
+			<TextBlock
+				Foreground="White" FontSize="18"
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, 
+					   Converter={StaticResource GetByIndexFromParameterConverter}, 
+					   ConverterParameter={StaticResource NakopStatus}}"/>
+			<!--Скорость ПЧ-->
+			<par:NumericParameter ParamWidth="50"
+                                  Margin="0, 5"
+                                  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+                                  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[3]}"
+                                  DescriptionInvisible="False"/>
+			<!--Предельное кол-во проб в канистре-->
+			<par:NumericParameter ParamWidth="50"
+                                  Margin="0, 5"
+                                  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+                                  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.KanistraSv}"
+                                  DescriptionInvisible="False"/>
+			
+            <DockPanel Margin="0, 5">
+                <TextBlock Text="Текущая канистра: "/>
+                <DockPanel HorizontalAlignment="Right">
+                    <!--Номер канистры-->
+                    <TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelCurrentCell.Value, StringFormat={}{0:d2}}" 
+                               FontWeight="Bold"
+                               Foreground="White"/>
+                    <TextBlock Text=" из " />
+                    <!--кол-во канистр-->
+			        <TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.NakopitelVolume.Value, StringFormat={}{0:d2}}" 
+                               FontWeight="Bold"
+                               Foreground="White"/>
+                </DockPanel>
+                
+            </DockPanel>
+			<!--Дверь закрта-->
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel}"
+                               Margin="0, 5"
+							   DescriptionInvisible="False"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Width="160">
+                <!--Кнопка Калибровка накопителя-->
+			    <Button Height="70"  
+                        Width="138"
+                        Margin="5"
+			    		Background="Transparent"
+                        BorderBrush="LightGray"
+			    		Command="{Binding PlcViewModel.WriteParameterCommand}"
+			    		CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CalibrationNakopCmd}">
+                    <Button.Content>
+                        <TextBlock Text="КАЛИБРОВКА&#10;НАКОПИТЕЛЯ" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Button.Content>
+                </Button>
+			    <!--Кнопка Смена канистры-->
+			    <Button Height="70" 
+                        Width="138"
+                        Margin="5"
+			    		Background="Transparent"
+                        BorderBrush="LightGray"
+                        
+			    		Command="{Binding PlcViewModel.WriteParameterCommand}"
+			    		CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ChangeKanistraNakopCmd}">
+                    <Button.Content>
+
+                            <TextBlock Text="СМЕНА&#10;КАНИСТРЫ" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10"/>
+
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        <!--Канистры-->
+		<DataGrid ItemsSource="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras}"
+                  Grid.Row="1"
+                  Margin="10"
+                  Background="Transparent"
+                  HeadersVisibility="Column"
+                  BorderThickness="0"
+                  RowHeight="51"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Top"
+                  CanUserResizeColumns="False"
+                  CanUserSortColumns="False"
+                  IsReadOnly="True">
+            <DataGrid.Resources>
+                <!-- Убираем стандартные рамки и фон -->
+                <SolidColorBrush x:Key="DataGridRowBackgroundBrush" Color="Transparent"/>
+                <SolidColorBrush x:Key="DataGridRowSelectedBackgroundBrush" Color="Transparent"/>
+                <SolidColorBrush x:Key="DataGridRowSelectedUnfocusedBackgroundBrush" Color="Transparent"/>
+                <SolidColorBrush x:Key="DataGridRowHoverBackgroundBrush" Color="Transparent"/>
+                <SolidColorBrush x:Key="DataGridCellBorderBrush" Color="Transparent"/>
+                <SolidColorBrush x:Key="DataGridColumnHeaderBackgroundBrush" Color="#2A2A2A"/>
+                <SolidColorBrush x:Key="DataGridColumnHeaderForegroundBrush" Color="White"/>
+                <SolidColorBrush x:Key="DataGridColumnHeaderBorderBrush" Color="#3A3A3A"/>
+                <SolidColorBrush x:Key="DataGridHeaderSeparatorBorderBrush" Color="Transparent"/>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <!-- Заголовок: № канистры Header="№ канистры"-->
+                <DataGridTextColumn Binding="{Binding Number}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="№&#10;канистры" 
+                                       
+                                       Foreground="White" 
+                                       TextWrapping="Wrap"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+
+                <!-- Заголовок: Наличие -->
+                <DataGridTemplateColumn Header="Наличие">
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Наличие" 
+                                       Foreground="White" 
+                                       TextWrapping="Wrap"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:DataType="plc:Kanistra">
+                            <Canvas Background="Transparent">
+                                <par:BoolIndicator DataContext="{Binding IsExist}"
+                                                   DescriptionInvisible="True"
+                                                   Canvas.Left="30"
+                                                   Canvas.Top="10"/>
+                            </Canvas>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <!-- Заголовок: ID партии -->
+                <DataGridTextColumn Header="ID партии"
+                                    Binding="{Binding Id.Value}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="ID партии" 
+                                       Foreground="White" 
+                                       TextWrapping="Wrap"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+
+                <!-- Заголовок: Проб в канистре -->
+                <DataGridTextColumn Binding="{Binding ProbeCnt.Value}">
+                    <DataGridTextColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="Проб&#10;в канистре" 
+                                       
+                                       TextWrapping="Wrap"
+                                       Foreground="White" 
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTextColumn.HeaderTemplate>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+		<ListBox IsVisible="False" ItemsSource="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras}" Canvas.Top="146" Canvas.Left="511" Background="Transparent">
+			<ListBox.ItemTemplate>
+				<DataTemplate x:DataType="plc:Kanistra">
+					<Canvas Width="504" Height="51" Background="Transparent" Opacity="1" 
+							x:DataType="plc:Kanistra">
+						<par:BoolIndicator DataContext="{Binding IsExist}"
+									   DescriptionInvisible="True"
+									   Canvas.Top="10" Canvas.Left="85"/>
+						<TextBlock Text="{Binding Id.Value}" Foreground="White"
+								   Canvas.Top="14" Canvas.Left="185"
+								   FontSize="18"/>
+						<TextBlock Text="{Binding ProbeCnt.Value}" Foreground="White"
+								   Canvas.Top="14" Canvas.Left="444"
+								   FontSize="18"/>
+					</Canvas>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+    </Grid>
+</UserControl>

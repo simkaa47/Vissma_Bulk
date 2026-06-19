@@ -17,7 +17,7 @@ public partial class NakopitelSettingsWindow : Window
 
     private void OnOpened(object? sender, EventArgs e)
     {
-        this.WindowState = WindowState.Maximized;
+        //this.WindowState = WindowState.Maximized;
     }
 
     private void OpenControlWindow(object? sender, RoutedEventArgs args)
