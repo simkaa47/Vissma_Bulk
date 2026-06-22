@@ -21,10 +21,10 @@
         public List<Parameter<short>> FcFrequencesSvs { get; } = Enumerable.Range(0, 4).Select(i => new Parameter<short>(nameof(FcFrequencesSvs) + i + 1, $"Скорость ПЧ {i + 1}, Гц", 0, 50, 20011 + i, 0)).ToList();
         #endregion
         #region Блок осушителя - задержка перед закртием шиберов
-        public Parameter<short> DryUnitDelayClose { get; } = new Parameter<short>(nameof(DryUnitDelayClose), "Блок осушителя - задержка перед закрытием шиберов, с", 0, 10, 20015, 0);
+        public Parameter<short> DryUnitDelayClose { get; } = new Parameter<short>(nameof(DryUnitDelayClose), "Задержка перед закрытием шиберов, с", 0, 10, 20015, 0);
         #endregion
         #region Блок осушителя - время сушки, с
-        public Parameter<short> DryUnitDryTime { get; } = new Parameter<short>(nameof(DryUnitDryTime), "Блок осушителя - время сушки, с", 0, 1000, 20016, 0);
+        public Parameter<short> DryUnitDryTime { get; } = new Parameter<short>(nameof(DryUnitDryTime), "Время сушки, с", 0, 1000, 20016, 0);
         #endregion
         #region Время работы питателя в автоматическом режиме, с
         public Parameter<short> PitatelWorkTime { get; } = new Parameter<short>(nameof(PitatelWorkTime), "Питатель, время первого шага, c", 0, 1000, 20017, 0);
@@ -39,7 +39,7 @@
         public Parameter<short> IstiratelWorkTime { get; } = new Parameter<short>(nameof(IstiratelWorkTime), "Время работы истирателя в автоматическом режиме, с", 0, 1000, 20020, 0);
         #endregion
         #region Блок осушителя, уставка температуры, С
-        public Parameter<short> DryUnitTemperatureSv { get; } = new Parameter<short>(nameof(DryUnitTemperatureSv), "Блок осушителя, уставка температуры, С", 20, 300, 20021, 0);
+        public Parameter<short> DryUnitTemperatureSv { get; } = new Parameter<short>(nameof(DryUnitTemperatureSv), "Уставка температуры, С", 20, 300, 20021, 0);
         #endregion
         #region Время синхронизации, год
         public Parameter<short> DateSynchroYear { get; } = new Parameter<short>(nameof(DateSynchroYear), "Время синхронизации, год", 0, 99, 20022, 0);

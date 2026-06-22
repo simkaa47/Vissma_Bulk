@@ -3,22 +3,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="600"
-		Width="1024" Height="600"
+		Width="768" Height="1024"
 		xmlns:vm="using:Core.ViewModels"
 		xmlns:plc="using:Core.Models.Plc"
 		xmlns:par="using:View.UserControls.Parameters"
+		xmlns:dry="using:View.UserControls.Equipment.DrySettings"
 		xmlns:hb="using:View.UserControls.HighBar"
 		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"        
         x:Class="View.Windows.DrySettingsWindow"
         Title="DrySettingsWindow">
-	<Viewbox>
+	<dry:DrySettingsControl/>	
+<!--	<Viewbox>
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
 				<ImageBrush Source="/Assets/15.png"/>
 			</Canvas.Background>
 			<hb:HighBar/>
-			<!--Панель навигации-->
+			--><!--Панель навигации--><!--
 			<Button Canvas.Bottom="0" Canvas.Left="0"
 					Height="42"
 					Background="Transparent"
@@ -29,40 +31,40 @@
 					Background="Transparent"
 					Click="OpenErrorsWindow"
 					Width="342"/>
-			<!--Кнопка Запуск сушки-->
+			--><!--Кнопка Запуск сушки--><!--
 			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="10"
 					Background="Transparent"
 					Command="{Binding PlcViewModel.WriteParameterCommand}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DryCycleCmd}"/>
-			<!--Индикатор сушки-->
+			--><!--Индикатор сушки--><!--
 			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
 			Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
-			<!--Статус сушки-->
+			--><!--Статус сушки--><!--
 			<TextBlock Canvas.Left="550" Canvas.Top="200"
 				Foreground="White" FontSize="18"
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
 					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource DryUnitStatus}}"/>
-			<!--Время сушки-->
+			--><!--Время сушки--><!--
 			<par:NumericParameter Canvas.Top="239" Canvas.Left="700"
 								  ParamWidth="50"
 							  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitDryTime}"
 							  DescriptionInvisible="True"/>
-			<!--ТЕмпература сушки -->
+			--><!--ТЕмпература сушки --><!--
 			<par:NumericParameter Canvas.Top="272" Canvas.Left="700"
 								  ParamWidth="50"
 								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							      DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitTemperatureSv}"
 							      DescriptionInvisible="True"/>
-			<!--Текущая температура-->
+			--><!--Текущая температура--><!--
 			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitCurrentTemperature.Value}" Foreground="White"
 					   Canvas.Top="312" Canvas.Left="730"/>
-			<!--Текущая время сушки-->
+			--><!--Текущая время сушки--><!--
 			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryCurrentTime.Value}" Foreground="White"
 					   Canvas.Top="344" Canvas.Left="730"/>
-			<!--Задержка закрытия -->
+			--><!--Задержка закрытия --><!--
 			<par:NumericParameter Canvas.Top="374" Canvas.Left="700"
 								  ParamWidth="50"
 								  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
@@ -78,7 +80,7 @@
 					Background="Transparent"
 					Command="{Binding PlcViewModel.WriteParameterCommand}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CloseHighShiberCmd}"/>
-			<!--Датчики положения верхнего шибера-->
+			--><!--Датчики положения верхнего шибера--><!--
 			<StackPanel Canvas.Top="215" Canvas.Left="851" MaxWidth="170">
 				<TextBlock Text="Датчики верхнего шибера (оба активны - открыт, оба неактивны - закрыт)" FontSize="8"
 						   TextWrapping="Wrap"
@@ -98,7 +100,7 @@
 					Background="Transparent"
 					Command="{Binding PlcViewModel.WriteParameterCommand}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CloseLowShiberCmd}"/>
-			<!--Датчики положения нижнего шибера-->
+			--><!--Датчики положения нижнего шибера--><!--
 			<StackPanel Canvas.Top="350" Canvas.Left="851" MaxWidth="170">
 				<TextBlock Text="Датчики нижнего шибера (оба активны - открыт, оба неактивны - закрыт)" FontSize="8"
 						   TextWrapping="Wrap"
@@ -118,7 +120,7 @@
 					Background="Transparent"
 					Command="{Binding PlcViewModel.WriteParameterCommand}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DownBarabanCmd}"/>
-			<!--Датчики положения барабана-->
+			--><!--Датчики положения барабана--><!--
 			<StackPanel Canvas.Top="485" Canvas.Left="851" Width="170">
 				<DockPanel HorizontalAlignment="Stretch">
 					<TextBlock Text="Барабан вверху" FontSize="8"
@@ -156,5 +158,5 @@
 			</Border>
 			
 		</Canvas>
-	</Viewbox>
+	</Viewbox>-->
 </Window>

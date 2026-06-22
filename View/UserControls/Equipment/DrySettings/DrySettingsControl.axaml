@@ -10,24 +10,16 @@
              x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.Equipment.DrySettings.DrySettingsControl">
   <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
-      <!--Индикатор сушки-->
-      <Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
-             Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
-             Height="183" Width="275"/>
-
-      <StackPanel Grid.Column="1">
-
-          <!--Статус сушки-->
-			<TextBlock 
-				Foreground="White" FontSize="18"
-				Margin="0, 5"
-				Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
-				Converter={StaticResource GetByIndexFromParameterConverter}, 
-				ConverterParameter={StaticResource DryUnitStatus}}"/>
-		  	  <!--Кнопка Запуск сушки-->
-			<Button Height="70"  
+	  <StackPanel Orientation="Vertical">
+		  <!--Индикатор сушки-->
+		  <Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
+				 Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
+				 Height="183" Width="275"/>
+		  <!--Кнопка Запуск сушки-->
+			<Button Height="60"
+					BorderBrush="LightGray"
 					HorizontalAlignment="Left"
-					Margin="10, 0"
+					BorderThickness="1"
 					  Background="Transparent"
 					  Command="{Binding PlcViewModel.WriteParameterCommand}"
 					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DryCycleCmd}">
@@ -38,6 +30,19 @@
 					  </StackPanel>
 				  </Button.Content>
 			</Button>
+	  </StackPanel>
+
+
+      <StackPanel Grid.Column="1" Margin="10,0, 0,0">
+
+          <!--Статус сушки-->
+			<TextBlock 
+				Foreground="White" FontSize="18"
+				Margin="0, 5"
+				Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
+				Converter={StaticResource GetByIndexFromParameterConverter}, 
+				ConverterParameter={StaticResource DryUnitStatus}}"/>
+		  	
 			<!--Время сушки-->
 			<par:NumericParameter ParamWidth="50"
 								  Margin="0, 5"
@@ -73,12 +78,16 @@
 								  Command="{Binding #drysett.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							      DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitDelayClose}"
 							      DescriptionInvisible="False"/>
+		    
       </StackPanel>
 	  <Grid Grid.Row="1" RowDefinitions="*,*,*" Grid.ColumnSpan="2">
 		  <GroupBox Header="Верхний шибер">
 			  <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
-				  <Button 
-					  Height="53" 	
+				  <StackPanel Orientation="Horizontal">
+					  <Button 
+					  Height="53" Margin="5,0"
+					  BorderThickness="1"
+					  BorderBrush="LightGray"
 					  Background="Transparent"
 					  Command="{Binding PlcViewModel.WriteParameterCommand}"
 					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OpenHighShiberCmd}">
@@ -90,7 +99,10 @@
 					  </Button.Content>
 				  </Button>
 				  <Button Grid.Column="1"
-					  Height="53" 	
+					  Height="53"
+					  Margin="5,0"
+					  BorderBrush="LightGray"
+					  BorderThickness="1"
 					  Background="Transparent"
 					  Command="{Binding PlcViewModel.WriteParameterCommand}"
 					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CloseHighShiberCmd}">
@@ -101,23 +113,26 @@
 						  </StackPanel>
 					  </Button.Content>
 				  </Button>
+				  </StackPanel>
+				  
 				  <!--Датчики положения верхнего шибера-->
-				  <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-					  <TextBlock Text="Датчики верхнего шибера (оба активны - открыт, оба неактивны - закрыт)" FontSize="12"
-								 HorizontalAlignment="Center"
-								   TextWrapping="Wrap"
-								   Foreground="White"/>
-					  <StackPanel Orientation="Horizontal" Margin="5">
-						  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryHighShiberOpened}"/>
-						  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryHighShiberClosed}"/>
-					  </StackPanel>
+
+				  <StackPanel Orientation="Horizontal" Margin="5"
+							  Grid.Row="1" Grid.ColumnSpan="2" 
+							  ToolTip.Tip="Датчики верхнего шибера (оба активны - открыт, оба неактивны - закрыт)">
+					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryHighShiberOpened}"/>
+					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryHighShiberClosed}"/>
 				  </StackPanel>
 			  </Grid>
 		  </GroupBox>
 		  <GroupBox Header="Нижний шибер" Grid.Row="1">
 			  <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
-				  <Button 
-					  Height="53" 	
+				  <StackPanel Orientation="Horizontal">
+					  <Button 
+					  Height="53"
+					  Margin="5,0"
+					  BorderBrush="LightGray"
+					  BorderThickness="1"
 					  Background="Transparent"
 					  Command="{Binding PlcViewModel.WriteParameterCommand}"
 					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OpenLowShiberCmd}">
@@ -129,7 +144,10 @@
 					  </Button.Content>
 				  </Button>
 				  <Button Grid.Column="1"
-					  Height="53" 	
+					  Height="53"
+					  Margin="5,0"
+					  BorderBrush="LightGray"
+					  BorderThickness="1"
 					  Background="Transparent"
 					  Command="{Binding PlcViewModel.WriteParameterCommand}"
 					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.CloseLowShiberCmd}">
@@ -140,23 +158,28 @@
 						  </StackPanel>
 					  </Button.Content>
 				  </Button>
-				  <!--Датчики положения нижнего шибера-->
-				  <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-					  <TextBlock Text="Датчики нижнего шибера (оба активны - открыт, оба неактивны - закрыт)" FontSize="12"
-								 HorizontalAlignment="Center"
-								 TextWrapping="Wrap"
-								 Foreground="White"/>
-					  <StackPanel Orientation="Horizontal" Margin="5">
-						  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryLowShiberOpened}"/>
-						  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryLowShiberClosed}"/>
-					  </StackPanel>
 				  </StackPanel>
+				  
+				  <!--Датчики положения нижнего шибера-->
+				  <StackPanel Orientation="Horizontal" 
+							  Grid.Row="1" Grid.ColumnSpan="2"
+							  Margin="5" 
+							  ToolTip.Tip="Датчики нижнего шибера (оба активны - открыт, оба неактивны - закрыт)">
+					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryLowShiberOpened}"/>
+					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDryLowShiberClosed}"/>
+
+				  </StackPanel>
+
 			  </Grid>
 		  </GroupBox>
 		   <GroupBox Header="Барабан" Grid.Row="2">
 			  <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
-				  <Button 
-					  Height="53" 	
+				  <StackPanel Orientation="Horizontal">
+					  <Button 
+					  Height="53"
+					  Margin="5,0"
+					  BorderThickness="1"
+					  BorderBrush="LightGray"
 					  Background="Transparent"
 					  Command="{Binding PlcViewModel.WriteParameterCommand}"
 					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.UpBarabanCmd}">
@@ -168,7 +191,10 @@
 					  </Button.Content>
 				  </Button>
 				  <Button Grid.Column="1"
-					  Height="53" 	
+					  Height="53"
+					  Margin="5,0"
+					  BorderThickness="1"
+					  BorderBrush="LightGray"
 					  Background="Transparent"
 					  Command="{Binding PlcViewModel.WriteParameterCommand}"
 					  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DownBarabanCmd}">
@@ -179,8 +205,10 @@
 						  </StackPanel>
 					  </Button.Content>
 				  </Button>
+				  </StackPanel>
+				  
 				  <!--Датчики положения барабана-->
-				  <StackPanel Grid.Row="1" Orientation="Horizontal">
+				  <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
 					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqBarabanHighPosition}"
 										 HorizontalAlignment="Stretch"/>
 					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqBarabanLowPosition}"										 
@@ -188,18 +216,48 @@
 				  </StackPanel>
 				  <Button Height="53"
 						  Grid.Row="1"
+						  BorderThickness="1"
+						  BorderBrush="LightGray"
 						  Grid.Column="1"
 						  Foreground="White"
 						  Background="Transparent"
 						  Command="{Binding PlcViewModel.WriteParameterCommand}"
-						  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RotateBarabanCmd}">
-					  <TextBlock Text="ВРАЩАТЬ БАРАБАН"
-						   Foreground="White"
-						   VerticalAlignment="Center"
-						   HorizontalAlignment="Center"
-						   TextWrapping="Wrap"
-						   FontSize="10"/>
+						  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RotateBarabanCmd}">						  
+					  <Button.Content>
+						  <StackPanel Orientation="Horizontal">
+							  <StackPanel.Styles>
+									  <Style Selector="Image">
+									  </Style>
+									  <Style Selector="StackPanel:pointerover Image">
+										  <Style.Animations>
+											    <Animation Duration="0:0:1" IterationCount="INFINITE">
+													<KeyFrame Cue="0%">
+														<Setter Property="RotateTransform.Angle" Value="0.0"/>
+													</KeyFrame>
+											        <KeyFrame Cue="100%">
+														<Setter Property="RotateTransform.Angle" Value="-360.0"/>
+											        </KeyFrame>
+											    </Animation>
+											</Style.Animations>
+									  </Style>
+								  </StackPanel.Styles>
+								  
+							  <Image x:Name="RotateIcon" 
+									 Source="/Assets/Arrows/rotate.png" 
+									 Width="32" 
+									 Height="32"
+									 RenderTransformOrigin="50%,50%">
+
+							  </Image>
+							  <TextBlock Text="ВРАЩАТЬ БАРАБАН" 
+										 Foreground="White" 
+										 Margin="5" 
+										 VerticalAlignment="Center"/>
+						  </StackPanel>
+					  </Button.Content>
+
 				  </Button>
+
 			  </Grid>
 		  </GroupBox>
 	  </Grid>

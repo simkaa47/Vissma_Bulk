@@ -76,17 +76,18 @@ public partial class EquipmentControl : UserControl
         }
     }
 
-    private void OpenDryWindow(object? sender, RoutedEventArgs args)
+    private async void OpenDryWindow(object? sender, RoutedEventArgs args)
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            var current = desktop.MainWindow;
-            desktop.MainWindow = new DrySettingsWindow
+            var dryWindow = new DrySettingsWindow
             {
                 DataContext = this.DataContext
             };
-            desktop.MainWindow.Show();
-            current.Close();
+
+            await dryWindow.ShowDialog(desktop.MainWindow);
+
+
         }
     }
 
