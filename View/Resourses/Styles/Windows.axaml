@@ -6,8 +6,13 @@
     </Border>
   </Design.PreviewWith>
 
-  <!-- Add Styles Here -->
+
 	<Style Selector="Window[WindowState=Maximized]">
 		<Setter Property="Padding" Value="0" />
 	</Style>
+    
+    <Style Selector="Window">
+        <Setter Property="Background" Value="#2C2C2C"/>
+    </Style>
+
 </Styles>

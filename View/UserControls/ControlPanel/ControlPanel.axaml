@@ -53,7 +53,7 @@
 
     <!-- Стиль для текста в активной вкладке -->
     <Style Selector="TabItem:selected TextBlock">
-        <Setter Property="Foreground" Value="#28BCBA" />
+        <Setter Property="Foreground" Value="White" />
     </Style>
 
     <!-- Псевдокласс :pointerover — при наведении курсора -->
@@ -67,7 +67,7 @@
             <TabItem>
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
-                        <Image Source="/Assets/managementfree.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                        <Image Source="/Assets/ManageIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
                         <TextBlock Text="Управление" VerticalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -77,7 +77,7 @@
             <TabItem>
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
-                        <Image Source="/Assets/114.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                        <Image Source="/Assets/StorageIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
                         <TextBlock Text="Накопитель" VerticalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -86,7 +86,7 @@
             <TabItem>
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
-                        <Image Source="/Assets/114.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                        <Image Source="/Assets/DryIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
                         <TextBlock Text="Сушилка" VerticalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
