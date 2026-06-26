@@ -63,10 +63,10 @@
         public Parameter<short> DateSynchroDayOfWeek { get; } = new Parameter<short>(nameof(DateSynchroDayOfWeek), "Время синхронизации, день недели", 1, 7, 20028, 0);
         #endregion
         #region Тайм-аут движения ковша проботборника 1
-        public Parameter<short> ProbotbornikTimeout1 { get; } = new Parameter<short>(nameof(ProbotbornikTimeout1), "Тайм-аут движения ковша проботборника 1, c", 1, 100, 20050, 0);
+        public Parameter<short> ProbotbornikTimeout1 { get; } = new Parameter<short>(nameof(ProbotbornikTimeout1), "Тайм-аут движения ковша пробоотборника 1, c", 1, 100, 20050, 0);
         #endregion
         #region Тайм-аут движения ковша проботборника 2
-        public Parameter<short> ProbotbornikTimeout2 { get; } = new Parameter<short>(nameof(ProbotbornikTimeout2), "Тайм-аут движения ковша проботборника 2, c", 1, 100, 20051, 0);
+        public Parameter<short> ProbotbornikTimeout2 { get; } = new Parameter<short>(nameof(ProbotbornikTimeout2), "Тайм-аут движения ковша пробоотборника 2, c", 1, 100, 20051, 0);
         #endregion
 
         #region Время второго шага питателя

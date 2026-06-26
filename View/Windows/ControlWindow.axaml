@@ -22,9 +22,7 @@
 			<ImageBrush Source="/Assets/07.png"/>
 		</scg:List>
 	</Window.Resources>
-	<Grid>
-		<uc:ControlPanel IsVisible="True"/>
-		
-	</Grid>
+	<uc:ControlPanel/>
+
 	
 </Window>

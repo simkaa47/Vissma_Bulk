@@ -64,34 +64,51 @@
     <Grid RowDefinitions="Auto, *">
         <hb:HighBar/>
         <TabControl TabStripPlacement="Bottom" Grid.Row="1">
-            <TabItem>
+            <TabItem x:Name="ManageTabItem">
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
                         <Image Source="/Assets/ManageIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
                         <TextBlock Text="Управление" VerticalAlignment="Center"/>
                     </StackPanel>
                 </TabItem.Header>
-                <eq:EquipmentControl/>
+                <Canvas Width="768" Height="768">
+                    <Canvas.Background>
+				        <ImageBrush Source="/Assets/ProbotbornikKturinsk.png"/>
+			         </Canvas.Background>
+
+       
+                        <TextBlock x:Name="np25" Canvas.Left="60" Canvas.Bottom="200"  Text="Накопитель проб НП25"/>
+                        <Button Canvas.Left="220" Canvas.Bottom="130" 
+                            Width="125" Height="120"
+                            Background="Transparent"
+                            BorderBrush="Aqua"
+                            Click="OpenEquipmentControl"
+                            BorderThickness="1">
+
+                        </Button>
+
+                    
+                    <TextBlock x:Name="np10" Canvas.Right="150" Canvas.Bottom="200" Text="Накопитель проб НП10"/>
+                    
+                    <Button Canvas.Left="345" Canvas.Bottom="130" 
+                            Width="85" Height="100"
+                            Background="Transparent"
+                            BorderBrush="Aqua"
+                            Click="OpenEquipmentControl"
+                            BorderThickness="1"/>
+
+                    <TextBlock x:Name="Prob" Canvas.Left="80" Canvas.Top="200" Text="Пересечной пробоотборник"/>
+                    
+                    <Button Canvas.Left="290" Canvas.Top="100" 
+                            Width="230" Height="230"
+                            Background="Transparent"
+                            BorderBrush="Aqua"
+                            Click="OpenEquipmentControl"
+                            BorderThickness="1"/>
+                </Canvas>
+                <!--<eq:EquipmentControl/>-->
             </TabItem>
 
-<!--            <TabItem>
-                <TabItem.Header >
-                    <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
-                        <Image Source="/Assets/StorageIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
-                        <TextBlock Text="Накопитель" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <nakopitel:NakopitelControl/>
-            </TabItem>
-            <TabItem>
-                <TabItem.Header >
-                    <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
-                        <Image Source="/Assets/DryIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
-                        <TextBlock Text="Сушилка" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <drysettings:DrySettingsControl/>
-            </TabItem>-->
             <TabItem>
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">

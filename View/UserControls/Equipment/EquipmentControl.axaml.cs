@@ -29,6 +29,7 @@ public partial class EquipmentControl : UserControl
         }
     }
 
+
     private async void OpenNakopitelWindow(object? sender, RoutedEventArgs args)
     {
         if (App.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)

@@ -12,8 +12,8 @@
              x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.Equipment.EquipmentControl">
     <ScrollViewer>
-        <Grid ColumnDefinitions="*,Auto">
-            <ListBox Grid.Row="1">
+		
+            <ListBox>
 				<!--Проботборник 1-->
 					<pb:ProbotbornikControl x:DataType="vm:MainViewModel"/>
 				<!--Питатель-->
@@ -337,6 +337,5 @@
 					</StackPanel>
 				</Grid>
             </ListBox>
-        </Grid>
     </ScrollViewer>
 </UserControl>

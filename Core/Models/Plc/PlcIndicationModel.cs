@@ -57,10 +57,10 @@
         public Parameter<bool> GlobalError { get; } = new Parameter<bool>(nameof(GlobalError), "Наличие ошибок", false, true, 146, 15) { IsOnlyRead = true };
         #endregion
         #region Статус первичного проботборника
-        public Parameter<short> ProbotborStatus1 { get; } = new Parameter<short>(nameof(ProbotborStatus1), "Статус первичного проботборника", 0, 100, 147, 0) { IsOnlyRead = true };
+        public Parameter<short> ProbotborStatus1 { get; } = new Parameter<short>(nameof(ProbotborStatus1), "Статус первичного пробоотборника", 0, 100, 147, 0) { IsOnlyRead = true };
         #endregion
         #region Статус вторичного проботборника
-        public Parameter<short> ProbotborStatus2 { get; } = new Parameter<short>(nameof(ProbotborStatus2), "Статус вторичного проботборника", 0, 100, 148, 0) { IsOnlyRead = true };
+        public Parameter<short> ProbotborStatus2 { get; } = new Parameter<short>(nameof(ProbotborStatus2), "Статус вторичного пробоотборника", 0, 100, 148, 0) { IsOnlyRead = true };
         #endregion
         #region Статус питателя
         public Parameter<short> PitatelStatus { get; } = new Parameter<short>(nameof(PitatelStatus), "Статус питателя", 0, 100, 152, 0) { IsOnlyRead = true };
