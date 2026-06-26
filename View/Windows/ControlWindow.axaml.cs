@@ -17,6 +17,7 @@ public partial class ControlWindow : Window
     private void OnOpened(object? sender, EventArgs e)
     {
         //this.WindowState = WindowState.Maximized;
+        this.InvalidateVisual();
     }
 
     private void OpenProbotborWindow(object? sender, RoutedEventArgs args)

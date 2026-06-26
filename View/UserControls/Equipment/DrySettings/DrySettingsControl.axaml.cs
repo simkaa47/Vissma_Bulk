@@ -15,6 +15,7 @@ public partial class DrySettingsControl : UserControl
     public DrySettingsControl()
     {
         InitializeComponent();
+        this.InvalidateVisual();
     }
 
 

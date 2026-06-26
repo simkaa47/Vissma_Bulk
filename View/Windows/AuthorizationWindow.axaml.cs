@@ -42,5 +42,6 @@ public partial class AuthorizationWindow : Window
     private void OnOpened(object? sender, EventArgs e)
     {
         //this.WindowState = WindowState.Maximized;
+        this.InvalidateVisual();
     }
 }

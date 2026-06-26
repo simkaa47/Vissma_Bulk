@@ -74,7 +74,7 @@
                 <eq:EquipmentControl/>
             </TabItem>
 
-            <TabItem>
+<!--            <TabItem>
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
                         <Image Source="/Assets/StorageIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
@@ -91,7 +91,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <drysettings:DrySettingsControl/>
-            </TabItem>
+            </TabItem>-->
             <TabItem>
                 <TabItem.Header >
                     <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
