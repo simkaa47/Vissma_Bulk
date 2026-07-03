@@ -48,19 +48,27 @@
         public Parameter<bool> SqBarabanHighPosition { get; } = new Parameter<bool>(nameof(SqBarabanHighPosition), "Барабан вверху", false, true, 32768, 13) { IsOnlyRead = true, RegType = Registers.Input };
         #endregion
 
-        #region Накопитель - датчик двери
-        public Parameter<bool> SqDoorNakopitel { get; } = new Parameter<bool>(nameof(SqDoorNakopitel), "Датчик двери", false, true, 32770, 11) { IsOnlyRead = true, RegType = Registers.Input, Value = true };
+        #region Накопитель 3 - датчик двери
+        public Parameter<bool> SqDoorNakopitel { get; } = new Parameter<bool>(nameof(SqDoorNakopitel), "Датчик двери", false, true, 10, 0) { IsOnlyRead = true, RegType = Registers.Input, Value = true };
         #endregion
-        #region Накопитель - датчик полного оборота
+        #region Накопитель 3 - датчик полного оборота
         public Parameter<bool> SqNakopFullRev { get; } = new Parameter<bool>(nameof(SqNakopFullRev), "Датчик полного оборота", false, true, 32770, 9) { IsOnlyRead = true, RegType = Registers.Input };
         #endregion
-        #region Накопитель - датчик ячейки
+        #region Накопитель 3 - датчик ячейки
         public Parameter<bool> SqNakopCell { get; } = new Parameter<bool>(nameof(SqNakopCell), "Датчик ячейки", false, true, 32770, 8) { IsOnlyRead = true, RegType = Registers.Input };
         #endregion
-        #region Накопитель - датчик канистры
-        public Parameter<bool> SqNakopKanistra { get; } = new Parameter<bool>(nameof(SqNakopKanistra), "Датчик канистры", false, true, 32770, 10) { IsOnlyRead = true, RegType = Registers.Input };
+        #region Накопитель 3 - датчик канистры
+        public Parameter<bool> SqNakopKanistra { get; } = new Parameter<bool>(nameof(SqNakopKanistra), "Датчик канистры", false, true, 10, 1) { IsOnlyRead = true, RegType = Registers.Input };
         #endregion
-        
+
+        #region Накопитель 10 - датчик двери
+        public Parameter<bool> SqDoorNakopitel10 { get; } = new Parameter<bool>(nameof(SqDoorNakopitel10), "Датчик двери НП10", false, true, 15, 0) { IsOnlyRead = true, RegType = Registers.Input, Value = true };
+        #endregion
+
+        #region Накопитель 10 - датчик канистры
+        public Parameter<bool> SqNakopKanistra10 { get; } = new Parameter<bool>(nameof(SqNakopKanistra), "Датчик канистры", false, true, 15, 1) { IsOnlyRead = true, RegType = Registers.Input };
+        #endregion
+
         #region Шибер - сушка выключена
         public Parameter<bool> SqDryValveOff { get; } = 
             new Parameter<bool>(nameof(SqDryValveOff), "Шибер - сушка выключена", false, true, 32771, 9){ IsOnlyRead = true, RegType = Registers.Input };

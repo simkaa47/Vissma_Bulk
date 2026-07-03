@@ -19,6 +19,10 @@ namespace Core.ViewModels
         }
 
         [ObservableProperty]
+
+        private bool _isFlooding = false;
+
+        [ObservableProperty]
         private bool _controlPageSecond;
 
         public PlcMainService PlcMainService { get; }
@@ -64,6 +68,14 @@ namespace Core.ViewModels
             PlcMainService.PlcModel.Indication.SysReturnStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
         }
 
-        
+        [RelayCommand]
+        public async void RunFlooding(object parameter)
+        {
+            if (IsFlooding)
+            {
+                WriteParameter(parameter);
+            }
+            
+        }
     }
 }

@@ -3,10 +3,18 @@
     public class PlcIndicationModel
     {
         #region Статус накопителя
-        public Parameter<short> NakopitelStatus { get; } = new Parameter<short>(nameof(NakopitelStatus), "Статус накопителя", 0, 100, 0, 0) { IsOnlyRead = true};
+        public Parameter<short> NakopitelStatus { get; } = new Parameter<short>(nameof(NakopitelStatus), "Статус накопителя", 0, 100, 11, 0) { IsOnlyRead = true};
         #endregion
+
+        #region Статус накопителя НП10
+        public Parameter<short> NakopitelStatus10 { get; } = new Parameter<short>(nameof(NakopitelStatus), "Статус накопителя", 0, 100, 16, 0) { IsOnlyRead = true };
+        #endregion
+
         #region Канистры накопителя
-        public List<Kanistra> Kanistras { get; } = Enumerable.Range(0, 8).Select(i => new Kanistra(i)).ToList();
+        public List<Kanistra> Kanistras { get; } = Enumerable.Range(0, 1).Select(i => new Kanistra(i)).ToList();
+
+        public List<Kanistra> Kanistras2 { get; } = Enumerable.Range(0, 1).Select(i => new Kanistra(i)).ToList();
+
         #endregion
         #region Номер текущей ячейки накопителя
         public Parameter<short> NakopitelCurrentCell { get; } = new Parameter<short>(nameof(NakopitelCurrentCell), "Номер текущей ячейки накопителя", 1, 8, 145, 0) { IsOnlyRead = true };
@@ -18,10 +26,10 @@
         public Parameter<bool> NakopitelBusy { get; } = new Parameter<bool>(nameof(NakopitelBusy), "Накопитель занят", false, true, 146, 1) { IsOnlyRead = true };
         #endregion
         #region Готовность первичного проботборника
-        public Parameter<bool> ProbotborReady1 { get; } = new Parameter<bool>(nameof(ProbotborReady1), "Готовность к отбору", false, true, 146, 2) { IsOnlyRead = true };
+        public Parameter<bool> ProbotborReady1 { get; } = new Parameter<bool>(nameof(ProbotborReady1), "Готовность к отбору", false, true, 0, 0) { IsOnlyRead = true };
         #endregion
         #region Первичный проботборник занят
-        public Parameter<bool> ProbotborBusy1 { get; } = new Parameter<bool>(nameof(ProbotborBusy1), "Занят", false, true, 146, 3) { IsOnlyRead = true };
+        public Parameter<bool> ProbotborBusy1 { get; } = new Parameter<bool>(nameof(ProbotborBusy1), "Занят", false, true, 0, 1) { IsOnlyRead = true };
         #endregion
         #region Готовность вторичного проботборника
         public Parameter<bool> ProbotborReady2 { get; } = new Parameter<bool>(nameof(ProbotborReady2), "Готовность к отбору", false, true, 146, 4) { IsOnlyRead = true };
@@ -57,7 +65,7 @@
         public Parameter<bool> GlobalError { get; } = new Parameter<bool>(nameof(GlobalError), "Наличие ошибок", false, true, 146, 15) { IsOnlyRead = true };
         #endregion
         #region Статус первичного проботборника
-        public Parameter<short> ProbotborStatus1 { get; } = new Parameter<short>(nameof(ProbotborStatus1), "Статус первичного пробоотборника", 0, 100, 147, 0) { IsOnlyRead = true };
+        public Parameter<short> ProbotborStatus1 { get; } = new Parameter<short>(nameof(ProbotborStatus1), "Статус пробоотборника", 0, 100, 3, 0) { IsOnlyRead = true };
         #endregion
         #region Статус вторичного проботборника
         public Parameter<short> ProbotborStatus2 { get; } = new Parameter<short>(nameof(ProbotborStatus2), "Статус вторичного пробоотборника", 0, 100, 148, 0) { IsOnlyRead = true };
@@ -87,13 +95,13 @@
         public Parameter<short> DelitelTimeCurrent { get; } = new Parameter<short>(nameof(DelitelTimeCurrent), "Текущее время делителя, с", 0, short.MaxValue, 163, 0) { IsOnlyRead = true };
         #endregion
         #region Время до следующего отбора, часов
-        public Parameter<short> TimeBeforeNextOtborHours { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborHours), "Время до следующего отбора, часов", 0, 23, 160, 0) { IsOnlyRead = true };
+        public Parameter<short> TimeBeforeNextOtborHours { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborHours), "Время до следующего отбора, часов", 0, 23, 20, 0) { IsOnlyRead = true };
         #endregion
         #region Время до следующего отбора, минут
-        public Parameter<short> TimeBeforeNextOtborMinutes { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborMinutes), "Время до следующего отбора, минут", 0, 59, 161, 0) { IsOnlyRead = true };
+        public Parameter<short> TimeBeforeNextOtborMinutes { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborMinutes), "Время до следующего отбора, минут", 0, 59, 21, 0) { IsOnlyRead = true };
         #endregion
         #region Время до следующего отбора, секунды
-        public Parameter<short> TimeBeforeNextOtborSeconds { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborSeconds), "Время до следующего отбора, секунды", 0, 59, 162, 0) { IsOnlyRead = true };
+        public Parameter<short> TimeBeforeNextOtborSeconds { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborSeconds), "Время до следующего отбора, секунды", 0, 59, 22, 0) { IsOnlyRead = true };
         #endregion
         #region Статус цикла отбора
         public Parameter<ushort> MainProcessStatus { get; } = new Parameter<ushort>(nameof(MainProcessStatus), "Статус автоматиченского отбора", 0, 10, 180, 0);

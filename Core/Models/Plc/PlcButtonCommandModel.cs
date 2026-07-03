@@ -9,6 +9,12 @@
         public Parameter<bool> ReturnCmd1 { get; } = new Parameter<bool>(nameof(ReturnCmd1), "Произвести возврат 1", false, true, 200, 7);
         #endregion
 
+        #region Набор воды
+
+        public Parameter<bool> FloodOn { get; } = new Parameter<bool>(nameof(FloodOn), "Набор воды", false, true, 228, 7); // modbusRegNum, modbusBitNum нужно заполнить
+
+        #endregion
+
         #region Произвести отбор 2
         public Parameter<bool> OtborCmd2 { get; } = new Parameter<bool>(nameof(OtborCmd2), "Произвести отбор 2", false, true, 146, 12);
         #endregion

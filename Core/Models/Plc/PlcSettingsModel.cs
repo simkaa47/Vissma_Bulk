@@ -2,9 +2,14 @@
 {
     public class PlcSettingsModel
     {
-        #region Уставка проб в канистру, шт
-        public Parameter<ushort> KanistraSv { get; } = new Parameter<ushort>(nameof(KanistraSv), "Уставка проб в канистру, шт", 1, 20, 20000, 0);
+        #region Уставка проб в канистру НП3, шт
+        public Parameter<ushort> KanistraSv { get; } = new Parameter<ushort>(nameof(KanistraSv), "Уставка проб в канистру НП3, шт", 1, 20, 4, 0);
         #endregion
+
+        #region Уставка проб в канистру НП10, шт
+        public Parameter<ushort> KanistraSv10 { get; } = new Parameter<ushort>(nameof(KanistraSv10), "Уставка проб в канистру НП10, шт", 1, 20, 5, 0);
+        #endregion
+
         #region Канстр в накопителе, шт
         public Parameter<short> NakopitelVolume { get; } = new Parameter<short>(nameof(NakopitelVolume), "Обьем накопителя, канистр", 1, 16, 20001, 0);
         #endregion
@@ -65,6 +70,11 @@
         #region Тайм-аут движения ковша проботборника 1
         public Parameter<short> ProbotbornikTimeout1 { get; } = new Parameter<short>(nameof(ProbotbornikTimeout1), "Тайм-аут движения ковша пробоотборника 1, c", 1, 100, 20050, 0);
         #endregion
+
+        #region Тайм-аут движения ковша проботборника 1
+        public Parameter<short> ProbotbornikFlushingTime { get; } = new Parameter<short>(nameof(ProbotbornikFlushingTime), "Время промывки, c", 1, 100, 2, 0);
+        #endregion
+
         #region Тайм-аут движения ковша проботборника 2
         public Parameter<short> ProbotbornikTimeout2 { get; } = new Parameter<short>(nameof(ProbotbornikTimeout2), "Тайм-аут движения ковша пробоотборника 2, c", 1, 100, 20051, 0);
         #endregion

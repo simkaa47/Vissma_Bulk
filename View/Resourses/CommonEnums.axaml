@@ -48,8 +48,8 @@
 	</scg:List>
 	<scg:List x:TypeArguments="sys:String" x:Key="ProbotborStatus">
 		<sys:String>Готов к работе</sys:String>
-		<sys:String>Готов к работе</sys:String>
-		<sys:String>Готов к работе</sys:String>
+		<sys:String>Готов в положении "Лево"</sys:String>
+		<sys:String>Готов в положении "Право"</sys:String>
 		<sys:String>Необходим возврат ковша</sys:String>
 		<sys:String>Возврат ковша</sys:String>
 		<sys:String>В работе</sys:String>
@@ -70,8 +70,9 @@
 		<sys:String>Калибровка</sys:String>
 		<sys:String>Смена канистры</sys:String>
 		<sys:String>Открыта дверь</sys:String>
-		<sys:String>Ошибка</sys:String>
 		<sys:String>Накопитель заполнен</sys:String>
+		<sys:String>Ошибка</sys:String>
+		<sys:String>Нет канистр</sys:String>
 	</scg:List>
 	<scg:List x:TypeArguments="sys:String" x:Key="DryUnitStatus">
 		<sys:String>Готов</sys:String>
