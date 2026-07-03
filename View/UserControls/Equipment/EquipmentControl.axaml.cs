@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using System;
 using View.Windows;
 
 namespace View.UserControls.Equipment;
@@ -13,6 +14,24 @@ public partial class EquipmentControl : UserControl
     {
         InitializeComponent();
     }
+
+    public event EventHandler BackRequested;
+
+    private void OnBackButtonClick(object sender, RoutedEventArgs e)
+    {
+        BackRequested?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Next(object source, RoutedEventArgs args)
+    {
+        slides.Next();
+    }
+
+    public void Previous(object source, RoutedEventArgs args)
+    {
+        slides.Previous();
+    }
+
 
     private async void OpenPitetelWindow(object? sender, RoutedEventArgs args)
     {

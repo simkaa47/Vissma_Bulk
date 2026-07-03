@@ -5,36 +5,43 @@
 			 xmlns:plc="using:Core.Models.Plc"
              xmlns:vm="using:Core.ViewModels"
 			 xmlns:par="using:View.UserControls.Parameters"
+			 xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
+			 xmlns:sys="clr-namespace:System;assembly=netstandard"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 x:Name="prob"
              x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.Equipment.Probootbor.ProbotbornikControl">
-	<Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, *, Auto">
+	<UserControl.Resources>
+
+		<ResourceDictionary>
+			<scg:List x:TypeArguments="sys:String" x:Key="WaterState">
+				<sys:String>НАБОР ВОДЫ</sys:String>
+				<sys:String>ИДЁТ НАБОР ВОДЫ...</sys:String>
+			</scg:List>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<Grid RowDefinitions="Auto, Auto, *">
 		<TextBlock Text="Пробоотборник" FontSize="18"
 				   Foreground="White"
 				   Margin="0, 5"
 				   FontWeight="Bold"
 				   VerticalAlignment="Top" 
-				   HorizontalAlignment="Left" 
+				   HorizontalAlignment="Center" 
 				   ZIndex="5"
 				   Grid.ColumnSpan="2" />
-		<Grid  VerticalAlignment="Center" HorizontalAlignment="Left" DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}" Margin="0, 5"
+		<Grid  VerticalAlignment="Top" HorizontalAlignment="Center" DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}" Margin="0, 5"
 			   Grid.Row="1"
 				x:DataType="plc:PlcIndicationModel"
 				RowDefinitions="*, Auto">
 			
 			<Image Source="{Binding ProbotborStatus1.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource ProbotbornikImageStatuses}}"
 			    Height="183" Width="275" />
-			<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-					Click="OpenProbotborWindow"/><!---->
 			<Image Source="/Assets/116.jpg" Margin="5"
 				   VerticalAlignment="Top" Height="30" Width="30"
 				   HorizontalAlignment="Left"/>
 			
 		</Grid>
-		
-
-		<StackPanel Grid.Column="1" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2">
+		<StackPanel  Orientation="Vertical" Grid.Row="2">
 	
 			<!--Статус пррботборника-->
 			<TextBlock
@@ -68,21 +75,88 @@
 				</Border>
 				<TextBlock Text="c"/>
 			</StackPanel>
-			
+			<!--Скорость ПЧ проботборника-->
+			<par:NumericParameter Margin="10, 5"
+								  DescriptionInvisible="False"
+								  ParamWidth="80"
+							  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}"
+							  />
+			<!--Время сбора в одну канистру-->
+			<par:NumericParameter Margin="10, 5"
+								  ParamWidth="80"
+								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
+								  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DescriptionInvisible="False"/>
 			<!--Индикаторы-->
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
 							   DescriptionInvisible="False"
-							   />			
+							   Margin="5, 5, 0, 2"/>			
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHome1}"
 							   DescriptionInvisible="False"
-							   />
+							   Margin="5, 2"/>
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWork1}"
 							   DescriptionInvisible="False"
-							   />
+							   Margin="5, 2"/>
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWorkAbort1}"
 							   DescriptionInvisible="False"
-							   />
+							   Margin="5, 2, 5, 0"/>
+			<StackPanel Orientation="Vertical"
+						Width="300"
+						HorizontalAlignment="Left"
+					Margin="5"
+					VerticalAlignment="Top">
+			<!--Кнопка Отбор-->
+				<Button Background="Transparent" 
+						Margin="0, 5"
+						HorizontalAlignment="Stretch"
+						BorderBrush="Aquamarine"
+						BorderThickness="1"
+
+						CornerRadius="12"
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OtborCmd1}">
+					<Button.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/PlayIcon.png" Width="32" Height="32"/>
+							<TextBlock Text="ОТОБРАТЬ ЕДИНИЧНУЮ ПРОБУ" TextWrapping="Wrap" Foreground="White" Margin="5"/>
+						</StackPanel>
+					</Button.Content>
+
+				</Button>	
+			<!--Кнопка Возврат ковша-->
+
+				<Button Background="Transparent"
+						BorderBrush="Aquamarine"
+						Margin="0, 5"
+						BorderThickness="1"
+						HorizontalAlignment="Stretch"
+						CornerRadius="12"
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}"><!--IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}"-->
+					<Button.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/BackIcon.png" Width="32" Height="32"/>
+							<TextBlock Text="ВОЗВРАТ КОВША" Foreground="White" Margin="5"/>
+						</StackPanel>
+					</Button.Content>
+
+				</Button>
+			<!--Кнопка набор воды-->
+					<ToggleButton x:Name="WaterButton"
+								  IsChecked="{Binding PlcViewModel.IsFlooding}"
+								  HorizontalAlignment="Stretch"
+								  Margin="0, 5"
+								  Command="{Binding PlcViewModel.RunFlooding}"
+								  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}">
+					<ToggleButton.Content> <!--Interval="100"-->
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/WaterIcon.png" Width="32" Height="32"/>
+							<TextBlock x:Name="ButtonText" Text="{Binding PlcViewModel.IsFlooding, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource WaterState}}" Foreground="White" Margin="5"/>
+						</StackPanel>
+					</ToggleButton.Content>
+				</ToggleButton>
+		</StackPanel>
 		</StackPanel>
 	</Grid>
-
 </UserControl>

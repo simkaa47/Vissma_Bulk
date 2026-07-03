@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:nakopitel="using:View.UserControls.Equipment.Nakopitel"
 			 xmlns:plc="using:Core.Models.Plc"
 			 xmlns:pb="using:View.UserControls.Equipment.Probootbor"
 			 xmlns:par="using:View.UserControls.Parameters"
@@ -11,331 +12,52 @@
 			 x:Name="equip"
              x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.Equipment.EquipmentControl">
-    <ScrollViewer>
-		
-            <ListBox>
-				<!--Проботборник 1-->
-					<pb:ProbotbornikControl x:DataType="vm:MainViewModel"/>
-				<!--Питатель-->
-				<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
-					<TextBlock Text="Питатель" FontSize="18"
-							Foreground="White"
-							Margin="0, 5"
-							FontWeight="Bold"
-							VerticalAlignment="Top" 
-							HorizontalAlignment="Left" 
-							ZIndex="5"
-							Grid.ColumnSpan="2" />
-					<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left" 
-						  Grid.Row="1"
-						  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
-						  x:DataType="plc:PlcIndicationModel">
-						<Image Source="{Binding PitatelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource PitatelImageStatuses}}"
-							   Height="183" Width="275"/>
-						<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-								Click="OpenPitetelWindow"/>
-						<Image Source="/Assets/117.jpg" Margin="5"
-							   VerticalAlignment="Top" 
-							   Height="30" Width="30"
-							   HorizontalAlignment="Left"/>
-					</Grid>
-					<StackPanel VerticalAlignment="Top" 
-								Grid.Row="1"
-								Grid.Column="1"
-								HorizontalAlignment="Stretch"
-								DockPanel.Dock="Right">
-						<TextBlock Margin="10, 5"
-								   Foreground="White" FontSize="18"
-								   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.PitatelStatus.Value, 
-								   Converter={StaticResource GetByIndexFromParameterConverter},
-								   ConverterParameter={StaticResource UniversalStatus}}"/>
-						<!--Текущее время работы-->
-						<DockPanel HorizontalAlignment="Stretch">
-							<TextBlock Text="Текущее время питателя, с" DockPanel.Dock="Left" Margin="10, 0"/>
-							<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.PitatelTimeCurrent.Value}" DockPanel.Dock="Right"
-									   HorizontalAlignment="Right"
-									   Margin="0,0,30,0" 
-									   FontWeight="Bold"
-									   Foreground="White"/>
-						</DockPanel>
-					</StackPanel>
-				</Grid>
-				<!--Дробилка-->
-				<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
-					<TextBlock Text="Дробилка" FontSize="18"
-							   Foreground="White"
-							   Margin="0, 5"
-							   FontWeight="Bold"
-							   VerticalAlignment="Top" 
-							   HorizontalAlignment="Left" 
-							   ZIndex="5"
-							   Grid.ColumnSpan="2" />
-					<Grid Height="183" Width="275" 
-						  VerticalAlignment="Bottom" HorizontalAlignment="Left" 
-						  Grid.Row="1"
-						  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
-						  x:DataType="plc:PlcIndicationModel">
-					<Image Source="{Binding DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DrobilkaImageStatuses}}"
-						   Height="183" Width="275"/>
-					<!--<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-							Click="OpenDrobilkaWindow"/>-->
-					<Image Source="/Assets/118.jpg" Margin="5"
-						   VerticalAlignment="Top" 
-						   Height="30" Width="30"
-						   HorizontalAlignment="Left"/>
-					</Grid>
-					<StackPanel Grid.Column="1" Grid.Row="1" Margin="10, 0">
-						<!--Индикатор дробилки-->
-						<TextBlock Foreground="White" FontSize="18"
-								   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DrobilkaStatus.Value, 
-								   Converter={StaticResource GetByIndexFromParameterConverter},
-								   ConverterParameter={StaticResource UniversalStatus}}"/>
-						<Button Height="70" Width="238" 
-								Background="Transparent"
-								Foreground="White"
-								Command="{Binding PlcViewModel.WriteParameterCommand}"
-								CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DrobilkaOn}">
-							<Button.Content>
-								<StackPanel Orientation="Horizontal">
-									<Image Source="/Assets/108.jpg" Width="32" Height="32"/>
-									<TextBlock Text="ЗАПУСТИТЬ ДРОБИЛКУ" Foreground="White" Margin="5" VerticalAlignment="Center"/>
-								</StackPanel>
-							</Button.Content>
-						</Button>
-					</StackPanel>
-				</Grid>
-				<!--Делитель-->
-				<del:DelitelControl/>
-				<!--Сушилка-->
-				<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
-					<TextBlock Text="Сушилка" FontSize="18"
-							   Margin="0, 5"
-							   Foreground="White"
-							   FontWeight="Bold"
-							   VerticalAlignment="Top" 
-							   HorizontalAlignment="Left" 
-							   ZIndex="5"
-							   Grid.ColumnSpan="2" />
-					<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left"
-						  Grid.Row="1"
-						  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
-						  x:DataType="plc:PlcIndicationModel">
-						<Image Source="{Binding DryUnitStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
-						    Height="183" Width="275" />
-						<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-								Click="OpenDryWindow"/>
-						<Image Source="/Assets/120.jpg" Margin="5"
-							   VerticalAlignment="Top" 
-							   Height="30" Width="30"
-							   HorizontalAlignment="Left"/>
-					</Grid>
-					<StackPanel Grid.Column="1" Grid.Row="1" Margin="10, 5">
-						<!--Статус сушки-->
-						<TextBlock Foreground="White" FontSize="18"
-								   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
-								   Converter={StaticResource GetByIndexFromParameterConverter}, 
-								   ConverterParameter={StaticResource DryUnitStatus}}"/>
-						<!--Текущая температура-->
-						<DockPanel Margin="0,5">
-							<TextBlock Text="Текущая температура"/>
-							<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitCurrentTemperature.Value}" 
-									   Margin="0, 0, 30, 0"
-									   Foreground="White"
-									   FontWeight="Bold"
-									   HorizontalAlignment="Right"/>
-						</DockPanel>
+    <Panel>
 
-						<!--Текущее время сушки-->
-						<DockPanel Margin="0, 5">
-							<TextBlock Text="Текущее время сушки"/>
-							<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryCurrentTime.Value}" 
-									   Margin="0, 0, 30, 0"
-									   FontWeight="Bold"
-									   Foreground="White"
-									   HorizontalAlignment="Right"/>
-						</DockPanel>
+		<Carousel IsSwipeEnabled="True" x:Name="slides">
+			<Carousel.PageTransition>
+				<CompositePageTransition>
+					<PageSlide Duration="0:00:00.50" Orientation="Horizontal"/>
+				</CompositePageTransition>
+			</Carousel.PageTransition>
+			<Carousel.Items>
 
-					</StackPanel>
-				</Grid>
+			<!--Проботборник 1-->
+			<pb:ProbotbornikControl x:DataType="vm:MainViewModel" Background="Transparent"/>
+			<!--Накопитель-->
 
-				<!--Истиратель-->
-				<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
-					<TextBlock Text="Истиратель" FontSize="18"
-							   Margin="0, 5"
-							   Foreground="White"
-							   FontWeight="Bold"
-							   VerticalAlignment="Top" 
-							   HorizontalAlignment="Left" 
-							   ZIndex="5"
-							   Grid.ColumnSpan="2" />
-					<Grid Height="183" Width="275" VerticalAlignment="Top" HorizontalAlignment="Left" 
-						  Grid.Row="1"
-						  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
-						  x:DataType="plc:PlcIndicationModel">
-						<Image Source="{Binding IstiratelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource IstiratelImageStatuses}}"
-							   Height="183" Width="275"/>
-						<!--<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-								Click="OpenIstiratelWindow"/>--> 
-						<Image Source="/Assets/121.jpg" Margin="5"
-							   VerticalAlignment="Top" Height="30" Width="30"
-							   HorizontalAlignment="Left"/>
-					</Grid>
-					<StackPanel Grid.Column="1" Grid.Row="1" Margin="10,5">
-						<!--Статус дробилки-->
-						<TextBlock Foreground="White" 
-								   FontSize="18"
-								   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.IstiratelStatus.Value, 
-								   Converter={StaticResource GetByIndexFromParameterConverter}, 
-								   ConverterParameter={StaticResource UniversalStatus}}"/>
-						<!--Время работы истирателя-->
-						<par:NumericParameter Margin="0,5,5,0"
-											  ParamWidth="40"
-											  Command="{Binding #equip.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-											  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.IstiratelWorkTime}"
-											  DescriptionInvisible="False"/>
-						<!--Текущее время работы истрирателя-->
-						<DockPanel Margin="0, 5">
-							<TextBlock Text="Текущее время работы"/>
-							<TextBlock  Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.IstiratelTimeCurrent.Value}"
-										HorizontalAlignment="Right"
-										FontWeight="Bold"
-										Margin="0,0,25,0" 
-										DockPanel.Dock="Right"
-									Foreground="White"/>
-						</DockPanel>
+				<nakopitel:NakopitelControl Background="Transparent" x:DataType="vm:MainViewModel"/>
+<!--				--><!-- Назад в систему --><!--
+				<Button Content="Назад" 
+						Background="Transparent"
+				        Click="OnBackButtonClick" 
+				        HorizontalAlignment="Left" 
+				        VerticalAlignment="Top" 
+				        Margin="10"/>-->
+						<nakopitel:NakopitelControl2 Background="Transparent" x:DataType="vm:MainViewModel"/>
+			</Carousel.Items>
+			
+		</Carousel>
+		<Panel Margin="20">
+			<Button Width="40" Height="80" 
+					Margin="0, 60"
+					VerticalAlignment="Top"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+					Click="Previous">&lt;</Button>
+			<Button Width="40" Height="80" Click="Next"
+					Margin="0, 60"
+					VerticalAlignment="Top"
+					VerticalContentAlignment="Center"
+					HorizontalContentAlignment="Center"
+			        HorizontalAlignment="Right">&gt;</Button>
+			<!-- Назад в систему -->
+			<Button Content="Назад к системе" 
+			        Click="OnBackButtonClick" 
+			        HorizontalAlignment="Right" 
+			        VerticalAlignment="Bottom" 
+			        />
+		</Panel>
 
-						<!--Кнопка Пуск-->
-						<Button Height="70" Width="238" 
-								Background="Transparent"
-								Command="{Binding PlcViewModel.WriteParameterCommand}"
-								CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.IstiratelCmd}">
-							<Button.Content>
-								<StackPanel Orientation="Horizontal">
-									<Image Source="/Assets/108.jpg" Width="32" Height="32"/>
-									<TextBlock Text="ЗАПУСК ИСТИРАТЕЛЯ" Foreground="White" Margin="5" VerticalAlignment="Center"/>
-								</StackPanel>
-							</Button.Content>
-						</Button>
-					</StackPanel>
-				</Grid>
-
-				<!--Накопитель-->
-				<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
-					<TextBlock Text="Накопитель" 
-							   Margin="0, 5"
-							   FontSize="18"
-							   Foreground="White"
-							   FontWeight="Bold"
-							   VerticalAlignment="Top" 
-							   HorizontalAlignment="Left" 
-							   ZIndex="5"
-							   Grid.ColumnSpan="2" />
-					<Grid Height="183" Width="275" VerticalAlignment="Bottom" HorizontalAlignment="Left" 
-						  Grid.Row="1"
-						  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
-						  x:DataType="plc:PlcIndicationModel">
-						<Image Source="{Binding NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
-						    Height="183" Width="275"/>
-						<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-								Click="OpenNakopitelWindow"/> <!---->
-						<Image Source="/Assets/122.jpg" Margin="5"
-							   VerticalAlignment="Top" Height="30" Width="30"
-							   HorizontalAlignment="Left"/>
-					</Grid>
-					<StackPanel Grid.Column="1" Grid.Row="1" Margin="10, 5">
-						<!--Статус накопителя-->
-						<TextBlock
-							Foreground="White" FontSize="18"
-							Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, 
-							Converter={StaticResource GetByIndexFromParameterConverter}, 
-							ConverterParameter={StaticResource NakopStatus}}"/>
-						<DockPanel Margin="0, 5">
-						    <TextBlock Text="Текущая канистра: "/>
-						    <DockPanel HorizontalAlignment="Right">
-						        <!--Номер канистры-->
-						        <TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelCurrentCell.Value, StringFormat={}{0:d2}}" 
-						                   FontWeight="Bold"
-						                   Foreground="White"/>
-						        <TextBlock Text=" из " />
-						        <!--кол-во канистр-->
-						        <TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.NakopitelVolume.Value, StringFormat={}{0:d2}}" 
-						                   FontWeight="Bold"
-						                   Foreground="White"/>
-							</DockPanel>
-						    
-						</DockPanel>
-						<!--Дверь закрта-->
-						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel}"
-						                   Margin="0, 5"
-										   DescriptionInvisible="False"/>
-
-					</StackPanel>
-				</Grid>
-				
-				<!--Возврат-->
-				<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
-					<TextBlock Text="Возврат проб" 
-							   FontSize="18"
-							   Foreground="White"
-							   FontWeight="Bold"
-							   VerticalAlignment="Top" 
-							   HorizontalAlignment="Left" 
-							   ZIndex="5"
-							   Grid.ColumnSpan="2" />
-					<Grid Height="183" Width="275"
-						  VerticalAlignment="Bottom"
-						  HorizontalAlignment="Left" 
-						  Grid.Row="1"						  
-						  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
-						  x:DataType="plc:PlcIndicationModel">
-						<Image Source="{Binding SysReturnStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource SysRetImageStatuses}}"
-							   Height="183" Width="275"/>
-						<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-								/><!--Click="OpenSysReturnWindow"-->
-						<Image Source="/Assets/123.jpg" Margin="5"
-							   VerticalAlignment="Top" 
-							   Height="30" Width="30"
-							   HorizontalAlignment="Left"/>
-					</Grid>
-					<StackPanel Grid.Column="1" Grid.Row="1" Margin="10, 5">
-						<!--Статус-->
-						<TextBlock Foreground="White"
-								   FontSize="18"
-								   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.SysReturnStatus.Value, 
-								   Converter={StaticResource GetByIndexFromParameterConverter}, 
-								   ConverterParameter={StaticResource UniversalStatus}}"/>
-						<!--Время работы-->
-						<DockPanel Margin="0, 5">
-							<TextBlock Text="Задать время работы, с"/>
-							<par:NumericParameter ParamWidth="50"
-												  Margin="0, 0, 10, 0"
-												  Command="{Binding #equip.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.SysReturnWorkTime}"
-												  DescriptionInvisible="True"/>
-						</DockPanel>
-						<!--Текущее время работы-->
-						<DockPanel Margin="0, 5">
-							<TextBlock Text="Текущее время работы, с" HorizontalAlignment="Left"/>
-							<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.SysReturnTimeCurrent.Value}"
-									   Margin="0,0,30,0" 
-									   FontWeight="Bold"
-									   HorizontalAlignment="Right"
-									   Foreground="White"/>
-						</DockPanel>
-						<!--Кнопка Пуск-->
-						<Button Height="70" Width="238" 
-								Background="Transparent"
-								Command="{Binding PlcViewModel.WriteParameterCommand}"
-								CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.SysReturnCmd}">
-							<Button.Content>
-								<StackPanel Orientation="Horizontal">
-									<Image Source="/Assets/108.jpg" Width="32" Height="32"/>
-									<TextBlock Text="ЗАПУСК ВОЗВРАТА ПРОБ" Margin="5" Foreground="White" VerticalAlignment="Center"/>
-								</StackPanel>
-							</Button.Content>
-						</Button>
-					</StackPanel>
-				</Grid>
-            </ListBox>
-    </ScrollViewer>
+    </Panel>
 </UserControl>
