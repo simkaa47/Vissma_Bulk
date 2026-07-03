@@ -8,16 +8,7 @@
              x:Class="View.UserControls.HighBar.HighBar"
              x:DataType="vm:MainViewModel">
 	<Canvas Width="768" Height="83">
-		<TextBlock Canvas.Top="40"
-		           Margin="12,5"
-		           
-		           MaxWidth="120"
-		           Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitMode.Value, 
-		           Converter={StaticResource IfTrueConverter}, 
-		           ConverterParameter={StaticResource AutoModes}}"
-		           TextWrapping="Wrap"/>
-		<!--Индикатор режима с сушкой или без-->
-		
+	
 		<!--Кнопка Logout-->
 		<Button Canvas.Top="0" Canvas.Left="699" Width="69" Height="83"
 				Click="LogoutClick" Background="Transparent">
@@ -47,20 +38,6 @@
 				</StackPanel>
 			</Button.Content>
 		</Button>
-		<!--Показания влагомера-->
-		<TextBlock Text="Показания влагомера, %"
-				   Foreground="White"
-				   FontSize="12"
-				   Width="75"
-				   TextWrapping="Wrap"
-				   Canvas.Left="562" Canvas.Top="45"/>
-		<Border Background="White" Canvas.Left="645" Canvas.Top="45"
-				Height="30" Width="45">
-			<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.CurrentHumm.Value, StringFormat={}{0:0.0}}"
-					   VerticalAlignment="Center"
-					   Foreground="Black"
-					   HorizontalAlignment="Center"/>
-		</Border>
 		<!--Время-->
 		<Border Canvas.Left="572" Canvas.Top="15" Width="59" Height="27">
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -91,9 +68,6 @@
 				</TextBlock.Text>
 			</TextBlock>
 		</Border>
-		<!--Общая ошибка-->
-<!--		<Image Source="..\..\Assets\109.jpg" Canvas.Top="9" Canvas.Left="229" Width="240" Height="83"
-			   IsVisible="True"/>--> <!-- {Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}  -->
 			<Border Background="Red" Padding="10" Canvas.Top="9" Canvas.Left="241" Width="220" Height="83"
 					IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}">
 				<Grid>
@@ -163,7 +137,7 @@
 				</StackPanel>
 			</Button.Content>
 		</Button>
-		<Image Source="..\..\Assets\Logo_Konvels_blue.png" Width="120" Height="52" Margin="5, 0, 0, 0"/>
+		<Image Source="..\..\Assets\Logo_Konvels_blue.png" Canvas.Top="20" Width="120" Height="52" Margin="5, 0, 0, 0"/>
 	</Canvas>
 	
 </UserControl>

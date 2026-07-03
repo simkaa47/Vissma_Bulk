@@ -15,7 +15,7 @@ namespace Core.Services.Plc
                     EthernetSettings = new EthernetSettings
                     {
                         Ip = "127.0.0.1",
-                        Port = 502
+                        Port = 503
                     }
                 }
             };
