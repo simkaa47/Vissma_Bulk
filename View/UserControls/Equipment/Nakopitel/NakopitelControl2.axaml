@@ -9,10 +9,10 @@
              x:CompileBindings="False"
 		     x:DataType="vm:MainViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="View.UserControls.Equipment.Nakopitel.NakopitelControl">
+             x:Class="View.UserControls.Equipment.Nakopitel.NakopitelControl2">
     
     <Grid RowDefinitions="Auto, Auto, Auto, *">
-        <TextBlock Text="Накопитель НП25" 
+        <TextBlock Text="Накопитель НП10" 
 							   Margin="0, 5"
 							   FontSize="18"
 							   Foreground="White"
@@ -25,53 +25,53 @@
 						  Grid.Row="1"
 						  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Indication}"
 						  x:DataType="plc:PlcIndicationModel">
-						<Image Source="{Binding NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
+						<Image Source="{Binding NakopitelStatus10.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
 						    Height="183" Width="275"/>
 
-						<Image Source="/Assets/117.jpg" Margin="5"
+						<Image Source="/Assets/118.jpg" Margin="5"
 							   VerticalAlignment="Top" Height="30" Width="30"
 							   HorizontalAlignment="Left"/>
-					</Grid>
+		</Grid>
         <StackPanel Grid.Column="1" Margin="10" Grid.Row="3">
-                <!--Статус накопителя-->
+            <!--Статус накопителя-->
 			<TextBlock
 				Foreground="White" FontSize="18"
-					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, 
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus10.Value, 
 					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource NakopStatus}}"/>
 			<!--Предельное кол-во проб в канистре-->
 			<par:NumericParameter ParamWidth="50"
                                   Margin="0, 5"
                                   Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-                                  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.KanistraSv}"
+                                  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.KanistraSv10}"
                                   DescriptionInvisible="False"/>
 			
 			<!--Дверь закрта-->
-			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel}"
+			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel10}"
                                Margin="0, 5"
 							   DescriptionInvisible="False"/>
 
             </StackPanel>
-        <Grid Grid.Row="0" ColumnDefinitions="Auto, *" RowDefinitions="*, Auto" Grid.ColumnSpan="2" IsVisible="False">
-            <!--Индикатор-->
+        <!--<Grid Grid.Row="0" ColumnDefinitions="Auto, *" RowDefinitions="*, Auto" Grid.ColumnSpan="2" IsVisible="False">
+            --><!--Индикатор--><!--
 			<Image HorizontalAlignment="Stretch" Margin="10"
-                   Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
+                   Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus10.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
 					Height="183" Width="276"/>
             
             <StackPanel Grid.Column="1" Margin="10">
-                <!--Статус накопителя-->
+                --><!--Статус накопителя--><!--
 			<TextBlock
 				Foreground="White" FontSize="18"
-					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus.Value, 
+					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus10.Value, 
 					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource NakopStatus}}"/>
-			<!--Скорость ПЧ-->
+			--><!--Скорость ПЧ--><!--
 			<par:NumericParameter ParamWidth="50"
                                   Margin="0, 5"
                                   Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
                                   DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[3]}"
                                   DescriptionInvisible="False"/>
-			<!--Предельное кол-во проб в канистре-->
+			--><!--Предельное кол-во проб в канистре--><!--
 			<par:NumericParameter ParamWidth="50"
                                   Margin="0, 5"
                                   Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
@@ -81,24 +81,24 @@
             <DockPanel Margin="0, 5">
                 <TextBlock Text="Текущая канистра: "/>
                 <DockPanel HorizontalAlignment="Right">
-                    <!--Номер канистры-->
+                    --><!--Номер канистры--><!--
                     <TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelCurrentCell.Value, StringFormat={}{0:d2}}" 
                                FontWeight="Bold"
                                Foreground="White"/>
                     <TextBlock Text=" из " />
-                    <!--кол-во канистр-->
+                    --><!--кол-во канистр--><!--
 			        <TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.NakopitelVolume.Value, StringFormat={}{0:d2}}" 
                                FontWeight="Bold"
                                Foreground="White"/>
                 </DockPanel>
                 
             </DockPanel>
-			<!--Дверь закрта-->
+			--><!--Дверь закрта--><!--
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel}"
                                Margin="0, 5"
 							   DescriptionInvisible="False"/>
             </StackPanel>
-        </Grid>
+        </Grid>-->
         
         <!--Канистры-->
 		<DataGrid ItemsSource="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras}"
@@ -197,6 +197,6 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-
     </Grid>
 </UserControl>
+
