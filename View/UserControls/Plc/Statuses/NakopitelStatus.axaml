@@ -33,7 +33,7 @@
 							<TextBlock Text="Наличие канистры" TextWrapping="Wrap" />
 						</DataGridTextColumn.Header>
 					</DataGridTextColumn>
-					<DataGridTextColumn Binding="{Binding Id.Value}" Header="Id пробы"/>
+					<!--<DataGridTextColumn Binding="{Binding Id.Value}" Header="Id пробы"/>-->
 					<DataGridTextColumn Binding="{Binding ProbeCnt.Value}"
 										Width="110"
 										IsReadOnly="True">

@@ -4,6 +4,8 @@ using Avalonia.Interactivity;
 using Core.Models.AccesControl;
 using Core.ViewModels;
 using System;
+using View.Utilites;
+using View.ViewModels;
 
 namespace View.Windows;
 
@@ -31,6 +33,15 @@ public partial class AuthorizationWindow : Window
                 {
                     DataContext = this.DataContext
                 };
+                if (this.DataContext is not null && this.DataContext is MainViewModel main)
+                {
+                    if (main.EventsVm is null)
+                    {
+                        var eventVm = App.Current.CreateInstance<EventViewModel>();
+                        main.EventsVm = eventVm;
+                    }
+
+                }
                 desktop.MainWindow.Show();
                 this.Close();
 

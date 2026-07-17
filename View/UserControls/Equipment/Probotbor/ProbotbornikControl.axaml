@@ -12,7 +12,6 @@
              x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.Equipment.Probootbor.ProbotbornikControl">
 	<UserControl.Resources>
-
 		<ResourceDictionary>
 			<scg:List x:TypeArguments="sys:String" x:Key="WaterState">
 				<sys:String>НАБОР ВОДЫ</sys:String>
@@ -39,10 +38,8 @@
 			<Image Source="/Assets/116.jpg" Margin="5"
 				   VerticalAlignment="Top" Height="30" Width="30"
 				   HorizontalAlignment="Left"/>
-			
 		</Grid>
 		<StackPanel  Orientation="Vertical" Grid.Row="2">
-	
 			<!--Статус пррботборника-->
 			<TextBlock
 				Foreground="White" FontSize="18" Margin="10, 0"
@@ -75,19 +72,51 @@
 				</Border>
 				<TextBlock Text="c"/>
 			</StackPanel>
-			<!--Скорость ПЧ проботборника-->
+<!--			--><!--Скорость ПЧ проботборника--><!--
 			<par:NumericParameter Margin="10, 5"
 								  DescriptionInvisible="False"
 								  ParamWidth="80"
 							  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}"
-							  />
+							  />-->
 			<!--Время сбора в одну канистру-->
-			<par:NumericParameter Margin="10, 5"
+			<DropDownButton Content="Настройки" Margin="10, 5">
+				<DropDownButton.Flyout>
+				    <Flyout Placement="BottomEdgeAlignedLeft" >
+				        <ListBox>
+							<par:NumericParameter Margin="10, 5"
 								  ParamWidth="80"
 								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
 								  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 								  DescriptionInvisible="False"/>
+							<par:NumericParameter Margin="10,5"
+												  ParamWidth="80"
+												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.SpeedProb}"
+												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+												  DescriptionInvisible="False"/>
+							<!--Время между отборами-->
+							<par:NumericParameter Margin="10,5"
+									  ParamWidth="80"
+									  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeBetweenOtbor}"
+									  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+									  DescriptionInvisible="False"/>
+							<!--Время промывки-->
+							<par:NumericParameter Margin="10,5"
+												  ParamWidth="80"
+												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.ProbFlushingTime}"
+												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+												  DescriptionInvisible="False"/>
+							<!--Задержка определения потока-->
+							<par:NumericParameter Margin="10,5"
+												  ParamWidth="80"
+												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DelayFlowDefining}"
+												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+												  DescriptionInvisible="False"/>
+						
+				        </ListBox>
+				    </Flyout>
+				</DropDownButton.Flyout>
+			</DropDownButton>
 			<!--Индикаторы-->
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
 							   DescriptionInvisible="False"
@@ -104,15 +133,14 @@
 			<StackPanel Orientation="Vertical"
 						Width="300"
 						HorizontalAlignment="Left"
-					Margin="5"
-					VerticalAlignment="Top">
+						Margin="5"						
+						VerticalAlignment="Top">
 			<!--Кнопка Отбор-->
 				<Button Background="Transparent" 
 						Margin="0, 5"
 						HorizontalAlignment="Stretch"
 						BorderBrush="Aquamarine"
 						BorderThickness="1"
-
 						CornerRadius="12"
 						Command="{Binding PlcViewModel.WriteParameterCommand}"
 						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.OtborCmd1}">
@@ -122,25 +150,23 @@
 							<TextBlock Text="ОТОБРАТЬ ЕДИНИЧНУЮ ПРОБУ" TextWrapping="Wrap" Foreground="White" Margin="5"/>
 						</StackPanel>
 					</Button.Content>
-
 				</Button>	
 			<!--Кнопка Возврат ковша-->
-
 				<Button Background="Transparent"
 						BorderBrush="Aquamarine"
 						Margin="0, 5"
 						BorderThickness="1"
 						HorizontalAlignment="Stretch"
 						CornerRadius="12"
+						IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}"
 						Command="{Binding PlcViewModel.WriteParameterCommand}"
-						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}"><!--IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus1.Value, Converter={StaticResource IfEqualConverter}, ConverterParameter=3}"-->
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}">
 					<Button.Content>
 						<StackPanel Orientation="Horizontal">
 							<Image Source="/Assets/BackIcon.png" Width="32" Height="32"/>
 							<TextBlock Text="ВОЗВРАТ КОВША" Foreground="White" Margin="5"/>
 						</StackPanel>
 					</Button.Content>
-
 				</Button>
 			<!--Кнопка набор воды-->
 					<ToggleButton x:Name="WaterButton"
@@ -148,7 +174,7 @@
 								  HorizontalAlignment="Stretch"
 								  Margin="0, 5"
 								  Command="{Binding PlcViewModel.RunFlooding}"
-								  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.ReturnCmd1}">
+								  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.FloodOn}">
 					<ToggleButton.Content> <!--Interval="100"-->
 						<StackPanel Orientation="Horizontal">
 							<Image Source="/Assets/WaterIcon.png" Width="32" Height="32"/>

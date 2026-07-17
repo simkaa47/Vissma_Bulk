@@ -44,6 +44,12 @@ namespace Core.Models.Events
         private string? _message;
         #endregion
 
+
+        #region Advice
+        [ObservableProperty]
+        private string? _advice;
+        #endregion
+
         #region Уровень доступа
         [ObservableProperty]
         public UserAccessLevel _level;

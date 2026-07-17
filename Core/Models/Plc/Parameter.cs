@@ -32,6 +32,10 @@ namespace Core.Models.Plc
         [ObservableProperty]
         private int _length;
 
+        [ObservableProperty]
+        private string _advice = "";
+
+
         public string Id { get; set; }
         public bool IsReadOnly { get; }
 

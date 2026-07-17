@@ -3,7 +3,7 @@
     public class PlcButtonCommandModel
     {
         #region Произвести отбор 1
-        public Parameter<bool> OtborCmd1 { get; } = new Parameter<bool>(nameof(OtborCmd1), "Произвести отбор 1", false, true, 200, 5);
+        public Parameter<bool> OtborCmd1 { get; } = new Parameter<bool>(nameof(OtborCmd1), "Произвести отбор 1", false, true, 9, 0);
         #endregion
         #region Произвести возврат 1
         public Parameter<bool> ReturnCmd1 { get; } = new Parameter<bool>(nameof(ReturnCmd1), "Произвести возврат 1", false, true, 200, 7);
@@ -11,7 +11,7 @@
 
         #region Набор воды
 
-        public Parameter<bool> FloodOn { get; } = new Parameter<bool>(nameof(FloodOn), "Набор воды", false, true, 228, 7); // modbusRegNum, modbusBitNum нужно заполнить
+        public Parameter<bool> FloodOn { get; } = new Parameter<bool>(nameof(FloodOn), "Набор воды", false, true, 0, 1); // modbusRegNum, modbusBitNum нужно заполнить
 
         #endregion
 
@@ -80,7 +80,7 @@
         #endregion
 
         #region Сбросить ошибки
-        public Parameter<bool> RstCmd { get; } = new Parameter<bool>(nameof(RstCmd), "Сброс ошибок", false, true, 200, 2);
+        public Parameter<bool> RstCmd { get; } = new Parameter<bool>(nameof(RstCmd), "Сброс ошибок", false, true, 9, 1);
         #endregion
 
         #region Синхронизироватб время

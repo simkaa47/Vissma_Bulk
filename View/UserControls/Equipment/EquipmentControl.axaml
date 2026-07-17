@@ -27,14 +27,7 @@
 			<!--Накопитель-->
 
 				<nakopitel:NakopitelControl Background="Transparent" x:DataType="vm:MainViewModel"/>
-<!--				--><!-- Назад в систему --><!--
-				<Button Content="Назад" 
-						Background="Transparent"
-				        Click="OnBackButtonClick" 
-				        HorizontalAlignment="Left" 
-				        VerticalAlignment="Top" 
-				        Margin="10"/>-->
-						<nakopitel:NakopitelControl2 Background="Transparent" x:DataType="vm:MainViewModel"/>
+				<nakopitel:NakopitelControl2 Background="Transparent" x:DataType="vm:MainViewModel"/>
 			</Carousel.Items>
 			
 		</Carousel>

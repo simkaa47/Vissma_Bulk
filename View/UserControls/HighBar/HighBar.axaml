@@ -21,7 +21,7 @@
 			</Button.Content>
 		</Button>
 		<!--Кнопка Reset-->
-		<Button Canvas.Top="8" Canvas.Left="459" Width="91" Height="83"
+		<Button Canvas.Top="0" Canvas.Left="459" Width="91" Height="83"
 				CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.RstCmd}"
 				Command="{Binding PlcViewModel.WriteParameterCommand}"
 				Background="Transparent">
@@ -39,10 +39,10 @@
 			</Button.Content>
 		</Button>
 		<!--Время-->
-		<Border Canvas.Left="572" Canvas.Top="15" Width="59" Height="27">
-			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+		<Border Canvas.Left="580" Canvas.Top="45" Width="110" Height="20">
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18">
 				<TextBlock.Text>
-					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:t}">
+					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:HH:mm:ss}">
 						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeYear.Value"/>
 						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeMonth.Value"/>
 						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeDay.Value"/>
@@ -54,10 +54,10 @@
 			</TextBlock>
 		</Border>
 		<!--Дата-->
-		<Border Canvas.Left="635" Canvas.Top="15" Width="59" Height="27">
-			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">
+		<Border Canvas.Left="580" Canvas.Top="15" Width="110" Height="20">
+			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18">
 				<TextBlock.Text>
-					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:d}">
+					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:dd.MM.yyyy}">
 						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeYear.Value"/>
 						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeMonth.Value"/>
 						<Binding Path="PlcViewModel.PlcMainService.PlcModel.Indication.CurrentPlcTimeDay.Value"/>
@@ -68,8 +68,8 @@
 				</TextBlock.Text>
 			</TextBlock>
 		</Border>
-			<Border Background="Red" Padding="10" Canvas.Top="9" Canvas.Left="241" Width="220" Height="83"
-					IsVisible="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}">
+			<Border Background="Red" Padding="10" Canvas.Top="0" Canvas.Left="241" Width="220" Height="83"
+					IsVisible="{Binding !PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}">
 				<Grid>
 				    <TextBlock Text="ВНИМАНИЕ" 
 				               HorizontalAlignment="Center" 
@@ -126,7 +126,7 @@
 				</Grid>
 			</Border>
 		<!--Кнопка Параметры-->
-		<Button Canvas.Top="9" Canvas.Left="130" Width="110" Height="83"
+		<Button Canvas.Top="0" Canvas.Left="130" Width="110" Height="83"
 				IsEnabled="{Binding AccessViewModel.CurrentUser, Converter={StaticResource UserVisibilityConverter}, ConverterParameter={x:Static acc:UserAccessLevel.Service}}"
 				Background="Transparent" Click="OpenParametersWindowClick">
 			<Button.Content>
@@ -137,7 +137,9 @@
 				</StackPanel>
 			</Button.Content>
 		</Button>
-		<Image Source="..\..\Assets\Logo_Konvels_blue.png" Canvas.Top="20" Width="120" Height="52" Margin="5, 0, 0, 0"/>
+		<Image Source="..\..\Assets\Logo_Konvels_blue.png" Canvas.Top="0" Width="120" Height="52" Margin="5, 0, 0, 0"/>
+		<TextBlock Text="{Binding SoftVersion, StringFormat='VissmaBulk v.{0}'}" Canvas.Top="55" Margin="5"/>
+
 	</Canvas>
 	
 </UserControl>

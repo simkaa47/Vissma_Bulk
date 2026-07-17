@@ -52,53 +52,6 @@
 							   DescriptionInvisible="False"/>
 
             </StackPanel>
-        <!--<Grid Grid.Row="0" ColumnDefinitions="Auto, *" RowDefinitions="*, Auto" Grid.ColumnSpan="2" IsVisible="False">
-            --><!--Индикатор--><!--
-			<Image HorizontalAlignment="Stretch" Margin="10"
-                   Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus10.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource NakopitelImageStatuses}}"
-					Height="183" Width="276"/>
-            
-            <StackPanel Grid.Column="1" Margin="10">
-                --><!--Статус накопителя--><!--
-			<TextBlock
-				Foreground="White" FontSize="18"
-					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelStatus10.Value, 
-					   Converter={StaticResource GetByIndexFromParameterConverter}, 
-					   ConverterParameter={StaticResource NakopStatus}}"/>
-			--><!--Скорость ПЧ--><!--
-			<par:NumericParameter ParamWidth="50"
-                                  Margin="0, 5"
-                                  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-                                  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[3]}"
-                                  DescriptionInvisible="False"/>
-			--><!--Предельное кол-во проб в канистре--><!--
-			<par:NumericParameter ParamWidth="50"
-                                  Margin="0, 5"
-                                  Command="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-                                  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.KanistraSv}"
-                                  DescriptionInvisible="False"/>
-			
-            <DockPanel Margin="0, 5">
-                <TextBlock Text="Текущая канистра: "/>
-                <DockPanel HorizontalAlignment="Right">
-                    --><!--Номер канистры--><!--
-                    <TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.NakopitelCurrentCell.Value, StringFormat={}{0:d2}}" 
-                               FontWeight="Bold"
-                               Foreground="White"/>
-                    <TextBlock Text=" из " />
-                    --><!--кол-во канистр--><!--
-			        <TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.NakopitelVolume.Value, StringFormat={}{0:d2}}" 
-                               FontWeight="Bold"
-                               Foreground="White"/>
-                </DockPanel>
-                
-            </DockPanel>
-			--><!--Дверь закрта--><!--
-			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel}"
-                               Margin="0, 5"
-							   DescriptionInvisible="False"/>
-            </StackPanel>
-        </Grid>-->
         
         <!--Канистры-->
 		<DataGrid ItemsSource="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras}"
@@ -167,7 +120,7 @@
                 </DataGridTemplateColumn>
 
                  <!--Заголовок: ID партии -->
-                <DataGridTextColumn Header="ID партии"
+<!--                <DataGridTextColumn Header="ID партии"
                                     Binding="{Binding Id.Value}">
                     <DataGridTextColumn.HeaderTemplate>
                         <DataTemplate>
@@ -179,7 +132,7 @@
                                        HorizontalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTextColumn.HeaderTemplate>
-                </DataGridTextColumn>
+                </DataGridTextColumn>-->
 
                  <!--Заголовок: Проб в канистре -->
                 <DataGridTextColumn Binding="{Binding ProbeCnt.Value}">

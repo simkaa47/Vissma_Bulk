@@ -11,9 +11,9 @@
         #endregion
 
         #region Канистры накопителя
-        public List<Kanistra> Kanistras { get; } = Enumerable.Range(0, 1).Select(i => new Kanistra(i)).ToList();
+        public List<Kanistra> Kanistras { get; } = Enumerable.Range(0, 1).Select(i => new Kanistra(i, 12, 10)).ToList();
 
-        public List<Kanistra> Kanistras2 { get; } = Enumerable.Range(0, 1).Select(i => new Kanistra(i)).ToList();
+        public List<Kanistra> Kanistras2 { get; } = Enumerable.Range(0, 1).Select(i => new Kanistra(i, 17, 15)).ToList();
 
         #endregion
         #region Номер текущей ячейки накопителя
@@ -31,6 +31,21 @@
         #region Первичный проботборник занят
         public Parameter<bool> ProbotborBusy1 { get; } = new Parameter<bool>(nameof(ProbotborBusy1), "Занят", false, true, 0, 1) { IsOnlyRead = true };
         #endregion
+
+        #region current_time — текущее время цикла отбора
+
+        public Parameter<short> ProbCurrentTime { get; } = new Parameter<short>(nameof(ProbCurrentTime), "Текущее время цикла отбора", 1, 1000, 2, 0) { IsOnlyRead = true };
+
+        #endregion
+
+        #region valve_cur_time — текущее время работы клапана
+
+
+        public Parameter<short> ValveCurrentTime { get; } = new Parameter<short>(nameof(ValveCurrentTime), "Текущее время работы клапана, с", 1, 1000, 4, 0) { IsOnlyRead = true };
+
+        #endregion
+
+
         #region Готовность вторичного проботборника
         public Parameter<bool> ProbotborReady2 { get; } = new Parameter<bool>(nameof(ProbotborReady2), "Готовность к отбору", false, true, 146, 4) { IsOnlyRead = true };
         #endregion
@@ -62,7 +77,7 @@
         public Parameter<bool> CommonReady { get; } = new Parameter<bool>(nameof(CommonReady), "Общая готовность", false, true, 146, 13) { IsOnlyRead = true };
         #endregion
         #region Наличие ошибок
-        public Parameter<bool> GlobalError { get; } = new Parameter<bool>(nameof(GlobalError), "Наличие ошибок", false, true, 146, 15) { IsOnlyRead = true };
+        public Parameter<bool> GlobalError { get; } = new Parameter<bool>(nameof(GlobalError), "Наличие ошибок", false, true, 23, 0) { IsOnlyRead = true };
         #endregion
         #region Статус первичного проботборника
         public Parameter<short> ProbotborStatus1 { get; } = new Parameter<short>(nameof(ProbotborStatus1), "Статус пробоотборника", 0, 100, 3, 0) { IsOnlyRead = true };

@@ -29,7 +29,7 @@ namespace View
             
             AvaloniaXamlLoader.Load(this);
             Resources[typeof(IServiceProvider)] = serviceCollection;
-
+            
         }
 
         public override void OnFrameworkInitializationCompleted()

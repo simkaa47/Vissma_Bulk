@@ -12,6 +12,7 @@
 	<conv:GetFromCollectionMultiValueConverter x:Key="GetFromCollectionMultiValueConverter"/>
 	<conv:GetByIndexFromParameterConverter x:Key="GetByIndexFromParameterConverter"/>
 	<conv:AddConverter x:Key="AddConverter"/>
+	<conv:EventTypeToColorConverter x:Key="EventToColor"/>
 	
 	
 </ResourceDictionary>

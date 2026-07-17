@@ -167,7 +167,7 @@
                 </DataGridTemplateColumn>
 
                  <!--Заголовок: ID партии -->
-                <DataGridTextColumn Header="ID партии"
+<!--                <DataGridTextColumn Header="ID партии"
                                     Binding="{Binding Id.Value}">
                     <DataGridTextColumn.HeaderTemplate>
                         <DataTemplate>
@@ -179,7 +179,7 @@
                                        HorizontalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTextColumn.HeaderTemplate>
-                </DataGridTextColumn>
+                </DataGridTextColumn>-->
 
                  <!--Заголовок: Проб в канистре -->
                 <DataGridTextColumn Binding="{Binding ProbeCnt.Value}">

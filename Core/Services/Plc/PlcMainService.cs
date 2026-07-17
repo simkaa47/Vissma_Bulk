@@ -88,6 +88,29 @@ namespace Core.Services.Plc
                 }
                 _communicationService?.WriteRegisters(regs, parString.ModbusRegNum);
             }
+            else if (parameter is Parameter<float> parFloat && parFloat.ValidationOk)
+            {
+                parFloat.IsWriting = true;
+                WriteCommands.Enqueue(new Action(() =>
+                {
+                    // Получаем 4 байта float
+                    byte[] floatBytes = BitConverter.GetBytes(parFloat.WriteValue);
+
+                    // Проверяем порядок байтов системы
+                    if (BitConverter.IsLittleEndian)
+                    {
+                        Array.Reverse(floatBytes);
+                    }
+
+                    // Разбиваем 4 байта на 2 регистра по 2 байта (Big-Endian)
+                    ushort[] registers = new ushort[2];
+                    registers[0] = (ushort)((floatBytes[0] << 8) | floatBytes[1]); // Старший регистр
+                    registers[1] = (ushort)((floatBytes[2] << 8) | floatBytes[3]); // Младший регистр
+
+                    // Записываем 2 регистра, начиная с адреса parFloat.ModbusRegNum
+                    _communicationService?.WriteRegisters(registers, parFloat.ModbusRegNum);
+                }));
+            }
         }
 
         async Task ReadProcess()

@@ -5,18 +5,41 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 			 xmlns:vm="using:View.ViewModels"
 			 xmlns:np="using:NP.Avalonia.Visuals"
+			 x:CompileBindings="False"
 			 x:DataType="vm:EventViewModel"
              x:Class="View.UserControls.Events.CurrentEventsUserControl">
 	<Grid>
 		<Grid.Styles>
 			<Style Selector="DataGridRow">
 				<Setter Property="IsVisible" Value="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=IsActive}"/>
-				<Setter Property="Background" Value="Red"/>
+				
 			</Style>
+
+
 		</Grid.Styles>
 		<DataGrid ItemsSource="{Binding ActivePoints}" 				  			        
-				  IsReadOnly="True">		
-			
+				  IsReadOnly="True">
+			<DataGrid.Styles>
+			    <Style Selector="DataGridRow">
+
+			        <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Self}, 
+			            Path=DataContext.Type, 
+			            Converter={StaticResource EventToColor}}" />
+					
+						<Setter Property="ToolTip.Tip">
+						    <Template>
+						        <StackPanel Margin="8">
+						            <TextBlock Text="{Binding Advice}" 
+						                       TextWrapping="Wrap" 
+						                       MaxWidth="300"/>
+						        </StackPanel>
+						    </Template>
+						</Setter>
+
+
+			    </Style>
+
+			</DataGrid.Styles>
 			<DataGrid.Columns>
 				<DataGridTextColumn  Binding="{Binding EventCode}">
 					<DataGridTextColumn.Header>
@@ -27,8 +50,10 @@
 					<DataGridTextColumn.Header>
 						<TextBlock Text="Название" FontSize="14" HorizontalAlignment="Center"/>
 					</DataGridTextColumn.Header>
-				</DataGridTextColumn>				
-				<DataGridTextColumn  Binding="{Binding LastDateTime}">
+				</DataGridTextColumn>
+
+
+				<DataGridTextColumn  Binding="{Binding LastDateTime}" Width="Auto">
 					<DataGridTextColumn.Header>
 						<TextBlock Text="Дата детектирования" FontSize="14" HorizontalAlignment="Center"/>
 					</DataGridTextColumn.Header>

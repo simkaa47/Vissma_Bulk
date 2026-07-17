@@ -29,12 +29,14 @@ public partial class EventsDecribeService : ObservableObject
             .Select((e, i) => new EventPoint(e, "Value", true)
             {
                 Message = e.Description,
+                Advice = e.Advice,
                 EventCode = i.ToString("d4"),
                 IsActive = e.Value,
                 LastDateTime = DateTime.Now
 
             }).ToList();        
         AddPlcConnectionErr();
+        AddWarnings();
         foreach (var e in Events)
         {
             e.PropertyChanged += OnEventChanged;
@@ -46,12 +48,32 @@ public partial class EventsDecribeService : ObservableObject
     private void AddPlcConnectionErr()
     {
         if (Events is null) Events = new List<EventPoint>();
+
         Events.Add(new EventPoint(PlcMainService.PlcStateInfo, nameof(PlcMainService.PlcStateInfo.Connected), false)
         {
             Message = "Нет связи с ПЛК",
+            Advice = "Переподключите ПЛК",
             EventCode = "0300"
         });
     }  
+
+
+    private void AddWarnings()
+    {
+        if (Events is null) Events = new List<EventPoint>();
+
+        Events.AddRange(PlcMainService.PlcModel.Errors.Warnings
+            .Select((e, i) => new EventPoint(e, "Value", true)
+            {
+                Message = "ПРЕДУПРЕЖДЕНИЕ: " + e.Description,
+                Advice = e.Advice,
+                EventCode = (70+i).ToString("d4"),
+                IsActive = e.Value,
+                LastDateTime = DateTime.Now,
+                Type = EventType.Event
+
+            }));
+    }
 
     
     #endregion
