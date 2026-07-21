@@ -45,11 +45,16 @@
 					HorizontalContentAlignment="Center"
 			        HorizontalAlignment="Right">&gt;</Button>
 			<!-- Назад в систему -->
-			<Button Content="Назад к системе" 
+			<Button 
 			        Click="OnBackButtonClick" 
-			        HorizontalAlignment="Right" 
-			        VerticalAlignment="Bottom" 
-			        />
+			        HorizontalAlignment="Center" 
+			        VerticalAlignment="Bottom">
+				<StackPanel>
+					<Image Source="../../Assets/BackIcon.png" Width="32" Height="32"/>
+					<TextBlock Text="Назад к системе"/>
+				</StackPanel>
+			</Button>
+			        
 		</Panel>
 
     </Panel>

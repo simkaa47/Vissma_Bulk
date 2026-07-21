@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:keyboard="using:View.Keyboard"
+			 xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             x:Class="View.Keyboard.Layout.NumericKeyboard">
+	<UserControl.Resources>
+		<keyboard:VirtualKeyWidthMultiplayer x:Key="VirtualKeyWidthMultiplayer" />
+	</UserControl.Resources>
+	<UserControl.Styles>
+		<Style Selector="keyboard|VirtualKey">
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>			
+		</Style>
+	</UserControl.Styles>
+	<Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*,*,*">
+		<keyboard:VirtualKey  Grid.Column="0" NormalKey="1" Name="VirtualKey1" />
+		<keyboard:VirtualKey Grid.Column="1" NormalKey="2"/>
+		<keyboard:VirtualKey Grid.Column="2" NormalKey="3"/>
+		<keyboard:VirtualKey Grid.Column="3" SpecialKey="Back" SpecialIcon="KeyboardBackspace"/>
+
+		<keyboard:VirtualKey Grid.Column="0" Grid.Row="1" NormalKey="4"/>
+		<keyboard:VirtualKey Grid.Column="1" Grid.Row="1" NormalKey="5"/>
+		<keyboard:VirtualKey Grid.Column="2" Grid.Row="1" NormalKey="6"/>
+		<keyboard:VirtualKey Grid.Column="3" Grid.Row="1" SpecialKey="Left" SpecialIcon="ChevronLeft"/>
+
+		<keyboard:VirtualKey Grid.Column="0" Grid.Row="2" NormalKey="7"/>
+		<keyboard:VirtualKey Grid.Column="1" Grid.Row="2" NormalKey="8"/>
+		<keyboard:VirtualKey Grid.Column="2" Grid.Row="2" NormalKey="9"/>
+		<keyboard:VirtualKey Grid.Column="3" Grid.Row="2" SpecialKey="Right" SpecialIcon="ChevronRight"/>
+
+		<keyboard:VirtualKey Grid.Column="0" Grid.Row="3" NormalKey="0"/>
+		<keyboard:VirtualKey Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" SpecialKey="Enter" SpecialIcon="KeyboardReturn" Width="{Binding #VirtualKey1.Bounds.Width, Converter={StaticResource VirtualKeyWidthMultiplayer}, ConverterParameter=30}" />
+		
+	</Grid>	
+</UserControl>

@@ -43,6 +43,10 @@ namespace View
         {
             return AppBuilder.Configure<App>()
                 .UsePlatformDetect()
+                .With(new X11PlatformOptions
+                {
+                    RenderingMode = new[] { X11RenderingMode.Software }
+                })
                 .LogToTrace();
         }
 
@@ -50,6 +54,10 @@ namespace View
         {
             return AppBuilder.Configure(() => new App(serviceProvider))
                 .UsePlatformDetect()
+                .With(new X11PlatformOptions
+                {
+                    RenderingMode = new[] {X11RenderingMode.Software} 
+                })
                 .LogToTrace();
         }
 

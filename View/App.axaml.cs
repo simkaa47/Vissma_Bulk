@@ -3,6 +3,8 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using Core.ViewModels;
 using System;
+using View.Keyboard;
+using View.Keyboard.Layout;
 using View.Utilites;
 using View.Windows;
 
@@ -15,6 +17,10 @@ namespace View
         public App(IServiceProvider serviceCollection)
         {
             this.serviceCollection = serviceCollection;
+
+            VirtualKeyboard.AddLayout<VirtualKeyboardLayoutRU>();
+            VirtualKeyboard.AddLayout<VirtualKeyboardLayoutUS>();
+            VirtualKeyboard.SetDefaultLayout(() => typeof(VirtualKeyboardLayoutUS));
         }
 
 

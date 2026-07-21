@@ -39,7 +39,8 @@
 				   VerticalAlignment="Top" Height="30" Width="30"
 				   HorizontalAlignment="Left"/>
 		</Grid>
-		<StackPanel  Orientation="Vertical" Grid.Row="2">
+		<ScrollViewer Grid.Row="2">
+			<StackPanel  Orientation="Vertical" >
 			<!--Статус пррботборника-->
 			<TextBlock
 				Foreground="White" FontSize="18" Margin="10, 0"
@@ -80,43 +81,8 @@
 							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}"
 							  />-->
 			<!--Время сбора в одну канистру-->
-			<DropDownButton Content="Настройки" Margin="10, 5">
-				<DropDownButton.Flyout>
-				    <Flyout Placement="BottomEdgeAlignedLeft" >
-				        <ListBox>
-							<par:NumericParameter Margin="10, 5"
-								  ParamWidth="80"
-								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
-								  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DescriptionInvisible="False"/>
-							<par:NumericParameter Margin="10,5"
-												  ParamWidth="80"
-												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.SpeedProb}"
-												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-												  DescriptionInvisible="False"/>
-							<!--Время между отборами-->
-							<par:NumericParameter Margin="10,5"
-									  ParamWidth="80"
-									  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeBetweenOtbor}"
-									  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-									  DescriptionInvisible="False"/>
-							<!--Время промывки-->
-							<par:NumericParameter Margin="10,5"
-												  ParamWidth="80"
-												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.ProbFlushingTime}"
-												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-												  DescriptionInvisible="False"/>
-							<!--Задержка определения потока-->
-							<par:NumericParameter Margin="10,5"
-												  ParamWidth="80"
-												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DelayFlowDefining}"
-												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-												  DescriptionInvisible="False"/>
-						
-				        </ListBox>
-				    </Flyout>
-				</DropDownButton.Flyout>
-			</DropDownButton>
+			
+			
 			<!--Индикаторы-->
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
 							   DescriptionInvisible="False"
@@ -183,6 +149,58 @@
 					</ToggleButton.Content>
 				</ToggleButton>
 		</StackPanel>
+			<Expander Header="Настройки" 
+					  Background="Transparent"
+						HorizontalAlignment="Stretch">
+
+					<ListBox>
+						<ListBox.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel />
+							</ItemsPanelTemplate>
+						</ListBox.ItemsPanel>
+						<ListBox.Template>
+							<ControlTemplate>
+								<ScrollViewer 
+						             HorizontalScrollBarVisibility="Disabled"
+						             VerticalScrollBarVisibility="Auto">
+									<ItemsPresenter />
+								</ScrollViewer>
+							</ControlTemplate>
+						</ListBox.Template>
+					<par:NumericParameter Margin="10, 5"
+								  ParamWidth="80"
+								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
+								  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+								  DescriptionInvisible="False"/>
+							<par:NumericParameter Margin="10,5"
+												  ParamWidth="80"
+												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.SpeedProb}"
+												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+												  DescriptionInvisible="False"/>
+							<!--Время между отборами-->
+							<par:NumericParameter Margin="10,5"
+									  ParamWidth="80"
+									  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeBetweenOtbor}"
+									  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+									  DescriptionInvisible="False"/>
+							<!--Время промывки-->
+							<par:NumericParameter Margin="10,5"
+												  ParamWidth="80"
+												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.ProbFlushingTime}"
+												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+												  DescriptionInvisible="False"/>
+							<!--Задержка определения потока-->
+							<par:NumericParameter Margin="10,5"
+												  ParamWidth="80"
+												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DelayFlowDefining}"
+												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+												  DescriptionInvisible="False"/>
+				</ListBox>
+				
+			</Expander>
 		</StackPanel>
+		</ScrollViewer>
+		
 	</Grid>
 </UserControl>

@@ -1,9 +1,13 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Input;
 using Avalonia.Interactivity;
+using CommunityToolkit.Mvvm.Messaging;
 using Core.Models.AccesControl;
 using Core.ViewModels;
 using System;
+using System.Threading.Tasks;
 using View.Utilites;
 using View.ViewModels;
 
@@ -15,6 +19,7 @@ public partial class AuthorizationWindow : Window
     {
         InitializeComponent();
         this.Opened += OnOpened;
+        this.AddHandler<FocusChangedEventArgs>(InputElement.GotFocusEvent, openVirtualKeyboard);
     }
 
     private async void LoginClick(object? sender, RoutedEventArgs args)
@@ -42,6 +47,7 @@ public partial class AuthorizationWindow : Window
                     }
 
                 }
+                await Task.Delay(200);
                 desktop.MainWindow.Show();
                 this.Close();
 
@@ -50,9 +56,40 @@ public partial class AuthorizationWindow : Window
 
     }
 
+    StyledElement? keyboard;
+
+    private void OnKeyboardInitialized(object? sender, RoutedEventArgs e)
+    {
+        if (sender is not null && sender is StyledElement control)
+        {
+            keyboard = control;
+            control.DataContext = new KeyBoardViewModel();
+        }
+    }
+
+
     private void OnOpened(object? sender, EventArgs e)
     {
         //this.WindowState = WindowState.Maximized;
         this.InvalidateVisual();
     }
+
+    private void openVirtualKeyboard(object? sender, FocusChangedEventArgs e)
+    {
+        if (e.Source!.GetType() == typeof(TextBox) && keyboard is not null && keyboard.DataContext is KeyBoardViewModel vm)
+        {
+
+            if (!vm.IsOskVisible)
+            {
+                WeakReferenceMessenger.Default.Send(new PassObjectMsg(e.Source));
+                WeakReferenceMessenger.Default.Send(new OskControlMsg(true));
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+    }
+
 }
