@@ -1,8 +1,12 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Avalonia.Input;
 using Avalonia.Interactivity;
+using CommunityToolkit.Mvvm.Messaging;
 using Core.ViewModels;
 using System;
+using View.ViewModels;
 
 namespace View.Windows;
 
@@ -18,7 +22,39 @@ public partial class ControlWindow : Window
     {
         //this.WindowState = WindowState.Maximized;
         this.InvalidateVisual();
+        this.AddHandler<FocusChangedEventArgs>(InputElement.GotFocusEvent, openVirtualKeyboard);
     }
+
+    StyledElement? keyboard;
+
+    private void OnKeyboardInitialized(object? sender, RoutedEventArgs e)
+    {
+        if (sender is not null && sender is StyledElement control)
+        {
+            keyboard = control;
+            control.DataContext = new KeyBoardViewModel();
+        }
+    }
+
+    private void openVirtualKeyboard(object? sender, FocusChangedEventArgs e)
+    {
+        if (e.Source!.GetType() == typeof(TextBox) && keyboard is not null && keyboard.DataContext is KeyBoardViewModel vm)
+        {
+
+            if (!vm.IsOskVisible)
+            {
+                WeakReferenceMessenger.Default.Send(new PassObjectMsg(e.Source));
+                WeakReferenceMessenger.Default.Send(new OskControlMsg(true));
+                e.Handled = true;
+            }
+            else
+            {
+                e.Handled = false;
+            }
+        }
+    }
+
+
 
     private void OpenProbotborWindow(object? sender, RoutedEventArgs args)
     { 

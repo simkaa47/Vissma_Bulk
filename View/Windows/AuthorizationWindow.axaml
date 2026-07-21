@@ -7,14 +7,14 @@
 		xmlns:a="using:Core.Models.AccesControl"
 		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
 		xmlns:sys="clr-namespace:System;assembly=netstandard"
-		
+		xmlns:kb="using:View.Keyboard"
 		xmlns:vm="using:Core.ViewModels"
 		x:CompileBindings="False"
         x:Class="View.Windows.AuthorizationWindow"
 		x:DataType="vm:MainViewModel"
 		Background="Gray"
 		WindowStartupLocation="CenterScreen"
-        Title="Vissma Bulk - Авторизация"><!--WindowState="Maximized"-->
+        Title="Vissma Bulk - Авторизация">
 	<Window.Resources>
 		<a:Login x:Key="LoginModel"/>
 		<scg:List x:TypeArguments="sys:Object" x:Key="TextBoxErrorColors">
@@ -22,8 +22,8 @@
 			<SolidColorBrush Color="Red"/>
 		</scg:List>
 	</Window.Resources>	
-
-	<Grid RowDefinitions="Auto, Auto, Auto" VerticalAlignment="Center">
+	<Grid>
+		<Grid RowDefinitions="Auto, Auto, Auto" VerticalAlignment="Center">
 		<Button Height="52" Width="108"
 				Margin="0, 5"
 					Click="LoginClick"
@@ -53,5 +53,17 @@
 					 PasswordChar="•"/>
 		
 	</Grid>
+		<Border Background="LightGray"
+					Name="KbBorder"
+					Loaded="OnKeyboardInitialized"
+					IsVisible="{Binding IsOskVisible}"
+					
+					VerticalAlignment="Bottom"
+					Height="300"
+					><!--Height="{Binding ElementName=mainGrid, Path=Height, Converter={StaticResource DivConverter}, ConverterParameter=2}"-->
+				<kb:VirtualKeyboard/>
+		</Border>
+	</Grid>
+	
 	
 </Window>

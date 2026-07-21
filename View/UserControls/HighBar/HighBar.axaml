@@ -68,6 +68,7 @@
 				</TextBlock.Text>
 			</TextBlock>
 		</Border>
+		<!--Alarm-->
 			<Border Background="Red" Padding="10" Canvas.Top="0" Canvas.Left="241" Width="220" Height="83"
 					IsVisible="{Binding !PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}">
 				<Grid>
@@ -137,8 +138,10 @@
 				</StackPanel>
 			</Button.Content>
 		</Button>
+		<!--Logo-->
 		<Image Source="..\..\Assets\Logo_Konvels_blue.png" Canvas.Top="0" Width="120" Height="52" Margin="5, 0, 0, 0"/>
-		<TextBlock Text="{Binding SoftVersion, StringFormat='VissmaBulk v.{0}'}" Canvas.Top="55" Margin="5"/>
+		<!--Версия ПО-->
+		<TextBlock FontSize="9" Text="{Binding SoftVersion, StringFormat='VissmaBulk v.{0}beta'}" Canvas.Top="55" Margin="5"/>
 
 	</Canvas>
 	

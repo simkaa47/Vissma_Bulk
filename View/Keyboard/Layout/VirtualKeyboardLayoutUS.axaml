@@ -1,0 +1,78 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			  xmlns:keyboard="using:View.Keyboard"
+			 xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             x:Class="View.Keyboard.Layout.VirtualKeyboardLayoutUS">
+	<UserControl.Resources>
+		<keyboard:VirtualKeyWidthMultiplayer x:Key="VirtualKeyWidthMultiplayer" />
+	</UserControl.Resources>	
+
+	<Grid RowDefinitions="*,*,*,*,*" >
+		<Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Grid.Row="0">
+			<keyboard:VirtualKey NormalKey="1" ShiftKey="1" AltCtrlKey="`" Name="VirtualKey1" Grid.Column="0"/>
+			<keyboard:VirtualKey NormalKey="2" ShiftKey="2" AltCtrlKey="~" Grid.Column="1"/>
+			<keyboard:VirtualKey NormalKey="3" ShiftKey="3" AltCtrlKey="\" Grid.Column="2"/>
+			<keyboard:VirtualKey NormalKey="4" ShiftKey="4" AltCtrlKey="|" Grid.Column="3"/>
+			<keyboard:VirtualKey NormalKey="5" ShiftKey="5" AltCtrlKey="&#125;" Grid.Column="4"/>
+			<keyboard:VirtualKey NormalKey="6" ShiftKey="6" AltCtrlKey="&#125;" Grid.Column="5"/>
+			<keyboard:VirtualKey NormalKey="7" ShiftKey="7;" AltCtrlKey="&#128512;" Grid.Column="6"/>
+			<keyboard:VirtualKey NormalKey="8" ShiftKey="8" AltCtrlKey="&#128514;" Grid.Column="7"/>
+			<keyboard:VirtualKey NormalKey="9" ShiftKey="9" AltCtrlKey="°" Grid.Column="8"/>
+			<keyboard:VirtualKey NormalKey="0" ShiftKey="0" AltCtrlKey="€" Grid.Column="9"/>
+		</Grid>
+
+		<Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Grid.Row="1">
+			<keyboard:VirtualKey NormalKey="q" ShiftKey="Q" AltCtrlKey="+" Grid.Column="0"/>
+			<keyboard:VirtualKey NormalKey="w" ShiftKey="W" AltCtrlKey="×" Grid.Column="1"/>
+			<keyboard:VirtualKey NormalKey="e" ShiftKey="E" AltCtrlKey="÷" Grid.Column="2"/>
+			<keyboard:VirtualKey NormalKey="r" ShiftKey="R" AltCtrlKey="=" Grid.Column="3"/>
+			<keyboard:VirtualKey NormalKey="t" ShiftKey="T" AltCtrlKey="/" Grid.Column="4"/>
+			<keyboard:VirtualKey NormalKey="y" ShiftKey="Y" AltCtrlKey="_" Grid.Column="5"/>
+			<keyboard:VirtualKey NormalKey="u" ShiftKey="U" AltCtrlKey="&#60;" Grid.Column="6"/>
+			<keyboard:VirtualKey NormalKey="i" ShiftKey="I" AltCtrlKey="&#62;" Grid.Column="7"/>
+			<keyboard:VirtualKey NormalKey="o" ShiftKey="O" AltCtrlKey="[" Grid.Column="8"/>
+			<keyboard:VirtualKey NormalKey="p" ShiftKey="P" AltCtrlKey="]" Grid.Column="9"/>
+		</Grid>
+
+		<Grid ColumnDefinitions="*,*,*,*,*,*,*,*,*,*" Grid.Row="2">
+			<keyboard:VirtualKey NormalKey="a" ShiftKey="A" AltCtrlKey="@" Grid.Column="0"/>
+			<keyboard:VirtualKey NormalKey="s" ShiftKey="S" AltCtrlKey="#" Grid.Column="1"/>
+			<keyboard:VirtualKey NormalKey="d" ShiftKey="D" AltCtrlKey="$" Grid.Column="2"/>
+			<keyboard:VirtualKey NormalKey="f" ShiftKey="F" AltCtrlKey="%" Grid.Column="3"/>
+			<keyboard:VirtualKey NormalKey="g" ShiftKey="G" AltCtrlKey="^" Grid.Column="4"/>
+			<keyboard:VirtualKey NormalKey="h" ShiftKey="H" AltCtrlKey="&amp;" Grid.Column="5"/>
+			<keyboard:VirtualKey NormalKey="j" ShiftKey="J" AltCtrlKey="*" Grid.Column="6"/>
+			<keyboard:VirtualKey NormalKey="k" ShiftKey="K" AltCtrlKey="(" Grid.Column="7"/>
+			<keyboard:VirtualKey NormalKey="l" ShiftKey="L" AltCtrlKey=")" Grid.Column="8"/>
+			<keyboard:VirtualKey NormalKey="!" ShiftKey="!" AltCtrlKey="!" Grid.Column="9"/>
+		</Grid>
+
+		<Grid ColumnDefinitions="1.5*,*,*,*,*,*,*,*,1.5*" Grid.Row="3">
+			<keyboard:VirtualKey SpecialKey="LeftShift" SpecialIcon="AppleKeyboardShift" Grid.Column="0" />
+			<keyboard:VirtualKey NormalKey="z" ShiftKey="Z" AltCtrlKey="-" Grid.Column="1"/>
+			<keyboard:VirtualKey NormalKey="x" ShiftKey="X" AltCtrlKey="'" Grid.Column="2"/>
+			<keyboard:VirtualKey NormalKey="c" ShiftKey="C" AltCtrlKey="&#34;" Grid.Column="3"/>
+			<keyboard:VirtualKey NormalKey="v" ShiftKey="V" AltCtrlKey=":" Grid.Column="4"/>
+			<keyboard:VirtualKey NormalKey="b" ShiftKey="B" AltCtrlKey=";" Grid.Column="5"/>
+			<keyboard:VirtualKey NormalKey="n" ShiftKey="N" AltCtrlKey="," Grid.Column="6"/>
+			<keyboard:VirtualKey NormalKey="m" ShiftKey="M" AltCtrlKey="?" Grid.Column="7"/>
+			<keyboard:VirtualKey SpecialKey="Back" SpecialIcon="KeyboardBackspace" Grid.Column="8"/>
+		</Grid>
+
+		<Grid ColumnDefinitions="*,1.5*,*,2*,*,*,*,1.5*" Grid.Row="4">
+			<keyboard:VirtualKey SpecialKey="RightAlt" SpecialIcon="Symbol" Grid.Column="0"/>
+			<keyboard:VirtualKey SpecialKey="Help" SpecialIcon="Translate" Grid.Column="1"/>
+			<keyboard:VirtualKey NormalKey="," ShiftKey="," AltCtrlKey="," Grid.Column="2"/>
+			<keyboard:VirtualKey NormalKey=" " Grid.Column="3"/>
+			<keyboard:VirtualKey NormalKey="." ShiftKey="." AltCtrlKey="." Grid.Column="4"/>
+			<keyboard:VirtualKey SpecialKey="Left" SpecialIcon="ChevronLeft" Grid.Column="5"/>
+			<keyboard:VirtualKey SpecialKey="Right" SpecialIcon="ChevronRight" Grid.Column="6"/>
+			<keyboard:VirtualKey SpecialKey="Enter" SpecialIcon="KeyboardReturn" Grid.Column="7"/>
+
+		</Grid>		
+	</Grid>	
+</UserControl>
