@@ -9,6 +9,18 @@
 	  <FileVersion>2.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
+	<None Remove="Resourses\Fonts\Roboto-Black.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-BlackItalic.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-Bold.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-BoldItalic.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-Italic.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-Light.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-LightItalic.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-Medium.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-MediumItalic.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-Regular.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-Thin.ttf" />
+	<None Remove="Resourses\Fonts\Roboto-ThinItalic.ttf" />
     <None Remove="Assets\01.png" />
     <None Remove="Assets\02.png" />
     <None Remove="Assets\03.png" />
@@ -89,7 +101,21 @@
   <ItemGroup>
     <TrimmerRootAssembly Include="Avalonia.Themes.Fluent" />
   </ItemGroup>
-
+	<ItemGroup>
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-Black.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-BlackItalic.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-Bold.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-BoldItalic.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-Italic.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-Light.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-LightItalic.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-Medium.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-MediumItalic.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-Regular.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-Thin.ttf" />
+		<AvaloniaResource Include="Resourses\Fonts\Roboto-ThinItalic.ttf" />
+		
+	</ItemGroup>
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="12.0.4" />
     <PackageReference Include="Avalonia.Controls.DataGrid" Version="12.0.0" />

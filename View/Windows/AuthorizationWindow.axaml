@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+        mc:Ignorable="d" d:DesignWidth="768" d:DesignHeight="1024"
 		Width="768" Height="1024"
 		xmlns:a="using:Core.Models.AccesControl"
 		xmlns:scg="clr-namespace:System.Collections.Generic;assembly=netstandard"
@@ -12,7 +12,7 @@
 		x:CompileBindings="False"
         x:Class="View.Windows.AuthorizationWindow"
 		x:DataType="vm:MainViewModel"
-		Background="Gray"
+		
 		WindowStartupLocation="CenterScreen"
         Title="Vissma Bulk - Авторизация">
 	<Window.Resources>
@@ -21,8 +21,22 @@
 			<SolidColorBrush Color="White"/>
 			<SolidColorBrush Color="Red"/>
 		</scg:List>
-	</Window.Resources>	
+	</Window.Resources>
+	<Window.Background>
+			<ImageBrush Source="../Assets/Autorization.png" Stretch="UniformToFill"/>
+	</Window.Background>
 	<Grid>
+		<StackPanel HorizontalAlignment="Right" Margin="50, 100">
+			<TextBlock FontSize="48" VerticalAlignment="Top" 
+				   FontFamily="/Resourses/Fonts#Roboto Light"
+				   Text="VISSMA BULK"/>
+			<TextBlock FontSize="24" VerticalAlignment="Top" 
+				   FontFamily="/Resourses/Fonts#Roboto Light"
+				   HorizontalAlignment="Right"
+				   Text="{Binding SoftVersion, StringFormat='v. {0}'}"/>
+		</StackPanel>
+
+
 		<Grid RowDefinitions="Auto, Auto, Auto" VerticalAlignment="Center">
 		<Button Height="52" Width="108"
 				Margin="0, 5"

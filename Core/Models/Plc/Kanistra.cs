@@ -31,8 +31,8 @@
         public int Number { get; }
 
         
-        public Parameter<short> ProbeCnt { get; } = new Parameter<short>("ProbeCnt", "Кол-во проб в канистре", 0, short.MaxValue, 12, 0);
-        public Parameter<bool> IsExist { get; } = new Parameter<bool>("KanistraExist", "Наличие канистры", false, true, 9, 1);
+        public Parameter<short> ProbeCnt { get; } = new Parameter<short>("ProbeCnt", "Кол-во проб в канистре", 0, short.MaxValue, 12, 0) { RegType = Registers.Input, IsOnlyRead = true};
+        public Parameter<bool> IsExist { get; } = new Parameter<bool>("KanistraExist", "Наличие канистры", false, true, 9, 1) { RegType = Registers.Input, IsOnlyRead = true};
 
     }
 }

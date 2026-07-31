@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:plc="using:Core.Models.Plc"
+			 xmlns:pb="using:View.UserControls.Equipment.Probootbor"
+			 xmlns:par="using:View.UserControls.Parameters"
+			 xmlns:del="using:View.UserControls.Equipment.Delitel"
+             xmlns:vm="using:Core.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:MainViewModel"
+             x:Class="View.UserControls.Equipment.BatteryControl">
+    <GroupBox Header="Состояние источника питания" FontWeight="Bold">
+        <ListBox>
+            <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.UpsFall}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+            <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.UpsAlarm}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+            <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.UpsBypass}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+            <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.UpsBatteryLow}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+            <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.UpsOn}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+            <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.UpsLineLoss}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+        </ListBox>
+    </GroupBox>
+</UserControl>
