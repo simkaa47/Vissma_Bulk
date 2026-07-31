@@ -50,6 +50,7 @@ namespace Core.Services.Plc
         }
 
         public static void ScanInfoFromPlc(PlcModel plc, ModbusCommunicationService? comService)
+        
         {
             if (!initialized)
             {

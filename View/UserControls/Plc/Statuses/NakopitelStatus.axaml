@@ -8,10 +8,10 @@
 			 x:DataType="vm:PlcViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="View.UserControls.Plc.Statuses.NakopitelStatus">
-	<HeaderedContentControl Background="Black"
+	<!--<HeaderedContentControl Background="Black"
 							Header="Накопитель">
 		<Grid ColumnDefinitions="Auto,*">
-			<!--Таблица канистр-->
+			--><!--Таблица канистр--><!--
 			<DataGrid ItemsSource="{Binding PlcMainService.PlcModel.Indication.Kanistras}"
 					  Margin="10"
 					  Height="280"
@@ -33,7 +33,7 @@
 							<TextBlock Text="Наличие канистры" TextWrapping="Wrap" />
 						</DataGridTextColumn.Header>
 					</DataGridTextColumn>
-					<!--<DataGridTextColumn Binding="{Binding Id.Value}" Header="Id пробы"/>-->
+					--><!--<DataGridTextColumn Binding="{Binding Id.Value}" Header="Id пробы"/>--><!--
 					<DataGridTextColumn Binding="{Binding ProbeCnt.Value}"
 										Width="110"
 										IsReadOnly="True">
@@ -43,9 +43,9 @@
 					</DataGridTextColumn>					
 				</DataGrid.Columns>
 			</DataGrid>
-			<!--Индикация-->
+			--><!--Индикация--><!--
 			<Grid Grid.Column="1" RowDefinitions="*,*,*" ColumnDefinitions="*,*,*">
-				<!--Статус накопителя-->
+				--><!--Статус накопителя--><!--
 				<plc:StatusTextIndicator Statuses="{StaticResource NakopStatus}"
 										 Index="{Binding PlcMainService.PlcModel.Indication.NakopitelStatus.Value}"/>
 				<Border BorderBrush="Black" BorderThickness="1" Grid.Row="0" Grid.Column="1" Margin="10,10,0,0">
@@ -58,32 +58,32 @@
 					</Grid>
 					
 				</Border>
-				<!--Датчик двери-->
+				--><!--Датчик двери--><!--
 				<par:BoolIndicator Grid.Column="2" Grid.Row="0"
 								   DataContext="{Binding PlcMainService.PlcModel.Di.SqDoorNakopitel}"/>
-				<!--Датчик полного оборота-->
+				--><!--Датчик полного оборота--><!--
 				<par:BoolIndicator Grid.Column="0" Grid.Row="1"
 								   DataContext="{Binding PlcMainService.PlcModel.Di.SqNakopFullRev}"/>
-				<!--Датчик ячейки-->
+				--><!--Датчик ячейки--><!--
 				<par:BoolIndicator Grid.Column="1" Grid.Row="1"
 								   DataContext="{Binding PlcMainService.PlcModel.Di.SqNakopCell}"/>
-				<!--Датчик канистры-->
+				--><!--Датчик канистры--><!--
 				<par:BoolIndicator Grid.Column="2" Grid.Row="1"
 								   DataContext="{Binding PlcMainService.PlcModel.Di.SqNakopKanistra}"/>
-				<!--Калибровка накопителя-->
+				--><!--Калибровка накопителя--><!--
 				<Button Grid.Column="0" Grid.Row="2" Command="{Binding WriteParameterCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
 						Margin="10"
 						CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.CalibrationNakopCmd}" >
 					<TextBlock Text="Калибровка" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 				</Button>
-				<!--Смена канистры-->
+				--><!--Смена канистры--><!--
 				<Button Grid.Column="1" Grid.Row="2" Command="{Binding WriteParameterCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
 						Margin="10"
 						IsEnabled="{Binding PlcMainService.PlcModel.Indication.NakopitelReady.Value}"
 						CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.ChangeKanistraNakopCmd}" >
 					<TextBlock Text="Смена канистры" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
 				</Button>
-				<!--Открыть замок-->
+				--><!--Открыть замок--><!--
 				<Button Grid.Column="2" Grid.Row="2" Command="{Binding WriteParameterCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
 						Margin="10"
 						CommandParameter="{Binding PlcMainService.PlcModel.ButtonCommandsModel.OpenLockNakopCmd}" >
@@ -91,5 +91,5 @@
 				</Button>
 			</Grid>
 		</Grid>
-	</HeaderedContentControl>
+	</HeaderedContentControl>-->
 </UserControl>

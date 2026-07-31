@@ -73,29 +73,34 @@
 				</Border>
 				<TextBlock Text="c"/>
 			</StackPanel>
-<!--			--><!--Скорость ПЧ проботборника--><!--
-			<par:NumericParameter Margin="10, 5"
-								  DescriptionInvisible="False"
-								  ParamWidth="80"
-							  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-							  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.FcFrequencesSvs[2]}"
-							  />-->
-			<!--Время сбора в одну канистру-->
-			
-			
-			<!--Индикаторы-->
-			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort1}"
-							   DescriptionInvisible="False"
-							   Margin="5, 5, 0, 2"/>			
-			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHome1}"
-							   DescriptionInvisible="False"
-							   Margin="5, 2"/>
-			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWork1}"
-							   DescriptionInvisible="False"
-							   Margin="5, 2"/>
-			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbWorkAbort1}"
-							   DescriptionInvisible="False"
-							   Margin="5, 2, 5, 0"/>
+				<Grid ColumnDefinitions="*,*">
+					<StackPanel HorizontalAlignment="Left">
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbLeftAlarm}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbLeft}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbLocalRemote}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+					</StackPanel>
+					<StackPanel Grid.Column="1">
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbRightAlarm}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbRight}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbSbStop}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+					</StackPanel>
+				</Grid>
+							  
+
+
+
 			<StackPanel Orientation="Vertical"
 						Width="300"
 						HorizontalAlignment="Left"
@@ -118,7 +123,7 @@
 					</Button.Content>
 				</Button>	
 			<!--Кнопка Возврат ковша-->
-				<Button Background="Transparent"
+				<!--<Button Background="Transparent"
 						BorderBrush="Aquamarine"
 						Margin="0, 5"
 						BorderThickness="1"
@@ -133,15 +138,15 @@
 							<TextBlock Text="ВОЗВРАТ КОВША" Foreground="White" Margin="5"/>
 						</StackPanel>
 					</Button.Content>
-				</Button>
+				</Button>-->
 			<!--Кнопка набор воды-->
-					<ToggleButton x:Name="WaterButton"
+				<ToggleButton x:Name="WaterButton"
 								  IsChecked="{Binding PlcViewModel.IsFlooding}"
 								  HorizontalAlignment="Stretch"
 								  Margin="0, 5"
 								  Command="{Binding PlcViewModel.RunFlooding}"
 								  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.FloodOn}">
-					<ToggleButton.Content> <!--Interval="100"-->
+					<ToggleButton.Content> 
 						<StackPanel Orientation="Horizontal">
 							<Image Source="/Assets/WaterIcon.png" Width="32" Height="32"/>
 							<TextBlock x:Name="ButtonText" Text="{Binding PlcViewModel.IsFlooding, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource WaterState}}" Foreground="White" Margin="5"/>
@@ -149,6 +154,30 @@
 					</ToggleButton.Content>
 				</ToggleButton>
 		</StackPanel>
+			<Expander Header="Частотный преобразователь"
+					  Background="Transparent"
+					  HorizontalAlignment="Stretch">
+				<ListBox>
+					<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbFcReady}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+					<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbFcForw}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+					<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbFcRev}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+					<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbQValve}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+					<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbFcComm}"
+							   DescriptionInvisible="False"
+							   Margin="5, 2, 5, 0"/>
+					<DockPanel>
+						<TextBlock HorizontalAlignment="Left" Text="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbFcErrorCode.Value, StringFormat='Код ошибки ПЧ: {0}' }"/>
+					</DockPanel>
+				</ListBox>
+			</Expander>
 			<Expander Header="Настройки" 
 					  Background="Transparent"
 						HorizontalAlignment="Stretch">
@@ -168,11 +197,6 @@
 								</ScrollViewer>
 							</ControlTemplate>
 						</ListBox.Template>
-					<par:NumericParameter Margin="10, 5"
-								  ParamWidth="80"
-								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.TimeForKanistra}"
-								  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
-								  DescriptionInvisible="False"/>
 							<par:NumericParameter Margin="10,5"
 												  ParamWidth="80"
 												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.SpeedProb}"

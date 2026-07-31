@@ -62,7 +62,8 @@ namespace Core.Services.Plc
                 }));
 
             }
-            else if (parameter is Parameter<bool> parBool)
+            else 
+                if (parameter is Parameter<bool> parBool)
             {
                 parBool.IsWriting = true;
                 WriteCommands.Enqueue(new Action(() =>
@@ -123,6 +124,7 @@ namespace Core.Services.Plc
 
                     try
                     {
+                        
                         PlcStateInfo.Connected = _communicationService.Connected;
                         if (!PlcStateInfo.Connected)
                             Thread.Sleep(2000);
@@ -176,27 +178,27 @@ namespace Core.Services.Plc
         }
 
 
-        private void SynchroTime()
-        {
-            var dt = DateTime.Now;
-            PlcModel.Settings.DateSynchroYear.WriteValue = (short)(dt.Year - 2000);
-            PlcModel.Settings.DateSynchroMonth.WriteValue = (short)(dt.Month);
-            PlcModel.Settings.DateSynchroDay.WriteValue = (short)(dt.Day);
-            PlcModel.Settings.DateSynchroHour.WriteValue = (short)(dt.Hour);
-            PlcModel.Settings.DateSynchroMin.WriteValue = (short)(dt.Minute);
-            PlcModel.Settings.DateSynchroSec.WriteValue = (short)(dt.Second);
-            PlcModel.Settings.DateSynchroDayOfWeek.WriteValue = (short)(dt.DayOfWeek + 1);
-            PlcModel.ButtonCommandsModel.TimeSynchroCmd.WriteValue = true;
+        //private void SynchroTime()
+        //{
+        //    var dt = DateTime.Now;
+        //    PlcModel.Settings.DateSynchroYear.WriteValue = (short)(dt.Year - 2000);
+        //    PlcModel.Settings.DateSynchroMonth.WriteValue = (short)(dt.Month);
+        //    PlcModel.Settings.DateSynchroDay.WriteValue = (short)(dt.Day);
+        //    PlcModel.Settings.DateSynchroHour.WriteValue = (short)(dt.Hour);
+        //    PlcModel.Settings.DateSynchroMin.WriteValue = (short)(dt.Minute);
+        //    PlcModel.Settings.DateSynchroSec.WriteValue = (short)(dt.Second);
+        //    PlcModel.Settings.DateSynchroDayOfWeek.WriteValue = (short)(dt.DayOfWeek + 1);
+        //    PlcModel.ButtonCommandsModel.TimeSynchroCmd.WriteValue = true;
 
-            WriteParameter(PlcModel.Settings.DateSynchroYear);
-            WriteParameter(PlcModel.Settings.DateSynchroMonth);
-            WriteParameter(PlcModel.Settings.DateSynchroDay);
-            WriteParameter(PlcModel.Settings.DateSynchroHour);
-            WriteParameter(PlcModel.Settings.DateSynchroMin);
-            WriteParameter(PlcModel.Settings.DateSynchroSec);
-            WriteParameter(PlcModel.Settings.DateSynchroDayOfWeek);
-            WriteParameter(PlcModel.ButtonCommandsModel.TimeSynchroCmd);
-        }
+        //    WriteParameter(PlcModel.Settings.DateSynchroYear);
+        //    WriteParameter(PlcModel.Settings.DateSynchroMonth);
+        //    WriteParameter(PlcModel.Settings.DateSynchroDay);
+        //    WriteParameter(PlcModel.Settings.DateSynchroHour);
+        //    WriteParameter(PlcModel.Settings.DateSynchroMin);
+        //    WriteParameter(PlcModel.Settings.DateSynchroSec);
+        //    WriteParameter(PlcModel.Settings.DateSynchroDayOfWeek);
+        //    WriteParameter(PlcModel.ButtonCommandsModel.TimeSynchroCmd);
+        //}
 
 
 

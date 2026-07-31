@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:Core.ViewModels"
              mc:Ignorable="d" d:DesignWidth="768" d:DesignHeight="83"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
 			 xmlns:acc="using:Core.Models.AccesControl"
              x:Class="View.UserControls.HighBar.HighBar"
              x:DataType="vm:MainViewModel">
@@ -27,8 +28,9 @@
 				Background="Transparent">
 			<Button.Content>
 				<StackPanel Orientation="Vertical" VerticalAlignment="Center">
-					<Image Source="..\..\Assets\108.jpg" Width="32" Height="32"
-						/>
+<!--					<Image Source="..\..\Assets\108.jpg" Width="32" Height="32"
+						/>-->
+					<materialIcons:MaterialIcon Kind="Restart" Width="48" Height="48" />
 					<TextBlock HorizontalAlignment="Center" FontSize="10">
 						СБРОС
 					</TextBlock>
@@ -39,7 +41,7 @@
 			</Button.Content>
 		</Button>
 		<!--Время-->
-		<Border Canvas.Left="580" Canvas.Top="45" Width="110" Height="20">
+<!--		<Border Canvas.Left="580" Canvas.Top="45" Width="110" Height="20">
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18">
 				<TextBlock.Text>
 					<MultiBinding Converter="{StaticResource GetDataFromPlcConverter}" StringFormat="{}{0:HH:mm:ss}">
@@ -53,7 +55,7 @@
 				</TextBlock.Text>
 			</TextBlock>
 		</Border>
-		<!--Дата-->
+		--><!--Дата--><!--
 		<Border Canvas.Left="580" Canvas.Top="15" Width="110" Height="20">
 			<TextBlock VerticalAlignment="Center" HorizontalAlignment="Stretch" FontSize="18">
 				<TextBlock.Text>
@@ -67,9 +69,22 @@
 					</MultiBinding>
 				</TextBlock.Text>
 			</TextBlock>
+		</Border>-->
+		<!--Connect status-->
+		<Border Canvas.Top="0" Canvas.Left="241" Width="80" Height="83" Background="{Binding PlcViewModel.PlcMainService.PlcStateInfo.Connected, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource YesNoColors}}">
+			<StackPanel VerticalAlignment="Center">
+				<!--<Image Source="/Assets/106.png" Width="32" Height="32" IsVisible="{Binding PlcViewModel.PlcMainService.PlcStateInfo.Connected}"/>-->
+				<materialIcons:MaterialIcon Kind="CheckCircle" Width="48" Height="48" Foreground="Aqua" IsVisible="{Binding PlcViewModel.PlcMainService.PlcStateInfo.Connected}"/>
+				<materialIcons:MaterialIcon Kind="CloseCircle" Width="48" Height="48" IsVisible="{Binding !PlcViewModel.PlcMainService.PlcStateInfo.Connected}"/>
+				<!--<Image Source="/Assets/108.png" Width="32" Height="32" IsVisible="{Binding !PlcViewModel.PlcMainService.PlcStateInfo.Connected}"/>-->
+				<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcStateInfo.Connected, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource ConnectStatus}}"
+					   HorizontalAlignment="Center"
+					   FontWeight="Bold"/>
+			</StackPanel>
+
 		</Border>
 		<!--Alarm-->
-			<Border Background="Red" Padding="10" Canvas.Top="0" Canvas.Left="241" Width="220" Height="83"
+			<Border Background="OrangeRed" Padding="10" Canvas.Top="0" Canvas.Left="321" Width="140" Height="83"
 					IsVisible="{Binding !PlcViewModel.PlcMainService.PlcModel.Indication.GlobalError.Value}">
 				<Grid>
 				    <TextBlock Text="ВНИМАНИЕ" 
@@ -98,8 +113,9 @@
 				        </TextBlock.Styles>
 				    </TextBlock>
 
-				    <TextBlock Text="ОБНАРУЖЕНЫ ОШИБКИ" 
-				               HorizontalAlignment="Center" 
+				    <TextBlock HorizontalAlignment="Center" 
+							   TextAlignment="Center"
+							   Text="ОБНАРУЖЕНЫ&#10;ОШИБКИ"
 				               VerticalAlignment="Center"
 				               FontWeight="Bold"
 				               Foreground="White">
@@ -123,6 +139,9 @@
 				                </Style.Animations>
 				            </Style>
 				        </TextBlock.Styles>
+						
+							
+						
 				    </TextBlock>
 				</Grid>
 			</Border>

@@ -20,7 +20,7 @@
 				<ResourceInclude Source="/Resourses/GlobalConverters.axaml"/>
 				<ResourceInclude Source="/Resourses/CommonEnums.axaml"/>
 				<ResourceInclude Source="/Resourses/Templates/ImagePathsDictionary.axaml"/>
-				
+				<!--<ResourceInclude Source="/Resources/Fonts/FontFamilies.axaml"/>-->
 			</ResourceDictionary.MergedDictionaries>
 			
 		</ResourceDictionary>

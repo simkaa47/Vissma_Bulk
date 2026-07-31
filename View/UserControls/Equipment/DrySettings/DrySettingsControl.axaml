@@ -9,13 +9,13 @@
 			 x:Name="drysett"
              x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.Equipment.DrySettings.DrySettingsControl">
-  <Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
+  <!--<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
 	  <StackPanel Orientation="Vertical">
-		  <!--Индикатор сушки-->
+		  --><!--Индикатор сушки--><!--
 		  <Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitStatus.Value, 
 				 Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DryImageStatuses}}"
 				 Height="183" Width="275"/>
-		  <!--Кнопка Запуск сушки-->
+		  --><!--Кнопка Запуск сушки--><!--
 			<Button Height="60"
 					BorderBrush="LightGray"
 					HorizontalAlignment="Left"
@@ -35,7 +35,7 @@
 
       <StackPanel Grid.Column="1" Margin="10,0, 0,0">
 
-          <!--Статус сушки-->
+          --><!--Статус сушки--><!--
 			<TextBlock 
 				Foreground="White" FontSize="18"
 				Margin="0, 5"
@@ -43,41 +43,41 @@
 				Converter={StaticResource GetByIndexFromParameterConverter}, 
 				ConverterParameter={StaticResource DryUnitStatus}}"/>
 		  	
-			<!--Время сушки-->
-			<par:NumericParameter ParamWidth="50"
+			--><!--Время сушки--><!--
+			--><!--<par:NumericParameter ParamWidth="50"
 								  Margin="0, 5"
 								  Command="{Binding #drysett.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 								  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitDryTime}"
-								  DescriptionInvisible="False"/>
-			<!--ТЕмпература сушки -->
-			<par:NumericParameter 
+								  DescriptionInvisible="False"/>--><!--
+			--><!--ТЕмпература сушки --><!--
+--><!--			<par:NumericParameter 
 								  ParamWidth="50"
 								  Margin="0, 5"
 								  Command="{Binding #drysett.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							      DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitTemperatureSv}"
-							      DescriptionInvisible="False"/>
-			<!--Текущая температура-->
-			<DockPanel Margin="0, 5">
+							      DescriptionInvisible="False"/>--><!--
+			--><!--Текущая температура--><!--
+--><!--			<DockPanel Margin="0, 5">
 				<TextBlock Text="Температура сушки, °C"/>
 				<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryUnitCurrentTemperature.Value}" Foreground="White"
 						   HorizontalAlignment="Right"
 						   Margin="0, 0, 30, 0"/>
-			</DockPanel>
+			</DockPanel>--><!--
 
-			<!--Текущая время сушки-->
-			<DockPanel Margin="0, 5">
+			--><!--Текущая время сушки--><!--
+--><!--			<DockPanel Margin="0, 5">
 				<TextBlock Text="Время работы, с"/>
 				<TextBlock Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DryCurrentTime.Value}" Foreground="White"
 						   HorizontalAlignment="Right"
 						   Margin="0, 0, 30, 0"/>
-			</DockPanel>
+			</DockPanel>--><!--
 
-			<!--Задержка закрытия -->
-			<par:NumericParameter Margin="0, 5"
+			--><!--Задержка закрытия --><!--
+--><!--			<par:NumericParameter Margin="0, 5"
 								  ParamWidth="50"
 								  Command="{Binding #drysett.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
 							      DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.DryUnitDelayClose}"
-							      DescriptionInvisible="False"/>
+							      DescriptionInvisible="False"/>--><!--
 		    
       </StackPanel>
 	  <Grid Grid.Row="1" RowDefinitions="*,*,*" Grid.ColumnSpan="2">
@@ -115,7 +115,7 @@
 				  </Button>
 				  </StackPanel>
 				  
-				  <!--Датчики положения верхнего шибера-->
+				  --><!--Датчики положения верхнего шибера--><!--
 
 				  <StackPanel Orientation="Horizontal" Margin="5"
 							  Grid.Row="1" Grid.ColumnSpan="2" 
@@ -160,7 +160,7 @@
 				  </Button>
 				  </StackPanel>
 				  
-				  <!--Датчики положения нижнего шибера-->
+				  --><!--Датчики положения нижнего шибера--><!--
 				  <StackPanel Orientation="Horizontal" 
 							  Grid.Row="1" Grid.ColumnSpan="2"
 							  Margin="5" 
@@ -207,7 +207,7 @@
 				  </Button>
 				  </StackPanel>
 				  
-				  <!--Датчики положения барабана-->
+				  --><!--Датчики положения барабана--><!--
 				  <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
 					  <par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqBarabanHighPosition}"
 										 HorizontalAlignment="Stretch"/>
@@ -261,5 +261,5 @@
 			  </Grid>
 		  </GroupBox>
 	  </Grid>
-  </Grid>
+  </Grid>-->
 </UserControl>

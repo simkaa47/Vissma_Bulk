@@ -6,6 +6,11 @@
 		<SolidColorBrush Color="#33000000"/>
 		<SolidColorBrush Color="LightGreen"/>
 	</scg:List>
+		<scg:List x:TypeArguments="sys:Object" x:Key="YesNoColors">
+			<SolidColorBrush Color="OrangeRed"/>
+			<SolidColorBrush Color="Transparent"/>
+
+	</scg:List>
 	<scg:List x:TypeArguments="sys:String" x:Key="Modes">
 		<sys:String>Ручной</sys:String>
 		<sys:String>Автоматический</sys:String>
@@ -87,5 +92,9 @@
 		<sys:String>Истирание</sys:String>
 		<sys:String>Подьем барабана</sys:String>
 		<sys:String>Ошибка</sys:String>
+	</scg:List>
+	<scg:List x:TypeArguments="sys:String" x:Key="ConnectStatus">
+		<sys:String>Нет связи</sys:String>
+		<sys:String>Есть связь</sys:String>
 	</scg:List>
 </ResourceDictionary>

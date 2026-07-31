@@ -58,14 +58,14 @@ namespace Core.ViewModels
         private void DescribeForChangeControlPages()
         {
             PlcMainService.PlcModel.Indication.ProbotborStatus1.PropertyChanged += (s, args) => ControlPageSecond = false;
-            PlcMainService.PlcModel.Indication.PitatelStatus.PropertyChanged += (s, args) => ControlPageSecond = false;
-            PlcMainService.PlcModel.Indication.DrobilkaStatus.PropertyChanged += (s, args) => ControlPageSecond = false;
-            PlcMainService.PlcModel.Indication.ProbotborStatus2.PropertyChanged += (s, args) => ControlPageSecond = false;
-
-            PlcMainService.PlcModel.Indication.DryUnitStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
-            PlcMainService.PlcModel.Indication.IstiratelStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
+            //PlcMainService.PlcModel.Indication.PitatelStatus.PropertyChanged += (s, args) => ControlPageSecond = false;
+            //PlcMainService.PlcModel.Indication.DrobilkaStatus.PropertyChanged += (s, args) => ControlPageSecond = false;
+            //PlcMainService.PlcModel.Indication.ProbotborStatus2.PropertyChanged += (s, args) => ControlPageSecond = false;
+            //
+            //PlcMainService.PlcModel.Indication.DryUnitStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
+            //PlcMainService.PlcModel.Indication.IstiratelStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
             PlcMainService.PlcModel.Indication.NakopitelStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
-            PlcMainService.PlcModel.Indication.SysReturnStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
+            //PlcMainService.PlcModel.Indication.SysReturnStatus.PropertyChanged += (s, args) => ControlPageSecond = true;
         }
 
         [RelayCommand]

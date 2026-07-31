@@ -11,27 +11,27 @@
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.DrobilkaSettingsWindow"
         Title="DrobilkaSettingsWindow">
-	<Viewbox>
+	<!--<Viewbox>
 		<Canvas Width="1024" Height="600">
 			<Canvas.Background>
 				<ImageBrush Source="/Assets/13.png"/>
 			</Canvas.Background>
 			<hb:HighBar/>
-			<!--Кнопка Пуск-->
+			--><!--Кнопка Пуск--><!--
 			<Button Height="70" Width="238" Canvas.Top="100" Canvas.Left="10"
 					Background="Transparent"
 					Command="{Binding PlcViewModel.WriteParameterCommand}"
 					CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.DrobilkaOn}"/>
-			<!--Индикатор дробилки-->
+			--><!--Индикатор дробилки--><!--
 			<Image Source="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DrobilkaStatus.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DrobilkaImageStatuses}}"
 					    Height="183" Width="275" Canvas.Top="230" Canvas.Left="120"/>
-			<!--Статус дробилки-->
+			--><!--Статус дробилки--><!--
 			<TextBlock Canvas.Left="550" Canvas.Top="200"
 				Foreground="White" FontSize="18"
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.DrobilkaStatus.Value, 
 					   Converter={StaticResource GetByIndexFromParameterConverter} ,
 					   ConverterParameter={StaticResource UniversalStatus}}"/>
-			<!--Панель навигации-->
+			--><!--Панель навигации--><!--
 			<Button Canvas.Bottom="0" Canvas.Left="0"
 					Height="42"
 					Background="Transparent"
@@ -43,5 +43,5 @@
 					Click="OpenErrorsWindow"
 					Width="342"/>
 		</Canvas>
-	</Viewbox>
+	</Viewbox>-->
 </Window>

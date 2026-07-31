@@ -9,7 +9,7 @@
 			 x:DataType="vm:MainViewModel"
              x:Class="View.UserControls.Equipment.Delitel.DelitelControl">
   	<!--Делитель-->
-	<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
+	<!--<Grid RowDefinitions="Auto, *" ColumnDefinitions="Auto, *">
 		<TextBlock Text="Делитель" FontSize="18"
 				Foreground="White"
 				Margin="0, 5"
@@ -25,19 +25,19 @@
 			<Image Source="{Binding ProbotborStatus2.Value, Converter={StaticResource GetBitmapFromStringByIndexConverter}, ConverterParameter={StaticResource DelitelImageStatuses}}"
 			    Height="183" Width="275"/>
 			<Button Background="Transparent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-					Click="OpenDelitelWindow"/><!---->
+					Click="OpenDelitelWindow"/>--><!----><!--
 			<Image Source="/Assets/119.jpg" Margin="5"
 				   VerticalAlignment="Top" Height="30" Width="30"
 				   HorizontalAlignment="Left"/>
 		</Grid>
 		<StackPanel Grid.Column="1" Grid.Row="1">
-			<!--Статус делителя-->
+			--><!--Статус делителя--><!--
 			<TextBlock Margin="10, 5"
 				Foreground="White" FontSize="18"
 					   Text="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.ProbotborStatus2.Value, 
 					   Converter={StaticResource GetByIndexFromParameterConverter}, 
 					   ConverterParameter={StaticResource ProbotborStatus}}"/>
-			<!--Индикаторы-->
+			--><!--Индикаторы--><!--
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbHomeAbort2}"
 							   DescriptionInvisible="False"
 							   Margin="0,5"/>
@@ -51,5 +51,5 @@
 							   DescriptionInvisible="False"
 							   Margin="0,5"/>
 		</StackPanel>
-	</Grid>
+	</Grid>-->
 </UserControl>

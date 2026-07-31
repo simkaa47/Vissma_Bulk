@@ -17,6 +17,7 @@ namespace Core.Services.Communication
         public EthernetSettings Settings { get; }
 
         public List<ushort> ReadHoldingRegisters(int startRegNum, int regCnt)
+        
         {
             try
             {
