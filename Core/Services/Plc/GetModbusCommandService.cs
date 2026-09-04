@@ -1,6 +1,7 @@
 ﻿using Core.Models.Plc;
 using Core.Services.Communication;
 using Core.ViewModels;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Text;
 
 namespace Core.Services.Plc
@@ -133,6 +134,12 @@ namespace Core.Services.Plc
                 else if (par is Parameter<bool> parBool)
                 {
                     var memory = parBool.RegType == Registers.Hoilding ? holdingReadMemory : inputReadMemory;
+
+                    int index = parBool.ModbusRegNum - memory.Offset;
+                    //ushort registerValue = (ushort)((memory.Buffer[index + 1] << 8) | memory.Buffer[index]);
+
+
+                    //parBool.Value = (registerValue & (ushort)Math.Pow(2, parBool.ModbusBitNum)) > 0;
                     parBool.Value = (memory.Buffer[parBool.ModbusRegNum - memory.Offset] & (ushort)Math.Pow(2, parBool.ModbusBitNum)) > 0;
                 }
                 else if (par is Parameter<int> parInt)
@@ -145,13 +152,18 @@ namespace Core.Services.Plc
                 {
                     var memory = parUint.RegType == Registers.Hoilding ? holdingReadMemory : inputReadMemory;
                     var bytes = BitConverter.GetBytes(memory.Buffer[parUint.ModbusRegNum - memory.Offset]);
+                    var test = BitConverter.ToUInt32(bytes);
                     parUint.Value = BitConverter.ToUInt32(bytes);
                 }
                 else if (par is Parameter<float> parFloat)
                 {
                     var memory = parFloat.RegType == Registers.Hoilding ? holdingReadMemory : inputReadMemory;
-                    var bytes = memory.Buffer.Skip(parFloat.ModbusRegNum - memory.Offset).Take(2).SelectMany(s => BitConverter.GetBytes(s)).ToArray();
-                    parFloat.Value = BitConverter.ToSingle(bytes);
+                    var bytes = memory.Buffer.Skip(parFloat.ModbusRegNum - memory.Offset).Take(2).SelectMany(s => BitConverter.GetBytes((ushort)s)).ToArray();
+
+                    var result = new byte[4];
+                    Buffer.BlockCopy(bytes, 0, result, 2, 2);
+                    parFloat.Value = BitConverter.ToSingle(result);
+
                 }
                 else if (par is Parameter<string> parstring)
                 {

@@ -19,22 +19,11 @@
         #region Id пробы
         //public Parameter<string> ProbeId { get; } = new Parameter<string>(nameof(ProbeId), "Id пробы", string.Empty, "ZZZZZZZZZZZZZ", 20003, 0) { Length = 12, IsOnlyRead=true };
         #endregion
-        #region Автоматичекий режим
-        public Parameter<bool> AutoMode { get; } = new Parameter<bool>(nameof(AutoMode), "Автоматичекий режим", false, true, 0, 0);
-        #endregion
-
-        //#region Промывка/очистка ковша
-        //public Parameter<bool> CleanLadle { get; } = new Parameter<bool>(nameof(CleanLadle), "Промывка/очистка ковша", false, true, 0, 1);
-        //#endregion
-
-
-        #region Местный/дистанционный режим
-        public Parameter<bool> LocalRemote { get; } = new Parameter<bool>(nameof(LocalRemote), "Местный / дистанционный режим", false, true, 0, 2);
-        #endregion
+        
 
         #region Задержка определения потока
 
-        public Parameter<ushort> DelayFlowDefining { get; } = new Parameter<ushort>(nameof(DelayFlowDefining), "Задержка определения потока", 0, 1000, 3, 0);
+        public Parameter<ushort> DelayFlowDefining { get; } = new Parameter<ushort>(nameof(DelayFlowDefining), "Задержка определения потока, с", 0, 1000, 3, 0);
 
         #endregion
 
@@ -44,13 +33,13 @@
 
         #region Скорость Пробоотбора
 
-        public Parameter<float> SpeedProb { get; } = new Parameter<float>(nameof(SpeedProb), "Скорость пробоотбора", 5, 50, 6, 0);
+        public Parameter<float> SpeedProb { get; } = new Parameter<float>(nameof(SpeedProb), "Скорость пробоотбора, Гц", 5, 50, 6, 0) { };
 
         #endregion
 
         #region Время между отборами
 
-        public Parameter<short> TimeBetweenOtbor { get; } = new Parameter<short>(nameof(TimeBetweenOtbor), "Время между отборами", 0, 1000, 8, 0);
+        public Parameter<ushort> TimeBetweenOtbor { get; } = new Parameter<ushort>(nameof(TimeBetweenOtbor), "Время между отборами, мин", 0, 1000, 8, 0);
 
         #endregion
 
@@ -98,11 +87,11 @@
         //public Parameter<short> DateSynchroDayOfWeek { get; } = new Parameter<short>(nameof(DateSynchroDayOfWeek), "Время синхронизации, день недели", 1, 7, 20028, 0);
         #endregion
         #region Тайм-аут движения ковша проботборника 1
-        public Parameter<short> ProbotbornikTimeout1 { get; } = new Parameter<short>(nameof(ProbotbornikTimeout1), "Тайм-аут перемещения пробоотборника, c", 1, 100, 1, 0);
+        public Parameter<ushort> ProbotbornikTimeout1 { get; } = new Parameter<ushort>(nameof(ProbotbornikTimeout1), "Тайм-аут перемещения пробоотборника, c", 1, 100, 1, 0);
         #endregion
 
         #region Время промывки, c
-        public Parameter<short> ProbFlushingTime { get; } = new Parameter<short>(nameof(ProbFlushingTime), "Время промывки, c", 1, 100, 2, 0);
+        public Parameter<ushort> ProbFlushingTime { get; } = new Parameter<ushort>(nameof(ProbFlushingTime), "Время промывки, c", 1, 100, 2, 0);
         #endregion
 
         #region Тайм-аут движения ковша проботборника 2
