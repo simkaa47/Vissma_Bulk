@@ -76,7 +76,7 @@
 
         #region Код ошибки ПЧ
 
-        public Parameter<string> SqProbFcErrorCode { get; } = new Parameter<string>(nameof(SqProbFcComm), "Код ошибки ПЧ", string.Empty, "ZZZZZZZZZZZZZZZZZZZZZZZ", 1, 0) { Length = 12, IsOnlyRead = true, RegType = Registers.Input };
+        public Parameter<uint> SqProbFcErrorCode { get; } = new Parameter<uint>(nameof(SqProbFcComm), "Код ошибки ПЧ", 0, 65535, 1, 0) { IsOnlyRead = true, RegType = Registers.Input };
 
         #endregion
 

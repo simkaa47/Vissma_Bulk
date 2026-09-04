@@ -41,7 +41,7 @@
         #region valve_cur_time — текущее время работы клапана
 
 
-        public Parameter<short> ValveCurrentTime { get; } = new Parameter<short>(nameof(ValveCurrentTime), "Текущее время работы клапана, с", 1, 1000, 4, 0) {RegType = Registers.Input, IsOnlyRead = true };
+        public Parameter<ushort> ValveCurrentTime { get; } = new Parameter<ushort>(nameof(ValveCurrentTime), "Текущее время работы клапана, с", 1, 1000, 4, 0) {RegType = Registers.Input, IsOnlyRead = true };
 
         #endregion
 
@@ -110,13 +110,13 @@
         //public Parameter<short> DelitelTimeCurrent { get; } = new Parameter<short>(nameof(DelitelTimeCurrent), "Текущее время делителя, с", 0, short.MaxValue, 163, 0) { IsOnlyRead = true };
         //#endregion
         #region Время до следующего отбора, часов
-        public Parameter<short> TimeBeforeNextOtborHours { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborHours), "Время до следующего отбора, часов", 0, 23, 20, 0) {RegType = Registers.Input, IsOnlyRead = true };
+        public Parameter<ushort> TimeBeforeNextOtborHours { get; } = new Parameter<ushort>(nameof(TimeBeforeNextOtborHours), "Время до следующего отбора, часов", 0, 23, 20, 0) {RegType = Registers.Input, IsOnlyRead = true };
         #endregion
         #region Время до следующего отбора, минут
-        public Parameter<short> TimeBeforeNextOtborMinutes { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborMinutes), "Время до следующего отбора, минут", 0, 59, 21, 0) {RegType = Registers.Input, IsOnlyRead = true };
+        public Parameter<ushort> TimeBeforeNextOtborMinutes { get; } = new Parameter<ushort>(nameof(TimeBeforeNextOtborMinutes), "Время до следующего отбора, минут", 0, 59, 21, 0) {RegType = Registers.Input, IsOnlyRead = true };
         #endregion
         #region Время до следующего отбора, секунды
-        public Parameter<short> TimeBeforeNextOtborSeconds { get; } = new Parameter<short>(nameof(TimeBeforeNextOtborSeconds), "Время до следующего отбора, секунды", 0, 59, 22, 0) {RegType = Registers.Input, IsOnlyRead = true };
+        public Parameter<ushort> TimeBeforeNextOtborSeconds { get; } = new Parameter<ushort>(nameof(TimeBeforeNextOtborSeconds), "Время до следующего отбора, секунды", 0, 59, 22, 0) {RegType = Registers.Input, IsOnlyRead = true };
         #endregion
         #region Статус цикла отбора
         //public Parameter<ushort> MainProcessStatus { get; } = new Parameter<ushort>(nameof(MainProcessStatus), "Статус автоматиченского отбора", 0, 10, 180, 0);

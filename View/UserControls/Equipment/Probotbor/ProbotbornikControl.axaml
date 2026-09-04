@@ -84,29 +84,7 @@
 						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbLocalRemote}"
 										   DescriptionInvisible="False"
 										   Margin="5, 2, 5, 0"/>
-					</StackPanel>
-					<StackPanel Grid.Column="1">
-						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbRightAlarm}"
-										   DescriptionInvisible="False"
-										   Margin="5, 2, 5, 0"/>
-						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbRight}"
-										   DescriptionInvisible="False"
-										   Margin="5, 2, 5, 0"/>
-						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbSbStop}"
-										   DescriptionInvisible="False"
-										   Margin="5, 2, 5, 0"/>
-					</StackPanel>
-				</Grid>
-							  
-
-
-
-			<StackPanel Orientation="Vertical"
-						Width="300"
-						HorizontalAlignment="Left"
-						Margin="5"						
-						VerticalAlignment="Top">
-			<!--Кнопка Отбор-->
+									<!--Кнопка Отбор-->
 				<Button Background="Transparent" 
 						Margin="0, 5"
 						HorizontalAlignment="Stretch"
@@ -121,9 +99,80 @@
 							<TextBlock Text="ОТОБРАТЬ ЕДИНИЧНУЮ ПРОБУ" TextWrapping="Wrap" Foreground="White" Margin="5"/>
 						</StackPanel>
 					</Button.Content>
-				</Button>	
-			<!--Кнопка Возврат ковша-->
-				<!--<Button Background="Transparent"
+				</Button>
+						<ToggleButton Background="Transparent" 
+							  IsChecked="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.LocalRemote.Value}"
+						Margin="0, 5"
+						HorizontalAlignment="Stretch"
+						BorderBrush="Aquamarine"
+						BorderThickness="1"
+						CornerRadius="12"
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.LocalRemote}">
+					<ToggleButton.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/PlayIcon.png" Width="32" Height="32"/>
+							<TextBlock Text="Местный/Дистанционный" TextWrapping="Wrap" Foreground="White" Margin="5"/>
+						</StackPanel>
+					</ToggleButton.Content>
+				</ToggleButton>
+					</StackPanel>
+					<StackPanel Grid.Column="1">
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbRightAlarm}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbRight}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+						<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbSbStop}"
+										   DescriptionInvisible="False"
+										   Margin="5, 2, 5, 0"/>
+						<ToggleButton Background="Transparent" 
+						Margin="0, 5"
+						IsChecked="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.AutoMode.Value}"
+						HorizontalAlignment="Stretch"
+						BorderBrush="Aquamarine"
+						BorderThickness="1"
+						CornerRadius="12"
+						Command="{Binding PlcViewModel.WriteParameterCommand}"
+						CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.AutoMode}">
+					<ToggleButton.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/PlayIcon.png" Width="32" Height="32"/>
+							<TextBlock Text="АВТОМАТИЧЕСКИЙ РЕЖИМ" TextWrapping="Wrap" Foreground="White" Margin="5"/>
+						</StackPanel>
+					</ToggleButton.Content>
+				</ToggleButton>
+						<!--Кнопка набор воды-->
+				<ToggleButton x:Name="WaterButton"
+								  IsChecked="{Binding PlcViewModel.IsFlooding}"
+								  HorizontalAlignment="Stretch"
+								  Margin="0, 5"
+								  Command="{Binding PlcViewModel.RunFlooding}"
+								  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.FloodOn}">
+					<ToggleButton.Content> 
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/Assets/WaterIcon.png" Width="32" Height="32"/>
+							<TextBlock x:Name="ButtonText" Text="{Binding PlcViewModel.IsFlooding, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource WaterState}}" Foreground="White" Margin="5"/>
+						</StackPanel>
+					</ToggleButton.Content>
+				</ToggleButton>
+					</StackPanel>
+				</Grid>
+							  
+
+
+
+<!--			<StackPanel Orientation="Vertical"
+						Width="300"
+						HorizontalAlignment="Left"
+						Margin="5"						
+						VerticalAlignment="Top">
+
+					
+				
+			Кнопка Возврат ковша
+				<Button Background="Transparent"
 						BorderBrush="Aquamarine"
 						Margin="0, 5"
 						BorderThickness="1"
@@ -138,22 +187,9 @@
 							<TextBlock Text="ВОЗВРАТ КОВША" Foreground="White" Margin="5"/>
 						</StackPanel>
 					</Button.Content>
-				</Button>-->
-			<!--Кнопка набор воды-->
-				<ToggleButton x:Name="WaterButton"
-								  IsChecked="{Binding PlcViewModel.IsFlooding}"
-								  HorizontalAlignment="Stretch"
-								  Margin="0, 5"
-								  Command="{Binding PlcViewModel.RunFlooding}"
-								  CommandParameter="{Binding PlcViewModel.PlcMainService.PlcModel.ButtonCommandsModel.FloodOn}">
-					<ToggleButton.Content> 
-						<StackPanel Orientation="Horizontal">
-							<Image Source="/Assets/WaterIcon.png" Width="32" Height="32"/>
-							<TextBlock x:Name="ButtonText" Text="{Binding PlcViewModel.IsFlooding, Converter={StaticResource IfTrueConverter}, ConverterParameter={StaticResource WaterState}}" Foreground="White" Margin="5"/>
-						</StackPanel>
-					</ToggleButton.Content>
-				</ToggleButton>
-		</StackPanel>
+				</Button>
+			
+		</StackPanel>-->
 			<Expander Header="Частотный преобразователь"
 					  Background="Transparent"
 					  HorizontalAlignment="Stretch">
@@ -174,7 +210,7 @@
 							   DescriptionInvisible="False"
 							   Margin="5, 2, 5, 0"/>
 					<DockPanel>
-						<TextBlock HorizontalAlignment="Left" Text="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbFcErrorCode.Value, StringFormat='Код ошибки ПЧ: {0}' }"/>
+						<TextBlock HorizontalAlignment="Left" Text="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqProbFcErrorCode.Value, StringFormat='Код ошибки ПЧ: {0:x}'}"/>
 					</DockPanel>
 				</ListBox>
 			</Expander>
@@ -197,6 +233,12 @@
 								</ScrollViewer>
 							</ControlTemplate>
 						</ListBox.Template>
+							<!--Тайм-аут перемещения проботборника-->
+							<par:NumericParameter Margin="10,5"
+												  ParamWidth="80"
+												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.ProbotbornikTimeout1}"
+												  Command="{Binding #prob.DataContext.PlcViewModel.WriteParameterCommand, Mode=TwoWay}"
+												  DescriptionInvisible="False"/>
 							<par:NumericParameter Margin="10,5"
 												  ParamWidth="80"
 												  DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Settings.SpeedProb}"

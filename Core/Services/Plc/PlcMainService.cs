@@ -150,6 +150,7 @@ namespace Core.Services.Plc
 
         public async Task SaveConnectSettingsAsync()
         {
+
             try
             {
                 await _connectSettingsRepository.UpdateAsync(PlcConnectSettings);

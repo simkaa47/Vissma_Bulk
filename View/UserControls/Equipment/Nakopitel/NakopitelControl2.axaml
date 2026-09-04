@@ -50,8 +50,7 @@
 			<par:BoolIndicator DataContext="{Binding PlcViewModel.PlcMainService.PlcModel.Di.SqDoorNakopitel10}"
                                Margin="0, 5"
 							   DescriptionInvisible="False"/>
-
-            </StackPanel>
+        </StackPanel>
         
         <!--Канистры-->
 		<DataGrid ItemsSource="{Binding PlcViewModel.PlcMainService.PlcModel.Indication.Kanistras2}"

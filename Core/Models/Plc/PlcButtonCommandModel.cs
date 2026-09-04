@@ -9,6 +9,20 @@
         //public Parameter<bool> ReturnCmd1 { get; } = new Parameter<bool>(nameof(ReturnCmd1), "Произвести возврат 1", false, true, 200, 7);
         #endregion
 
+        #region Автоматичекий режим
+        public Parameter<bool> AutoMode { get; } = new Parameter<bool>(nameof(AutoMode), "Автоматичекий режим", false, true, 0, 0);
+        #endregion
+
+        //#region Промывка/очистка ковша
+        //public Parameter<bool> CleanLadle { get; } = new Parameter<bool>(nameof(CleanLadle), "Промывка/очистка ковша", false, true, 0, 1);
+        //#endregion
+
+
+        #region Местный/дистанционный режим
+        public Parameter<bool> LocalRemote { get; } = new Parameter<bool>(nameof(LocalRemote), "Местный / дистанционный режим", false, true, 0, 2);
+        #endregion
+
+
         #region Набор воды
 
         public Parameter<bool> FloodOn { get; } = new Parameter<bool>(nameof(FloodOn), "Набор воды", false, true, 0, 1); // modbusRegNum, modbusBitNum нужно заполнить
