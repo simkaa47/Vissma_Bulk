@@ -1,6 +1,8 @@
 ﻿using Core.Infrastructure.DataAccess.Repositories;
 using Core.Models.Plc;
+using Core.Services.Activity;
 using Core.Services.Communication;
+using Core.ViewModels;
 using System.Text;
 
 namespace Core.Services.Plc
@@ -16,9 +18,12 @@ namespace Core.Services.Plc
         private ModbusCommunicationService? _communicationService;
         private readonly IRepository<PlcConnectSettings> _connectSettingsRepository;
 
-        public PlcMainService(IRepository<PlcConnectSettings> connectSettingsRepository)
+        private readonly IActivityLogService _logService;
+
+        public PlcMainService(IRepository<PlcConnectSettings> connectSettingsRepository, IActivityLogService logService)
         {
             _connectSettingsRepository = connectSettingsRepository;
+            _logService = logService;
             InitAsync();
         }
 
@@ -52,6 +57,7 @@ namespace Core.Services.Plc
                     var bytes = BitConverter.GetBytes(parShort.WriteValue);
                     _communicationService?.WriteRegisters(new ushort[] { BitConverter.ToUInt16(bytes) }, parShort.ModbusRegNum);
                 }));
+                _logService.Log(Core.Services.Activity.LogLevel.Info, parShort.Description!, $"Изменено значение оператором на {parShort.WriteValue}");
             }
             else if (parameter is Parameter<ushort> parUShort && parUShort.ValidationOk)
             {
@@ -60,7 +66,7 @@ namespace Core.Services.Plc
                 {
                     _communicationService?.WriteRegisters(new ushort[] { parUShort.WriteValue }, parUShort.ModbusRegNum);
                 }));
-
+                _logService.Log(Core.Services.Activity.LogLevel.Info, parUShort.Description!, $"Изменено значение оператором на {parUShort.WriteValue}");
             }
             else 
                 if (parameter is Parameter<bool> parBool)
@@ -72,7 +78,8 @@ namespace Core.Services.Plc
                     SetBit(ref reg, parBool.ModbusBitNum, parBool.WriteValue);
                     _communicationService?.WriteRegisters(new ushort[] { reg }, parBool.ModbusRegNum);
                 }));
-            }
+                    _logService.Log(Core.Services.Activity.LogLevel.Info, parBool.Description!, $"Изменено значение оператором на {parBool.WriteValue}");
+                }
             else if (parameter is Parameter<string> parString)
             {
                 parString.IsWriting = true;
@@ -88,7 +95,8 @@ namespace Core.Services.Plc
                     else regs[i / 2] = BitConverter.ToUInt16(bytes, i);
                 }
                 _communicationService?.WriteRegisters(regs, parString.ModbusRegNum);
-            }
+                    _logService.Log(Core.Services.Activity.LogLevel.Info, parString.Description!, $"Изменено значение оператором на {parString.WriteValue}");
+                }
             else if (parameter is Parameter<float> parFloat && parFloat.ValidationOk)
             {
                 parFloat.IsWriting = true;
@@ -111,6 +119,7 @@ namespace Core.Services.Plc
                     // Записываем 2 регистра, начиная с адреса parFloat.ModbusRegNum
                     _communicationService?.WriteRegisters(registers, parFloat.ModbusRegNum);
                 }));
+                    _logService.Log(Core.Services.Activity.LogLevel.Info, parFloat.Description!, $"Изменено значение оператором на {parFloat.WriteValue}");
             }
         }
 

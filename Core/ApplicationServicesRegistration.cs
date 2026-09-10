@@ -7,6 +7,7 @@ using Core.Services.Mapping;
 using Core.Services.Plc;
 using Core.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using Core.Services.Activity;
 
 namespace Core
 {
@@ -17,10 +18,12 @@ namespace Core
             if (services is null) services = new ServiceCollection();
             services.AddMapper();
             services.AddDbContext<ApplicationContext>(options => { });
+            services.AddSingleton<IActivityLogService, ActivityLogService>();
             services.AddSingleton<MainViewModel>();            
             services.AddSingleton<AccessViewModel>();
             services.AddSingleton<IUserAccessService, UserAccessService>();
             services.AddSingleton<PlcMainService>();
+            
             services.AddSingleton<PlcViewModel>(); 
             services.AddSingleton<EventsDecribeService>();            
             services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));

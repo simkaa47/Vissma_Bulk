@@ -5,6 +5,7 @@
              xmlns:hb="using:View.UserControls.HighBar"
              xmlns:ev="using:View.UserControls.Events"
              xmlns:eq="using:View.UserControls.Equipment"
+             xmlns:act="using:View.UserControls.Activity"
              xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              xmlns:vm="using:Core.ViewModels"
              x:DataType="vm:MainViewModel"
@@ -146,6 +147,15 @@
                     </StackPanel>
                 </TabItem.Header>
                 <ev:CurrentEventsUserControl DataContext="{Binding EventsVm}" Margin="0, 10"/>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Spacing="8" MinHeight="60">
+                        <Image Source="/Assets/EventsIcon.png" Width="36" Height="36" VerticalAlignment="Center"/>
+                        <TextBlock Text="Журнал действий" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <act:ActivityLogControl DataContext="{Binding ActivityLogVm}" Margin="0, 10"/>
             </TabItem>
       </TabControl>
   </Grid>
