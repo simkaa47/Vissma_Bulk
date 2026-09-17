@@ -1,0 +1,77 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:View.ViewModels"
+             x:DataType="vm:ActivityLogViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="View.UserControls.Activity.ActivityLogControl">
+  <TabControl TabStripPlacement="Top">
+      <TabItem Header="Журнал активности" Margin="11, 0, 0, 0">
+        <DataGrid AutoGenerateColumns="False" 
+                  Margin="0,5"
+                            IsReadOnly="True"
+                            Background="#212121"
+                            SelectionMode="Single"
+                            ItemsSource="{Binding Logs}">
+                      <DataGrid.Styles>
+                        <Style Selector="TextBlock">
+                            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Style>
+                      </DataGrid.Styles>
+                      <DataGrid.Columns>
+                            <DataGridTextColumn Header="Время" Binding="{Binding Timestamp, StringFormat='{}{0:HH:mm:ss}'}" Foreground="Gray"/>
+                          <DataGridTextColumn Header="Уровень" Binding="{Binding Level}" FontWeight="Bold"/>
+                          <DataGridTextColumn Header="Источник" Binding="{Binding Source}" Foreground="DarkCyan" MaxWidth="120"/>
+                          <DataGridTextColumn Header="Статус" Binding="{Binding Message}" />
+                        </DataGrid.Columns>
+                      </DataGrid>
+
+      </TabItem>
+      <TabItem Header="Архивный журнал">
+          <Grid RowDefinitions="*, 0.5*">
+        <DataGrid AutoGenerateColumns="False" Grid.Row="1"
+                  IsReadOnly="True"
+                  FontSize="12"
+                  Background="#212121"
+                  SelectionMode="Single"
+                  ItemsSource="{Binding JsonDataCollection}"
+                  SelectedItem="{Binding SelectedFileInfo}">
+            <DataGrid.Styles>
+                <Style Selector="TextBlock">                            
+                    <Setter Property="FontSize" Value="12"/>
+                </Style>
+            </DataGrid.Styles>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя файла" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Время создания" Binding="{Binding ChangeTime, StringFormat=F}" Foreground="DarkCyan" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+              <Border Grid.Row="0" BorderThickness="0" BorderBrush="LightGray" CornerRadius="4" Margin="0,5">
+                  <DataGrid AutoGenerateColumns="False" 
+                            IsReadOnly="True"
+                            Background="#212121"
+                            SelectionMode="Single"
+                            ItemsSource="{Binding ArchiveLogs}">
+                      <DataGrid.Styles>
+                        <Style Selector="TextBlock">
+                            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Style>
+                      </DataGrid.Styles>
+                      <DataGrid.Columns>
+                            <DataGridTextColumn Header="Время" Binding="{Binding Timestamp, StringFormat='{}{0:HH:mm:ss}'}" Foreground="Gray"/>
+                          <DataGridTextColumn Header="Уровень" Binding="{Binding Level}" FontWeight="Bold"/>
+                          <DataGridTextColumn Header="Источник" Binding="{Binding Source}" Foreground="DarkCyan" MaxWidth="120"/>
+                          <DataGridTextColumn Header="Статус" Binding="{Binding Message}" />
+                        </DataGrid.Columns>
+                      </DataGrid>
+              </Border>
+        
+    </Grid>
+      </TabItem>
+  </TabControl>
+  
+</UserControl>

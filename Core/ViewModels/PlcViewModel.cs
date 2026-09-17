@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Core.Models.Plc;
+using Core.Services.Activity;
 using Core.Services.Plc;
 using Microsoft.Extensions.Logging;
 
@@ -9,11 +10,13 @@ namespace Core.ViewModels
     public partial class PlcViewModel:ViewModelBase
     {
         private readonly ILogger _logger;
+        private readonly IActivityLogService _logService;
 
-        public PlcViewModel(PlcMainService plcMainService, ILogger<PlcViewModel> logger)
+        public PlcViewModel(PlcMainService plcMainService, ILogger<PlcViewModel> logger, IActivityLogService logService)
         {
             PlcMainService = plcMainService;
             _logger = logger;
+            _logService = logService;
             PlcMainService.LogEvent += Log;
             DescribeForChangeControlPages();
         }
@@ -36,6 +39,7 @@ namespace Core.ViewModels
         public async void SavePlcConnectSettings()
         {
             await PlcMainService.SaveConnectSettingsAsync();
+            _logService.Log(Core.Services.Activity.LogLevel.Info, nameof(PlcViewModel), "Изменены настройки ПЛК");
         }
         [RelayCommand]
         public void WriteParameter(object parameter)
@@ -43,9 +47,10 @@ namespace Core.ViewModels
             if(parameter is Parameter<bool> parBool)
             {
                 parBool.WriteValue = !parBool.Value;
+                
             }
             PlcMainService.WriteParameter(parameter);
-
+            
         }
 
         [RelayCommand]

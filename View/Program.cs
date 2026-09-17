@@ -25,6 +25,7 @@ namespace View
             IServiceCollection services = new ServiceCollection();
             services.AddApplicationServices();
             services.AddSingleton<EventViewModel>();
+            services.AddSingleton<ActivityLogViewModel>();
             services.AddLogging(logging =>
             {
 #if DEBUG

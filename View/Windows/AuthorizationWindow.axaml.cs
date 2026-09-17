@@ -45,6 +45,11 @@ public partial class AuthorizationWindow : Window
                         var eventVm = App.Current.CreateInstance<EventViewModel>();
                         main.EventsVm = eventVm;
                     }
+                    if (main.ActivityLogVm is null)
+                    {
+                        var activityVm = App.Current.CreateInstance<ActivityLogViewModel>();
+                        main.ActivityLogVm = activityVm;
+                    }
 
                 }
                 await Task.Delay(200);
