@@ -6,23 +6,72 @@
              x:DataType="vm:ActivityLogViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="View.UserControls.Activity.ActivityLogControl">
-  <Grid RowDefinitions="Auto,*">
-        <TextBlock Grid.Row="0" Text="Журнал активности" FontSize="20" Margin="10"/>
+  <TabControl TabStripPlacement="Top">
+      <TabItem Header="Журнал активности" Margin="11, 0, 0, 0">
+        <DataGrid AutoGenerateColumns="False" 
+                  Margin="0,5"
+                            IsReadOnly="True"
+                            Background="#212121"
+                            SelectionMode="Single"
+                            ItemsSource="{Binding Logs}">
+                      <DataGrid.Styles>
+                        <Style Selector="TextBlock">
+                            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Style>
+                      </DataGrid.Styles>
+                      <DataGrid.Columns>
+                            <DataGridTextColumn Header="Время" Binding="{Binding Timestamp, StringFormat='{}{0:HH:mm:ss}'}" Foreground="Gray"/>
+                          <DataGridTextColumn Header="Уровень" Binding="{Binding Level}" FontWeight="Bold"/>
+                          <DataGridTextColumn Header="Источник" Binding="{Binding Source}" Foreground="DarkCyan" MaxWidth="120"/>
+                          <DataGridTextColumn Header="Статус" Binding="{Binding Message}" />
+                        </DataGrid.Columns>
+                      </DataGrid>
+
+      </TabItem>
+      <TabItem Header="Архивный журнал">
+          <Grid RowDefinitions="*, 0.5*">
+        <DataGrid AutoGenerateColumns="False" Grid.Row="1"
+                  IsReadOnly="True"
+                  FontSize="12"
+                  Background="#212121"
+                  SelectionMode="Single"
+                  ItemsSource="{Binding JsonDataCollection}"
+                  SelectedItem="{Binding SelectedFileInfo}">
+            <DataGrid.Styles>
+                <Style Selector="TextBlock">                            
+                    <Setter Property="FontSize" Value="12"/>
+                </Style>
+            </DataGrid.Styles>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя файла" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Время создания" Binding="{Binding ChangeTime, StringFormat=F}" Foreground="DarkCyan" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+              <Border Grid.Row="0" BorderThickness="0" BorderBrush="LightGray" CornerRadius="4" Margin="0,5">
+                  <DataGrid AutoGenerateColumns="False" 
+                            IsReadOnly="True"
+                            Background="#212121"
+                            SelectionMode="Single"
+                            ItemsSource="{Binding ArchiveLogs}">
+                      <DataGrid.Styles>
+                        <Style Selector="TextBlock">
+                            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                            <Setter Property="FontSize" Value="12"/>
+                        </Style>
+                      </DataGrid.Styles>
+                      <DataGrid.Columns>
+                            <DataGridTextColumn Header="Время" Binding="{Binding Timestamp, StringFormat='{}{0:HH:mm:ss}'}" Foreground="Gray"/>
+                          <DataGridTextColumn Header="Уровень" Binding="{Binding Level}" FontWeight="Bold"/>
+                          <DataGridTextColumn Header="Источник" Binding="{Binding Source}" Foreground="DarkCyan" MaxWidth="120"/>
+                          <DataGridTextColumn Header="Статус" Binding="{Binding Message}" />
+                        </DataGrid.Columns>
+                      </DataGrid>
+              </Border>
         
-        <ListBox Grid.Row="1" 
-                 ItemsSource="{Binding Logs}" 
-                 Margin="10"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid ColumnDefinitions="80, 120, 120, *" Margin="2">
-                        <TextBlock Grid.Column="0" Text="{Binding Timestamp, StringFormat='{}{0:HH:mm:ss}'}" Foreground="Gray"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Level}" FontWeight="Bold" />
-                        <TextBlock Grid.Column="2" Text="{Binding Source}" Foreground="DarkCyan" TextTrimming="CharacterEllipsis" TextWrapping="Wrap"/>
-                        <TextBlock Grid.Column="3" Text="{Binding Message}" TextWrapping="Wrap"/>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     </Grid>
+      </TabItem>
+  </TabControl>
+  
 </UserControl>

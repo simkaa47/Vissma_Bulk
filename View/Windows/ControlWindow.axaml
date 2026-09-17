@@ -16,6 +16,7 @@
 		x:CompileBindings="False"
 		x:DataType="vm:MainViewModel"
         x:Class="View.Windows.ControlWindow"
+		WindowStartupLocation="CenterScreen"
         Title="ControlWindow">
 	<Window.Resources>
 		<scg:List x:TypeArguments="ImageBrush" x:Key="BackgroundPaths">

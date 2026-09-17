@@ -18,7 +18,10 @@ namespace Core
             if (services is null) services = new ServiceCollection();
             services.AddMapper();
             services.AddDbContext<ApplicationContext>(options => { });
-            services.AddSingleton<IActivityLogService, ActivityLogService>();
+            var appDataPath = Environment.CurrentDirectory;
+            var logDirectory = Path.Combine(appDataPath, "Activity log data");
+            var logFilePath = Path.Combine(logDirectory, $"activity_log_{DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss")}.json");
+            services.AddSingleton<IActivityLogService, ActivityLogService>(sp => new ActivityLogService(logFilePath));
             services.AddSingleton<MainViewModel>();            
             services.AddSingleton<AccessViewModel>();
             services.AddSingleton<IUserAccessService, UserAccessService>();

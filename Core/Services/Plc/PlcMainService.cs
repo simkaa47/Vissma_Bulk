@@ -78,7 +78,9 @@ namespace Core.Services.Plc
                     SetBit(ref reg, parBool.ModbusBitNum, parBool.WriteValue);
                     _communicationService?.WriteRegisters(new ushort[] { reg }, parBool.ModbusRegNum);
                 }));
-                    _logService.Log(Core.Services.Activity.LogLevel.Info, parBool.Description!, $"Изменено значение оператором на {parBool.WriteValue}");
+                    string status = "";
+                    if (parBool.WriteValue) status = "ВКЛ"; else status = "ВЫКЛ"; 
+                    _logService.Log(Core.Services.Activity.LogLevel.Info, parBool.Description!, $"Изменено значение оператором на {status}");
                 }
             else if (parameter is Parameter<string> parString)
             {
