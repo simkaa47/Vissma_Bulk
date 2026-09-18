@@ -136,11 +136,9 @@ namespace Core.Services.Plc
                     var memory = parBool.RegType == Registers.Hoilding ? holdingReadMemory : inputReadMemory;
 
                     int index = parBool.ModbusRegNum - memory.Offset;
-                    //ushort registerValue = (ushort)((memory.Buffer[index + 1] << 8) | memory.Buffer[index]);
 
-
-                    //parBool.Value = (registerValue & (ushort)Math.Pow(2, parBool.ModbusBitNum)) > 0;
-                    parBool.Value = (memory.Buffer[parBool.ModbusRegNum - memory.Offset] & (ushort)Math.Pow(2, parBool.ModbusBitNum)) > 0;
+                    var value = SwapBytes(memory.Buffer[parBool.ModbusRegNum - memory.Offset]);
+                    parBool.Value =(value &(ushort)Math.Pow(2, parBool.ModbusBitNum)) > 0;
                 }
                 else if (par is Parameter<int> parInt)
                 {
@@ -178,7 +176,7 @@ namespace Core.Services.Plc
                     parstring.Value = Encoding.ASCII.GetString(bytes).Replace("\0","");
                 }
             }
-        }    
-
+        }
+        static ushort SwapBytes(ushort v) => (ushort)((v >> 8) | (v << 8));
     }
 }
